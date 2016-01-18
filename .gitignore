@@ -1,0 +1,11 @@
+# ignore case #
+QA.iml
+.DS_Store
+.DS_Store?
+._
+target/*
+/target
+.idea/*
+*.zip
+FA/
+derby.log
