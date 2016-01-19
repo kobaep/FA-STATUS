@@ -1,0 +1,224 @@
+<div xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+
+
+  <div class="row">
+    <div class="col-sm-7 well bs-component">
+      <form class="form-horizontal">
+        <fieldset>
+          <legend>FA Request</legend>
+          <div class="form-group">
+            <label for="inputCustomer" class="col-sm-3 control-label">Customer</label>
+            <div class="col-sm-9">
+              <input class="form-control" id="inputCustomer" placeholder="Customer" type="text"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputProjectOwner" class="col-sm-3 control-label">Project Owner</label>
+            <div class="col-sm-9">
+              <input class="form-control" id="inputProjectOwner" placeholder="Project Owner" type="text"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPartNumber" class="col-sm-3 control-label">Part Number</label>
+            <div class="col-sm-9">
+              <input class="form-control" id="inputPartNumber" placeholder="Part Number" type="text"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputRevision" class="col-sm-3 control-label">Revision</label>
+            <div class="col-sm-9">
+              <input class="form-control" id="inputRevision" placeholder="Revision" type="text"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputApqpNumber" class="col-sm-3 control-label">APQP Number</label>
+            <div class="col-sm-9">
+              <input class="form-control" id="inputApqpNumber" placeholder="APQP Number" type="text"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputQuatationWorkSheet" class="col-sm-3 control-label">Quatation Work Sheet</label>
+            <div class="col-sm-9">
+              <input class="form-control" id="inputQuatationWorkSheet" placeholder="Quatation Work Sheet" type="text"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputNeedDate" class="col-sm-3 control-label">Need Date</label>
+            <div class="col-sm-9">
+              <input class="form-control" id="inputNeedDate" placeholder="Need Date" type="text"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="selectProdutGroup" class="col-sm-3 control-label">Product Group</label>
+            <div class="col-sm-9">
+              <select class="form-control" id="selectProdutGroup">
+                <option>Electronics</option>
+                <option>HDD</option>
+                <option>Consumer</option>
+                <option>Automotive</option>
+                <option>Cosmetic</option>
+                <option>General</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="selectDocumentRequest" class="col-sm-3 control-label">Document Request</label>
+            <div class="col-sm-9">
+              <select class="form-control" id="selectDocumentRequest">
+                <option>No Need Data</option>
+                <option>Inpection Data Only</option>
+                <option>Full FA Submit For Approve</option>
+                <option>PPAP</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mat1" class="col-sm-3 control-label">Materail 1</label>
+            <div class="col-sm-9">
+              <input class="form-control" id="mat1" placeholder="Materail 1" type="text"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mat2" class="col-sm-3 control-label">Materail 2</label>
+            <div class="col-sm-9">
+              <input class="form-control" id="mat2" placeholder="Materail 2" type="text"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mat3" class="col-sm-3 control-label">Materail 3</label>
+            <div class="col-sm-9">
+              <input class="form-control" id="mat3" placeholder="Materail 3" type="text"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputFaApprove" class="col-sm-3 control-label">FA Approve qty</label>
+            <div class="col-sm-9">
+              <input class="form-control" id="inputFaApprove" placeholder="FA Approve qty" type="number"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputFaForSell" class="col-sm-3 control-label">FA For Sell qty</label>
+            <div class="col-sm-9">
+              <input class="form-control" id="inputFaForSell" placeholder="FA For Sell qty" type="number"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputSampleForTest" class="col-sm-3 control-label">Sample For Test qty</label>
+            <div class="col-sm-9">
+              <input class="form-control" id="inputSampleForTest" placeholder="Sample For Test qty" type="number"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputSampleForPcc" class="col-sm-3 control-label">Sample For PCC qty</label>
+            <div class="col-sm-9">
+              <input class="form-control" id="inputSampleForPcc" placeholder="Sample For PCC qty" type="number"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="selectTools" class="col-sm-3 control-label">Tools</label>
+            <div class="col-sm-9">
+              <select class="form-control" id="selectTools">
+                <option>Tooling</option>
+                <option>CNC</option>
+                <option>LASER</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-9 col-sm-offset-3">
+              <button type="reset" class="btn btn-default">Cancel</button>
+              <button type="button" id="btnFaRequest" class="btn btn-success col-sm-offset-1">Submit</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="col-sm-5">
+      <h2>Emphasis classes</h2>
+      <p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
+      <p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      <p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
+      <p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p>
+      <p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+      <p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+      <blockquote>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="modal fade" id="alertSaveModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!--<button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>-->
+          <h4 class="modal-title">Success</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" id="btnOk">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+    <![CDATA[
+    $(document).ready(function() {
+      $("#inputNeedDate").datepicker({ dateFormat: 'dd/mm/yy' });
+
+      $("#btnFaRequest").click(function() {
+
+        var data = {
+          customer : "na_" + $("#inputCustomer").val(),
+          projectOwner : "na_" + $("#inputProjectOwner").val(),
+          partNumber : "na_" + $("#inputPartNumber").val(),
+          revision : "na_" + $("#inputRevision").val(),
+          apqpNumber : "na_" + $("#inputApqpNumber").val(),
+          quatationWorkSheet : "na_" + $("#inputQuatationWorkSheet").val(),
+          needDate : "na_" + $("#inputNeedDate").val(),
+          produtGroup : $("#selectProdutGroup").val(),
+          documentRequest : $("#selectDocumentRequest").val(),
+          mat1 : "na_" + $("#mat1").val(),
+          mat2 : "na_" + $("#mat2").val(),
+          mat3 : "na_" + $("#mat3").val(),
+          faApproveQty : "na_" + $("#inputFaApprove").val(),
+          faaForSellQty : "na_" + $("#inputFaForSell").val(),
+          sampleForTestQty : "na_" + $("#inputSampleForTest").val(),
+          sampleForPccQty : "na_" + $("#inputSampleForPcc").val(),
+          tools : $("#selectTools").val()
+        };
+        console.debug(JSON.stringify(data));
+        $.ajax({
+          url: session['context'] +'/farequests/save',
+          type: "POST",
+          headers: {
+            Accept: "application/json"
+          },
+          data: {
+            data : JSON.stringify(data)
+          },
+          dataType: "json",
+          success: function(data){
+            $("#alertSaveModal").modal({show:true});
+            $("#btnOk").click(function() {
+              window.location.href = session['context'] + '/';
+            });
+          },
+          error: function(data){
+            alert("saved error.");
+          }
+        });
+      });
+    });
+    ]]>
+  </script>
+
+</div>

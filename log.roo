@@ -1,0 +1,88 @@
+// Spring Roo 1.3.2.RELEASE [rev 8387857] log opened at 2015-12-21 20:52:39
+project --topLevelPackage com.foamtec.qa --java 7 --projectName QA
+persistence setup --provider HIBERNATE --database DERBY_EMBEDDED
+entity jpa --class ~.security.AppUser --activeRecord --testAutomatically 
+field string --fieldName username --unique 
+field string --fieldName password
+field string --fieldName name
+field string --fieldName department
+field string --fieldName departmentCode
+field string --fieldName emailAddress
+field string --fieldName phoneNumber
+field number --fieldName enabled --type java.lang.Integer --notNull --value 1
+field string --fieldName roleName
+entity jpa --class ~.domain.FaRequest --testAutomatically --activeRecord
+field date --fieldName createDate --type java.util.Date --dateFormat SHORT --dateTimeFormatPattern "dd/MM/yyyy hh:mm:ss"
+field string --fieldName createBy
+field string --fieldName faNumber
+field string --fieldName productGroup
+field string --fieldName apqpNumber
+field string --fieldName quatationWorkSheet
+field date --fieldName needDate --type java.util.Date --dateFormat SHORT --dateTimeFormatPattern "dd/MM/yyyy hh:mm:ss"
+field string --fieldName customer
+field string --fieldName projectOwner
+field string --fieldName partNumber
+field string --fieldName revision
+field string --fieldName documentRequest
+field string --fieldName status
+field string --fieldName flow
+field date --fieldName engWorkCommitDate --type java.util.Date --dateFormat SHORT --dateTimeFormatPattern "dd/MM/yyyy hh:mm:ss"
+field string --fieldName process
+field date --fieldName engSendWorkDate --type java.util.Date --dateFormat SHORT --dateTimeFormatPattern "dd/MM/yyyy hh:mm:ss"
+field string --fieldName actionBy
+field string --fieldName engReson
+field string --fieldName faReson
+field string --fieldName engApprovel
+field string --fieldName faApprovel
+field string --fieldName saleApprovel
+entity jpa --class ~.domain.Material --testAutomatically --activeRecord
+field string --fieldName name
+field string --fieldName batchNumber
+entity jpa --class ~.domain.TypeOfRequest --testAutomatically --activeRecord
+field string --fieldName name
+field number --fieldName qty --type java.lang.Integer --value 0
+field string --fieldName tool
+entity jpa --class ~.domain.Tooling --testAutomatically --activeRecord
+field string --fieldName toolingType
+field number --fieldName carvity --type java.lang.Integer --value 0
+field string --fieldName vendorName
+entity jpa --class ~.domain.DocumentHistory --testAutomatically --activeRecord
+field date --fieldName createDate --type java.util.Date --dateFormat SHORT --dateTimeFormatPattern "dd/MM/yyyy hh:mm:ss"
+field string --fieldName createBy
+field string --fieldName actionType
+field string --fieldName status
+field string --fieldName reason
+focus --class ~.domain.FaRequest
+field set --fieldName materials --type ~.domain.Material --cardinality ONE_TO_MANY --fetch EAGER --mappedBy faRequest
+focus --class ~.domain.Material
+field reference --fieldName faRequest --type ~.domain.FaRequest --cardinality MANY_TO_ONE --fetch EAGER --joinColumnName faRequest
+focus --class ~.domain.FaRequest
+field set --fieldName typeOfRequest --type ~.domain.TypeOfRequest --cardinality ONE_TO_MANY --fetch EAGER --mappedBy faRequest
+focus --class ~.domain.TypeOfRequest
+field reference --fieldName faRequest --type ~.domain.FaRequest --cardinality MANY_TO_ONE --fetch EAGER --joinColumnName faRequest
+focus --class ~.domain.FaRequest
+field reference --fieldName tooling --type ~.domain.Tooling --cardinality ONE_TO_ONE --fetch EAGER
+focus --class ~.domain.Tooling
+field reference --fieldName faRequest --type ~.domain.FaRequest --cardinality ONE_TO_ONE --fetch EAGER
+focus --class ~.domain.FaRequest
+field set --fieldName documentHistorys --type ~.domain.DocumentHistory --cardinality ONE_TO_MANY --fetch EAGER --mappedBy faRequest
+focus --class ~.domain.DocumentHistory
+field reference --fieldName faRequest --type ~.domain.FaRequest --cardinality MANY_TO_ONE --fetch EAGER --joinColumnName faRequest
+json all --deepSerialize 
+web mvc json setup
+web mvc json all --package ~.web
+web mvc setup
+web mvc all --package ~.web
+security setup
+quit
+// Spring Roo 1.3.2.RELEASE [rev 8387857] log closed at 2015-12-21 21:43:40
+// Spring Roo 1.3.2.RELEASE [rev 8387857] log opened at 2016-01-05 14:51:28
+quit
+// Spring Roo 1.3.2.RELEASE [rev 8387857] log closed at 2016-01-05 14:52:54
+// Spring Roo 1.3.2.RELEASE [rev 8387857] log opened at 2016-01-18 17:32:58
+logging setup --level DEBUG --package PROJECT 
+quit
+// Spring Roo 1.3.2.RELEASE [rev 8387857] log closed at 2016-01-18 17:33:28
+// Spring Roo 1.3.2.RELEASE [rev 8387857] log opened at 2016-01-18 17:40:33
+quit
+// Spring Roo 1.3.2.RELEASE [rev 8387857] log closed at 2016-01-18 17:42:03

@@ -7,5 +7,5 @@ target/*
 /target
 .idea/*
 *.zip
-FA/
+QA/
 derby.log

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_foamtec_qa_domain_Material" object="${material}" path="/materials" z="1jb/LtAIDkXLoNwf8VGpMtIW6pw=">
+        <field:display field="name" id="s_com_foamtec_qa_domain_Material_name" object="${material}" z="YDueBDrEkAFldrLaBUglUB1Q6oA="/>
+        <field:display field="batchNumber" id="s_com_foamtec_qa_domain_Material_batchNumber" object="${material}" z="c3+vDR5JB1OUQXEPNlUvwSGlsBI="/>
+        <field:display field="faRequest" id="s_com_foamtec_qa_domain_Material_faRequest" object="${material}" z="E/tGcJ+jV6mUxHAKRkLQzMchQb0="/>
+    </page:show>
+</div>

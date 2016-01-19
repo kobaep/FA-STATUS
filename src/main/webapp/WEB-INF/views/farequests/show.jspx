@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_foamtec_qa_domain_FaRequest" object="${farequest}" path="/farequests" z="ZMb/9ePCU3IeCqbqo5aS0Zi7ufA=">
+        <field:display date="true" dateTimePattern="${faRequest_createdate_date_format}" field="createDate" id="s_com_foamtec_qa_domain_FaRequest_createDate" object="${farequest}" z="WbAyWoo/ey9ZY4spNTfpCFciLpU="/>
+        <field:display field="createBy" id="s_com_foamtec_qa_domain_FaRequest_createBy" object="${farequest}" z="ioSThaz1XlHc4WyGlY0LTvzdaL4="/>
+        <field:display field="faNumber" id="s_com_foamtec_qa_domain_FaRequest_faNumber" object="${farequest}" z="OTthDJlYJAvVyv202qLC/v6DPTo="/>
+        <field:display field="productGroup" id="s_com_foamtec_qa_domain_FaRequest_productGroup" object="${farequest}" z="xBOCq7gr2+O/ZaYNYg2CHD6Mp74="/>
+        <field:display field="apqpNumber" id="s_com_foamtec_qa_domain_FaRequest_apqpNumber" object="${farequest}" z="3WyWlFP+Jh3UgbAELMHhN8YEwMI="/>
+        <field:display field="quatationWorkSheet" id="s_com_foamtec_qa_domain_FaRequest_quatationWorkSheet" object="${farequest}" z="aq+6ts+v0JPpMNtceLn4x+g9beo="/>
+        <field:display date="true" dateTimePattern="${faRequest_needdate_date_format}" field="needDate" id="s_com_foamtec_qa_domain_FaRequest_needDate" object="${farequest}" z="uUk3kqTLqFBOkiqVoTYUsZxRtc4="/>
+        <field:display field="customer" id="s_com_foamtec_qa_domain_FaRequest_customer" object="${farequest}" z="Q8Dqc62QDnMTP1FKgwq2uepSTfI="/>
+        <field:display field="projectOwner" id="s_com_foamtec_qa_domain_FaRequest_projectOwner" object="${farequest}" z="kdeVbZVoSUQ3MK7ToNFKAvSbJVA="/>
+        <field:display field="partNumber" id="s_com_foamtec_qa_domain_FaRequest_partNumber" object="${farequest}" z="GZCY0lQfScgZoyAjxHJ8Zug5j6A="/>
+        <field:display field="revision" id="s_com_foamtec_qa_domain_FaRequest_revision" object="${farequest}" z="tqzk/uUJo0obcpqKUb2LfhqrIt0="/>
+        <field:display field="documentRequest" id="s_com_foamtec_qa_domain_FaRequest_documentRequest" object="${farequest}" z="zQV36Fx4YlUonSkk9uUnGUevGxo="/>
+        <field:display field="status" id="s_com_foamtec_qa_domain_FaRequest_status" object="${farequest}" z="livnkIg8FU2PO44Uj10J/dYnU48="/>
+        <field:display field="flow" id="s_com_foamtec_qa_domain_FaRequest_flow" object="${farequest}" z="KgR94zNZgdpSYkkqZ5wQMVYT+3Y="/>
+        <field:display date="true" dateTimePattern="${faRequest_engworkcommitdate_date_format}" field="engWorkCommitDate" id="s_com_foamtec_qa_domain_FaRequest_engWorkCommitDate" object="${farequest}" z="PVXuHprfOUbnsqFQvIUc4FKUaPA="/>
+        <field:display field="process" id="s_com_foamtec_qa_domain_FaRequest_process" object="${farequest}" z="NfH7+WTJQN+2yIp/6qdB0PxKjZI="/>
+        <field:display date="true" dateTimePattern="${faRequest_engsendworkdate_date_format}" field="engSendWorkDate" id="s_com_foamtec_qa_domain_FaRequest_engSendWorkDate" object="${farequest}" z="0gkTnPNx2EdlYVgilbChi/1Mm14="/>
+        <field:display field="actionBy" id="s_com_foamtec_qa_domain_FaRequest_actionBy" object="${farequest}" z="HMYiRGoSRsjHwVgRRhb1lQ8SnJM="/>
+        <field:display field="engReson" id="s_com_foamtec_qa_domain_FaRequest_engReson" object="${farequest}" z="m9b+/28qKpg4ZQ/9b6PiNwYyeXw="/>
+        <field:display field="faReson" id="s_com_foamtec_qa_domain_FaRequest_faReson" object="${farequest}" z="EwYAwpk6zYohwhVMLvm3B3vp7gU="/>
+        <field:display field="engApprovel" id="s_com_foamtec_qa_domain_FaRequest_engApprovel" object="${farequest}" z="vnQQo8zO3HdTK4x9u5eJvbD+YyM="/>
+        <field:display field="faApprovel" id="s_com_foamtec_qa_domain_FaRequest_faApprovel" object="${farequest}" z="HuMfmYhx6uHF4iG+oVL29eHn1Jg="/>
+        <field:display field="saleApprovel" id="s_com_foamtec_qa_domain_FaRequest_saleApprovel" object="${farequest}" z="dsPlmPz9FKFsEjf6Km2SvWRqlAs="/>
+        <field:display field="tooling" id="s_com_foamtec_qa_domain_FaRequest_tooling" object="${farequest}" z="WdSf5ZwAFUCum0ULtEWRaevbF3U="/>
+        <field:display field="mat1" id="s_com_foamtec_qa_domain_FaRequest_mat1" object="${farequest}" z="Y7pgzK8HCHa39/sR+EqRWvdARRo="/>
+        <field:display field="mat2" id="s_com_foamtec_qa_domain_FaRequest_mat2" object="${farequest}" z="b0Z/gdff5DIP5w/mT5tRfoLNG90="/>
+        <field:display field="mat3" id="s_com_foamtec_qa_domain_FaRequest_mat3" object="${farequest}" z="d3w4yY/9iUn9HF+eG0ZP+hOjBHE="/>
+    </page:show>
+</div>

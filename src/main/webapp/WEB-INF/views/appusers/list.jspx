@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_foamtec_qa_security_AppUser" items="${appusers}" z="QFJeSF9/c7Gx6CUPmkQGxOTqsCg=">
+        <table:table data="${appusers}" id="l_com_foamtec_qa_security_AppUser" path="/appusers" z="L6SC9WIVtdQRUKpWFqvGw1aserA=">
+            <table:column id="c_com_foamtec_qa_security_AppUser_username" property="username" z="zVrrvOgbTfJSqKaF8cnBGAqZ/6s="/>
+            <table:column id="c_com_foamtec_qa_security_AppUser_password" property="password" z="kchBjK7PXCCduNAqJkFDAg7bgwU="/>
+            <table:column id="c_com_foamtec_qa_security_AppUser_name" property="name" z="CHdJhlWDR6mPdvyJJE5exdT9ecM="/>
+            <table:column id="c_com_foamtec_qa_security_AppUser_department" property="department" z="Q6ecOQsf/XIdWKC0M/06d6Wrens="/>
+            <table:column id="c_com_foamtec_qa_security_AppUser_departmentCode" property="departmentCode" z="bMl8wOOvvswXEJbLcOrxiLN8A4I="/>
+            <table:column id="c_com_foamtec_qa_security_AppUser_emailAddress" property="emailAddress" z="46lnYjk2F2Vu9akZiV+0IAzC8os="/>
+        </table:table>
+    </page:list>
+</div>

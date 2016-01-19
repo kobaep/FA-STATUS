@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_foamtec_qa_domain_TypeOfRequest" items="${typeofrequests}" z="Q9zvV5O+PtccIoZxm75MS8e3cM0=">
+        <table:table data="${typeofrequests}" id="l_com_foamtec_qa_domain_TypeOfRequest" path="/typeofrequests" z="iLstTqn6PVTXgRJCUBIVHOjz75I=">
+            <table:column id="c_com_foamtec_qa_domain_TypeOfRequest_name" property="name" z="ofBECnajsVfMdUfoxEJHb3qBvoY="/>
+            <table:column id="c_com_foamtec_qa_domain_TypeOfRequest_qty" property="qty" z="mjCna5VO8l6wEta6IRp2gWMnCXs="/>
+            <table:column id="c_com_foamtec_qa_domain_TypeOfRequest_tool" property="tool" z="SUt/cJS99wuQsTU+PX6+bVXUw70="/>
+            <table:column id="c_com_foamtec_qa_domain_TypeOfRequest_faRequest" property="faRequest" z="nswePNBulFUBjMRSHZ/Ki0I2Ec8="/>
+        </table:table>
+    </page:list>
+</div>

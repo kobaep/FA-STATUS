@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_foamtec_qa_security_AppUser" modelAttribute="appUser" path="/appusers" versionField="Version" z="72Poj1q+qqFdUXXTajpu/OHT/5w=">
+        <field:input field="username" id="c_com_foamtec_qa_security_AppUser_username" z="j+n4K1j6xb0yfWhFB0AL56VkyTc="/>
+        <field:input field="password" id="c_com_foamtec_qa_security_AppUser_password" z="tf/k+1MzUf/HbDlWSodGHl2e0A4="/>
+        <field:input field="name" id="c_com_foamtec_qa_security_AppUser_name" z="49Bj3EznaFDBVcigHqQigLuNMjU="/>
+        <field:input field="department" id="c_com_foamtec_qa_security_AppUser_department" z="9WirqeUoIYZsYglm7tjxoq77WGA="/>
+        <field:input field="departmentCode" id="c_com_foamtec_qa_security_AppUser_departmentCode" z="EE83kwBrJswFf3/weCvzbt2+YBA="/>
+        <field:input field="emailAddress" id="c_com_foamtec_qa_security_AppUser_emailAddress" validationMessageCode="field_invalid_email" z="VEJ5GBUqi/YYFtOVd+Z+/8NZswg="/>
+        <field:input field="phoneNumber" id="c_com_foamtec_qa_security_AppUser_phoneNumber" z="LxAjW7xFJoFBywQg3Im1uCZGJM8="/>
+        <field:input field="enabled" id="c_com_foamtec_qa_security_AppUser_enabled" required="true" validationMessageCode="field_invalid_integer" z="zo0+HPb55wmfzuY2avmgK9PzVaA="/>
+        <field:input field="roleName" id="c_com_foamtec_qa_security_AppUser_roleName" z="vyNFrKF1EwliN8GjAz5L/h2sfnQ="/>
+    </form:update>
+</div>

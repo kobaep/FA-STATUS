@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_foamtec_qa_domain_FaRequest" items="${farequests}" z="jhlBoWKhq4E9ZTg7dUKNwOzr0po=">
+        <table:table data="${farequests}" id="l_com_foamtec_qa_domain_FaRequest" path="/farequests" z="039hAz2c4SsZSf1x12el9MFa/LA=">
+            <table:column date="true" dateTimePattern="${faRequest_createdate_date_format}" id="c_com_foamtec_qa_domain_FaRequest_createDate" property="createDate" z="li2kzzxarxlt5nZ7NeGtaiHi+1c="/>
+            <table:column id="c_com_foamtec_qa_domain_FaRequest_createBy" property="createBy" z="38QZWX56tvn1tkdKblrqa/k09kU="/>
+            <table:column id="c_com_foamtec_qa_domain_FaRequest_faNumber" property="faNumber" z="+Ljc8rxyX19DfZP+6SBx5wSuTVQ="/>
+            <table:column id="c_com_foamtec_qa_domain_FaRequest_productGroup" property="productGroup" z="+2qqNMLcolXyJJqkDxKvW4IAMZs="/>
+            <table:column id="c_com_foamtec_qa_domain_FaRequest_apqpNumber" property="apqpNumber" z="c5emtDn8P3TlhvPa5KWBSA69E/k="/>
+            <table:column id="c_com_foamtec_qa_domain_FaRequest_quatationWorkSheet" property="quatationWorkSheet" z="XSNN3HZL9kYbb02OSnbqczAwhzA="/>
+        </table:table>
+    </page:list>
+</div>

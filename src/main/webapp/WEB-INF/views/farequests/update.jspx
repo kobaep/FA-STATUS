@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_foamtec_qa_domain_FaRequest" modelAttribute="faRequest" path="/farequests" versionField="Version" z="Fkf8kj6G3lUiNSuelxGxJa1Gocc=">
+        <field:datetime dateTimePattern="${faRequest_createdate_date_format}" field="createDate" id="c_com_foamtec_qa_domain_FaRequest_createDate" z="JHr62qY2yCrauUCyUX+jCS7YZ3U="/>
+        <field:input field="createBy" id="c_com_foamtec_qa_domain_FaRequest_createBy" z="V4FJqbj9QSLPlVNLdE4plfLaP4Q="/>
+        <field:input field="faNumber" id="c_com_foamtec_qa_domain_FaRequest_faNumber" z="Zt1c24NdYPkEVSCVL5zIsCza9Io="/>
+        <field:input field="productGroup" id="c_com_foamtec_qa_domain_FaRequest_productGroup" z="MrZLLtRGa0VH7vpMfwDmtdV7OCU="/>
+        <field:input field="apqpNumber" id="c_com_foamtec_qa_domain_FaRequest_apqpNumber" z="P5/fF7q3UeC6o+lHezoxOa1qOtU="/>
+        <field:input field="quatationWorkSheet" id="c_com_foamtec_qa_domain_FaRequest_quatationWorkSheet" z="t5mDxV1lcz5W7ts3esdQt/skhI0="/>
+        <field:datetime dateTimePattern="${faRequest_needdate_date_format}" field="needDate" id="c_com_foamtec_qa_domain_FaRequest_needDate" z="ND7u8/6eAmXO8sIu4j7a4RjGCww="/>
+        <field:input field="customer" id="c_com_foamtec_qa_domain_FaRequest_customer" z="tSRqvYUly3/vPPdZRxogx7FbWoI="/>
+        <field:input field="projectOwner" id="c_com_foamtec_qa_domain_FaRequest_projectOwner" z="DlcDLjz0ASyck33eDf4BTQGYbw4="/>
+        <field:input field="partNumber" id="c_com_foamtec_qa_domain_FaRequest_partNumber" z="cmChkzSbYbqYkmNkiozxzPeIMXw="/>
+        <field:input field="revision" id="c_com_foamtec_qa_domain_FaRequest_revision" z="0CllKQnwnW8ZXeyIFERs9I6PXOM="/>
+        <field:input field="documentRequest" id="c_com_foamtec_qa_domain_FaRequest_documentRequest" z="A4sY/NpMrtAjy3A+9cJFCan8f+A="/>
+        <field:input field="status" id="c_com_foamtec_qa_domain_FaRequest_status" z="aVD275MaRyhi229xNWGu8Udkli8="/>
+        <field:input field="flow" id="c_com_foamtec_qa_domain_FaRequest_flow" z="/f9rjhf/ZVYRNLZvm2RwvvqWIcQ="/>
+        <field:datetime dateTimePattern="${faRequest_engworkcommitdate_date_format}" field="engWorkCommitDate" id="c_com_foamtec_qa_domain_FaRequest_engWorkCommitDate" z="IYwYaDt7Z9sqfVOUbBMnQrjjuh4="/>
+        <field:input field="process" id="c_com_foamtec_qa_domain_FaRequest_process" z="Rtt/VO04VJZykWOEYjOhtMtvTHk="/>
+        <field:datetime dateTimePattern="${faRequest_engsendworkdate_date_format}" field="engSendWorkDate" id="c_com_foamtec_qa_domain_FaRequest_engSendWorkDate" z="/Y+9nzH9cc7ld8K429KkYU0m1pg="/>
+        <field:input field="actionBy" id="c_com_foamtec_qa_domain_FaRequest_actionBy" z="yvAtfVTi2z7V4F0RLiXp4ykrkm8="/>
+        <field:input field="engReson" id="c_com_foamtec_qa_domain_FaRequest_engReson" z="xyD0LBK+Pch20rw17IVg3/WeVhs="/>
+        <field:input field="faReson" id="c_com_foamtec_qa_domain_FaRequest_faReson" z="5gsbHA+Ofw8EYT637Sa3II5qfe4="/>
+        <field:input field="engApprovel" id="c_com_foamtec_qa_domain_FaRequest_engApprovel" z="xBGaX20/Z11JmtAVBYgcV0tfF9U="/>
+        <field:input field="faApprovel" id="c_com_foamtec_qa_domain_FaRequest_faApprovel" z="EUaH7FedtJoKjAW5k/IjD73uq9A="/>
+        <field:input field="saleApprovel" id="c_com_foamtec_qa_domain_FaRequest_saleApprovel" z="QuIPlLGvdEk/drnxxgRK8mXFZ1U="/>
+        <field:simple field="materials" id="c_com_foamtec_qa_domain_FaRequest_materials" messageCode="entity_reference_not_managed" messageCodeAttribute="Material" z="Kh1G5uAirYH4p1eBLm4TupzaTDA="/>
+        <field:simple field="typeOfRequest" id="c_com_foamtec_qa_domain_FaRequest_typeOfRequest" messageCode="entity_reference_not_managed" messageCodeAttribute="Type Of Request" z="wSSIFmroTAJMF8rRTzTpAcYldaQ="/>
+        <field:select field="tooling" id="c_com_foamtec_qa_domain_FaRequest_tooling" itemValue="id" items="${toolings}" path="/toolings" z="5xGvKuDv0vOef8q/n5HNqcyhUKw="/>
+        <field:simple field="documentHistorys" id="c_com_foamtec_qa_domain_FaRequest_documentHistorys" messageCode="entity_reference_not_managed" messageCodeAttribute="Document History" z="0PhouyEIaoboXgTLNFQzNaR/wRc="/>
+        <field:input field="mat1" id="c_com_foamtec_qa_domain_FaRequest_mat1" z="IQ4ADg35ZsNbIMyEmVddtsPkmQs="/>
+        <field:input field="mat2" id="c_com_foamtec_qa_domain_FaRequest_mat2" z="3FSTHXz4TpWwteVB3axsPCDKkWo="/>
+        <field:input field="mat3" id="c_com_foamtec_qa_domain_FaRequest_mat3" z="vimQqjyyXQl/3Jx3Lo7hxaYLkxw="/>
+    </form:update>
+</div>

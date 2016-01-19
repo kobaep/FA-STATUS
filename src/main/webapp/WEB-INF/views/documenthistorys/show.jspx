@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_foamtec_qa_domain_DocumentHistory" object="${documenthistory}" path="/documenthistorys" z="0EpFWHr5XwnAfOo5RXQkx+Ej+9g=">
+        <field:display date="true" dateTimePattern="${documentHistory_createdate_date_format}" field="createDate" id="s_com_foamtec_qa_domain_DocumentHistory_createDate" object="${documenthistory}" z="dMkJDHIwI7wA6iY892FX8ecLpLw="/>
+        <field:display field="createBy" id="s_com_foamtec_qa_domain_DocumentHistory_createBy" object="${documenthistory}" z="n6BxhNMXj076giS/7y9j7zj/RM8="/>
+        <field:display field="actionType" id="s_com_foamtec_qa_domain_DocumentHistory_actionType" object="${documenthistory}" z="Xj1m0EO+pkFWOvu8b6O7paxtqhA="/>
+        <field:display field="status" id="s_com_foamtec_qa_domain_DocumentHistory_status" object="${documenthistory}" z="ekJE2uO2n//cfB6Q8qWs2CFUQVQ="/>
+        <field:display field="reason" id="s_com_foamtec_qa_domain_DocumentHistory_reason" object="${documenthistory}" z="XmuOTIT9TdCH3CBOkewTYcV/kIA="/>
+        <field:display field="faRequest" id="s_com_foamtec_qa_domain_DocumentHistory_faRequest" object="${documenthistory}" z="MaW5noPFQ1v6G8rTtIfk9Uc356Y="/>
+    </page:show>
+</div>

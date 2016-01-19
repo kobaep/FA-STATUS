@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_foamtec_qa_security_AppUser" object="${appuser}" path="/appusers" z="DG3GCk01Q4HTTgJPt7cpVpHwKeY=">
+        <field:display field="username" id="s_com_foamtec_qa_security_AppUser_username" object="${appuser}" z="ILVMvc5Hv17uhJpCSoWkFi3cFRM="/>
+        <field:display field="password" id="s_com_foamtec_qa_security_AppUser_password" object="${appuser}" z="/FHKw/WbBjhCfSOivC4529NYCwI="/>
+        <field:display field="name" id="s_com_foamtec_qa_security_AppUser_name" object="${appuser}" z="5asztvp8o0ZxYooZj81qqFVaaX4="/>
+        <field:display field="department" id="s_com_foamtec_qa_security_AppUser_department" object="${appuser}" z="sg/qoOhcbdA8CwQ4kgwIU2xijZo="/>
+        <field:display field="departmentCode" id="s_com_foamtec_qa_security_AppUser_departmentCode" object="${appuser}" z="VUDUsWwJTL310G5foVPqzfUgri0="/>
+        <field:display field="emailAddress" id="s_com_foamtec_qa_security_AppUser_emailAddress" object="${appuser}" z="xieqCPKWm0seVFcev7Xc9naYSyA="/>
+        <field:display field="phoneNumber" id="s_com_foamtec_qa_security_AppUser_phoneNumber" object="${appuser}" z="ihlOfatcEXUc2RuTB3drJ8DWsMI="/>
+        <field:display field="enabled" id="s_com_foamtec_qa_security_AppUser_enabled" object="${appuser}" z="QxcB+oMGa1pGdO1jHIYPi3QtIfo="/>
+        <field:display field="roleName" id="s_com_foamtec_qa_security_AppUser_roleName" object="${appuser}" z="D5yqCWP5N/gYJ4x7aOh//woKzWc="/>
+    </page:show>
+</div>

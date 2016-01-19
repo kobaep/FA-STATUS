@@ -1,0 +1,21 @@
+body{
+	padding-top:50px
+}
+body > .navbar {
+    transition: background-color 300ms ease-in 0s;
+}
+.bs-docs-section {
+    margin-top: 6em;
+}
+.bs-docs-section h1 {
+    padding-top: 100px;
+}
+.page-header h1 {
+    font-size: 4em;
+}
+.table-responsive {
+    height:180px;
+}
+.text-overflow-newline {
+    word-wrap:break-word;
+}
