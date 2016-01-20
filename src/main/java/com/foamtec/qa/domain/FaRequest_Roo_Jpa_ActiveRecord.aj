@@ -14,7 +14,7 @@ privileged aspect FaRequest_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager FaRequest.entityManager;
     
-    public static final List<String> FaRequest.fieldNames4OrderClauseFilter = java.util.Arrays.asList("createDate", "createBy", "faNumber", "productGroup", "apqpNumber", "quatationWorkSheet", "needDate", "customer", "projectOwner", "partNumber", "revision", "documentRequest", "status", "flow", "engWorkCommitDate", "process", "engSendWorkDate", "actionBy", "engReson", "faReson", "engApprovel", "faApprovel", "saleApprovel", "materials", "typeOfRequest", "tooling", "documentHistorys", "mat1", "mat2", "mat3");
+    public static final List<String> FaRequest.fieldNames4OrderClauseFilter = java.util.Arrays.asList("createDate", "faNumber", "productGroup", "apqpNumber", "quatationWorkSheet", "needDate", "customer", "projectOwner", "partNumber", "revision", "documentRequest", "status", "flow", "engWorkCommitDate", "process", "engSendWorkDate", "actionBy", "engReson", "faReson", "engApprovel", "faApprovel", "saleApprovel", "materials", "typeOfRequest", "tooling", "documentHistorys", "mat1", "mat2", "mat3", "batchMat1", "batchMat2", "batchMat3", "createBy");
     
     public static final EntityManager FaRequest.entityManager() {
         EntityManager em = new FaRequest().entityManager;

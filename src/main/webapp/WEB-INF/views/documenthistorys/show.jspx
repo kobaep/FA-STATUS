@@ -4,10 +4,12 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_com_foamtec_qa_domain_DocumentHistory" object="${documenthistory}" path="/documenthistorys" z="0EpFWHr5XwnAfOo5RXQkx+Ej+9g=">
         <field:display date="true" dateTimePattern="${documentHistory_createdate_date_format}" field="createDate" id="s_com_foamtec_qa_domain_DocumentHistory_createDate" object="${documenthistory}" z="dMkJDHIwI7wA6iY892FX8ecLpLw="/>
-        <field:display field="createBy" id="s_com_foamtec_qa_domain_DocumentHistory_createBy" object="${documenthistory}" z="n6BxhNMXj076giS/7y9j7zj/RM8="/>
         <field:display field="actionType" id="s_com_foamtec_qa_domain_DocumentHistory_actionType" object="${documenthistory}" z="Xj1m0EO+pkFWOvu8b6O7paxtqhA="/>
         <field:display field="status" id="s_com_foamtec_qa_domain_DocumentHistory_status" object="${documenthistory}" z="ekJE2uO2n//cfB6Q8qWs2CFUQVQ="/>
         <field:display field="reason" id="s_com_foamtec_qa_domain_DocumentHistory_reason" object="${documenthistory}" z="XmuOTIT9TdCH3CBOkewTYcV/kIA="/>
         <field:display field="faRequest" id="s_com_foamtec_qa_domain_DocumentHistory_faRequest" object="${documenthistory}" z="MaW5noPFQ1v6G8rTtIfk9Uc356Y="/>
+        <field:display field="moldNumber" id="s_com_foamtec_qa_domain_DocumentHistory_moldNumber" object="${documenthistory}" z="vIg26/RTR6KnPZkl4sSlzQbRi0g="/>
+        <field:display field="itemPcs" id="s_com_foamtec_qa_domain_DocumentHistory_itemPcs" object="${documenthistory}" z="/gCtvXz8xdWBK1G6Us70Q0TJuws="/>
+        <field:display field="createBy" id="s_com_foamtec_qa_domain_DocumentHistory_createBy" object="${documenthistory}" z="n6BxhNMXj076giS/7y9j7zj/RM8="/>
     </page:show>
 </div>

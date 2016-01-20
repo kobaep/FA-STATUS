@@ -5,6 +5,7 @@ package com.foamtec.qa.domain;
 
 import com.foamtec.qa.domain.DocumentHistory;
 import com.foamtec.qa.domain.FaRequest;
+import com.foamtec.qa.security.AppUser;
 import java.util.Date;
 
 privileged aspect DocumentHistory_Roo_JavaBean {
@@ -15,14 +16,6 @@ privileged aspect DocumentHistory_Roo_JavaBean {
     
     public void DocumentHistory.setCreateDate(Date createDate) {
         this.createDate = createDate;
-    }
-    
-    public String DocumentHistory.getCreateBy() {
-        return this.createBy;
-    }
-    
-    public void DocumentHistory.setCreateBy(String createBy) {
-        this.createBy = createBy;
     }
     
     public String DocumentHistory.getActionType() {
@@ -55,6 +48,30 @@ privileged aspect DocumentHistory_Roo_JavaBean {
     
     public void DocumentHistory.setFaRequest(FaRequest faRequest) {
         this.faRequest = faRequest;
+    }
+    
+    public String DocumentHistory.getMoldNumber() {
+        return this.moldNumber;
+    }
+    
+    public void DocumentHistory.setMoldNumber(String moldNumber) {
+        this.moldNumber = moldNumber;
+    }
+    
+    public Integer DocumentHistory.getItemPcs() {
+        return this.itemPcs;
+    }
+    
+    public void DocumentHistory.setItemPcs(Integer itemPcs) {
+        this.itemPcs = itemPcs;
+    }
+    
+    public AppUser DocumentHistory.getCreateBy() {
+        return this.createBy;
+    }
+    
+    public void DocumentHistory.setCreateBy(AppUser createBy) {
+        this.createBy = createBy;
     }
     
 }

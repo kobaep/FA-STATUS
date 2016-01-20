@@ -4,7 +4,6 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_com_foamtec_qa_domain_FaRequest" object="${farequest}" path="/farequests" z="ZMb/9ePCU3IeCqbqo5aS0Zi7ufA=">
         <field:display date="true" dateTimePattern="${faRequest_createdate_date_format}" field="createDate" id="s_com_foamtec_qa_domain_FaRequest_createDate" object="${farequest}" z="WbAyWoo/ey9ZY4spNTfpCFciLpU="/>
-        <field:display field="createBy" id="s_com_foamtec_qa_domain_FaRequest_createBy" object="${farequest}" z="ioSThaz1XlHc4WyGlY0LTvzdaL4="/>
         <field:display field="faNumber" id="s_com_foamtec_qa_domain_FaRequest_faNumber" object="${farequest}" z="OTthDJlYJAvVyv202qLC/v6DPTo="/>
         <field:display field="productGroup" id="s_com_foamtec_qa_domain_FaRequest_productGroup" object="${farequest}" z="xBOCq7gr2+O/ZaYNYg2CHD6Mp74="/>
         <field:display field="apqpNumber" id="s_com_foamtec_qa_domain_FaRequest_apqpNumber" object="${farequest}" z="3WyWlFP+Jh3UgbAELMHhN8YEwMI="/>
@@ -30,5 +29,9 @@
         <field:display field="mat1" id="s_com_foamtec_qa_domain_FaRequest_mat1" object="${farequest}" z="Y7pgzK8HCHa39/sR+EqRWvdARRo="/>
         <field:display field="mat2" id="s_com_foamtec_qa_domain_FaRequest_mat2" object="${farequest}" z="b0Z/gdff5DIP5w/mT5tRfoLNG90="/>
         <field:display field="mat3" id="s_com_foamtec_qa_domain_FaRequest_mat3" object="${farequest}" z="d3w4yY/9iUn9HF+eG0ZP+hOjBHE="/>
+        <field:display field="batchMat1" id="s_com_foamtec_qa_domain_FaRequest_batchMat1" object="${farequest}" z="lhE+1ou5xOVtPJFeMVoJSbKq40k="/>
+        <field:display field="batchMat2" id="s_com_foamtec_qa_domain_FaRequest_batchMat2" object="${farequest}" z="zLp5U8GJqjqnzXNg0ulZ7dQhz9g="/>
+        <field:display field="batchMat3" id="s_com_foamtec_qa_domain_FaRequest_batchMat3" object="${farequest}" z="OKFViiTgVfk+kDn+g0WO+E3a5B8="/>
+        <field:display field="createBy" id="s_com_foamtec_qa_domain_FaRequest_createBy" object="${farequest}" z="ioSThaz1XlHc4WyGlY0LTvzdaL4="/>
     </page:show>
 </div>

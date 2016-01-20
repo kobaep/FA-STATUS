@@ -22,6 +22,11 @@ import java.util.Set;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
+import com.foamtec.qa.domain.FaRequest;
+import com.foamtec.qa.security.AppUser;
+import java.util.Calendar;
+import java.util.List;
+
 /**
  * Created by kopeeno on 1/5/2016 AD.
  */
@@ -38,6 +43,167 @@ public aspect FaRequestController_Custom_Controller_Json {
             faRequest.setFaNumber("FA" + String.format("%05d", faRequest.getId()));
             faRequest.persist();
             return new ResponseEntity<String>(faRequest.toJson(), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/engupdate", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> FaRequestController.engUpdate(@RequestParam("data") String data, Principal principal) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        try {
+            JSONObject jsonObject = new JSONObject(data);
+            String idFa = jsonObject.getString("id");
+            FaRequest faRequest = FaRequest.findFaRequest(Long.parseLong(idFa));
+            String action = jsonObject.getString("action");
+            Set<DocumentHistory> documentHistorys = faRequest.getDocumentHistorys();
+            DocumentHistory documentHistory = new DocumentHistory();
+            if("approve".equals(action)) {
+                faRequest.setFlow("engineerWork");
+                faRequest.setStatus("EngApprove");
+                faRequest.setProcess(jsonObject.getString("process"));
+                faRequest.setBatchMat1(jsonObject.getString("batchMat1"));
+                faRequest.setBatchMat2(jsonObject.getString("batchMat2"));
+                faRequest.setBatchMat3(jsonObject.getString("batchMat3"));
+                Tooling tooling = faRequest.getTooling();
+                tooling.setCarvity(Integer.parseInt(jsonObject.getString("carvity")));
+                tooling.setVendorName(jsonObject.getString("vendor"));
+                tooling.persist();
+                faRequest.setTooling(tooling);
+                documentHistory.setStatus("EngApprove");
+                documentHistory.setActionType("approve");
+            }
+            if ("reject".equals(action)) {
+                faRequest.setFlow("sale");
+                faRequest.setStatus("EngReject");
+                faRequest.setEngReson(jsonObject.getString("reasonReject"));
+                documentHistory.setStatus("EngReject");
+                documentHistory.setActionType("reject");
+            }
+            documentHistory.setCreateBy(AppUser.findByUserName(principal.getName()));
+            documentHistory.setCreateDate(new Date());
+            documentHistory.setFaRequest(faRequest);
+            documentHistorys.add(documentHistory);
+            faRequest.setDocumentHistorys(documentHistorys);
+            faRequest.persist();
+
+            return new ResponseEntity<String>(faRequest.toJson(), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/dataenglistview", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> FaRequestController.engListDataWork(@RequestParam("data") String data) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        try {
+            JSONObject jsonObjectData = new JSONObject(data);
+            String[] partNumber = jsonObjectData.getString("partNumber").split("_");
+            String part = "%";
+            if(partNumber.length == 2) {
+                part = "%" + partNumber[1] + "%";
+            }
+            List<FaRequest> faRequests = FaRequest.findByWorkFlowAndStatusAndPart("engineerWork", "EngApprove", part);
+            JSONArray dataAllForSend = new JSONArray();
+            int i = 1;
+            for(FaRequest faRequest : faRequests) {
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("id", faRequest.getId());
+                jsonObject.put("no", i);
+                jsonObject.put("faNo", faRequest.getFaNumber());
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(faRequest.getCreateDate());
+                int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                int minutes = calendar.get(Calendar.MINUTE);
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+                jsonObject.put("requestDate",df.format(faRequest.getCreateDate()) + " " + hours + ":" + String.format("%02d", minutes));
+                jsonObject.put("needDate",df.format(faRequest.getNeedDate()));
+                jsonObject.put("customer",faRequest.getCustomer());
+                jsonObject.put("partNo",faRequest.getPartNumber());
+                jsonObject.put("requestBy", faRequest.getCreateBy().getName());
+                dataAllForSend.put(jsonObject);
+                i++;
+            }
+            return new ResponseEntity<String>(dataAllForSend.toString(), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/engupdatesend", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> FaRequestController.engSendItemWork(@RequestParam("data") String data, Principal principal) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        try {
+            JSONObject jsonObject = new JSONObject(data);
+            String idFa = jsonObject.getString("id");
+            FaRequest faRequest = FaRequest.findFaRequest(Long.parseLong(idFa));
+            Set<DocumentHistory> documentHistorys = faRequest.getDocumentHistorys();
+
+            DocumentHistory documentHistory = new DocumentHistory();
+            documentHistory.setMoldNumber(jsonObject.getString("moldNumber"));
+            documentHistory.setItemPcs(Integer.parseInt(jsonObject.getString("itemPcs")));
+            documentHistory.setCreateBy(AppUser.findByUserName(principal.getName()));
+            documentHistory.setCreateDate(new Date());
+            documentHistory.setFaRequest(faRequest);
+            documentHistory.setActionType("engSendWork");
+            documentHistory.setStatus("EngSend");
+            documentHistorys.add(documentHistory);
+            faRequest.setDocumentHistorys(documentHistorys);
+
+            faRequest.setFlow("FA");
+            faRequest.setStatus("engSendWork");
+            faRequest.persist();
+
+            return new ResponseEntity<String>(faRequest.toJson(), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/faqadatalist", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> FaRequestController.faQaDataList(@RequestParam("data") String data) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        try {
+            JSONObject jsonObjectData = new JSONObject(data);
+            String[] partNumber = jsonObjectData.getString("partNumber").split("_");
+            String part = "%";
+            if(partNumber.length == 2) {
+                part = "%" + partNumber[1] + "%";
+            }
+            List<FaRequest> faRequests = FaRequest.findByWorkFlowAndStatusAndPart("FA", "engSendWork", part);
+            JSONArray dataAllForSend = new JSONArray();
+            int i = 1;
+            for(FaRequest faRequest : faRequests) {
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("id", faRequest.getId());
+                jsonObject.put("no", i);
+                jsonObject.put("faNo", faRequest.getFaNumber());
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(faRequest.getCreateDate());
+                int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                int minutes = calendar.get(Calendar.MINUTE);
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+                jsonObject.put("requestDate",df.format(faRequest.getCreateDate()) + " " + hours + ":" + String.format("%02d", minutes));
+                jsonObject.put("needDate",df.format(faRequest.getNeedDate()));
+                jsonObject.put("customer",faRequest.getCustomer());
+                jsonObject.put("partNo",faRequest.getPartNumber());
+                jsonObject.put("requestBy", faRequest.getCreateBy().getName());
+                dataAllForSend.put(jsonObject);
+                i++;
+            }
+            return new ResponseEntity<String>(dataAllForSend.toString(), headers, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -158,15 +324,15 @@ public aspect FaRequestController_Custom_Controller_Json {
         tooling.persist();
 
         faRequest.setTooling(tooling);
-        faRequest.setCreateBy(principal.getName());
+        faRequest.setCreateBy(AppUser.findByUserName(principal.getName()));
         faRequest.setCreateDate(new Date());
         faRequest.setFlow("engineer");
         faRequest.setStatus("Create");
 
         Set<DocumentHistory> documentHistorys = new HashSet<DocumentHistory>();
         DocumentHistory documentHistory = new DocumentHistory();
-        documentHistory.setActionType("C");
-        documentHistory.setCreateBy(principal.getName());
+        documentHistory.setActionType("create");
+        documentHistory.setCreateBy(AppUser.findByUserName(principal.getName()));
         documentHistory.setCreateDate(new Date());
         documentHistory.setStatus("Create");
         documentHistory.setFaRequest(faRequest);

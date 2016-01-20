@@ -6,6 +6,7 @@ package com.foamtec.qa.domain;
 import com.foamtec.qa.domain.DocumentHistory;
 import com.foamtec.qa.domain.DocumentHistoryDataOnDemand;
 import com.foamtec.qa.domain.FaRequestDataOnDemand;
+import com.foamtec.qa.security.AppUserDataOnDemand;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,13 +29,17 @@ privileged aspect DocumentHistoryDataOnDemand_Roo_DataOnDemand {
     private List<DocumentHistory> DocumentHistoryDataOnDemand.data;
     
     @Autowired
+    AppUserDataOnDemand DocumentHistoryDataOnDemand.appUserDataOnDemand;
+    
+    @Autowired
     FaRequestDataOnDemand DocumentHistoryDataOnDemand.faRequestDataOnDemand;
     
     public DocumentHistory DocumentHistoryDataOnDemand.getNewTransientDocumentHistory(int index) {
         DocumentHistory obj = new DocumentHistory();
         setActionType(obj, index);
-        setCreateBy(obj, index);
         setCreateDate(obj, index);
+        setItemPcs(obj, index);
+        setMoldNumber(obj, index);
         setReason(obj, index);
         setStatus(obj, index);
         return obj;
@@ -45,14 +50,19 @@ privileged aspect DocumentHistoryDataOnDemand_Roo_DataOnDemand {
         obj.setActionType(actionType);
     }
     
-    public void DocumentHistoryDataOnDemand.setCreateBy(DocumentHistory obj, int index) {
-        String createBy = "createBy_" + index;
-        obj.setCreateBy(createBy);
-    }
-    
     public void DocumentHistoryDataOnDemand.setCreateDate(DocumentHistory obj, int index) {
         Date createDate = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
         obj.setCreateDate(createDate);
+    }
+    
+    public void DocumentHistoryDataOnDemand.setItemPcs(DocumentHistory obj, int index) {
+        Integer itemPcs = new Integer(index);
+        obj.setItemPcs(itemPcs);
+    }
+    
+    public void DocumentHistoryDataOnDemand.setMoldNumber(DocumentHistory obj, int index) {
+        String moldNumber = "moldNumber_" + index;
+        obj.setMoldNumber(moldNumber);
     }
     
     public void DocumentHistoryDataOnDemand.setReason(DocumentHistory obj, int index) {

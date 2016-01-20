@@ -1,0 +1,179 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:fn="http://java.sun.com/jsp/jstl/functions" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8" />
+    <jsp:output omit-xml-declaration="yes" />
+
+    <div class="row">
+        <legend>QA Inspector</legend>
+        <div class="col-sm-6 bs-component">
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <label for="inputCustomer" class="col-sm-3 control-label">Customer :</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static text-overflow-newline">${farequest.customer}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Part Number :</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static text-overflow-newline">${farequest.partNumber}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Revision :</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static text-overflow-newline">${farequest.revision}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Need Date :</label>
+                        <div class="col-sm-9">
+                            <fmt:formatDate pattern="dd/MM/yyyy" value="${farequest.needDate}" var="needDate" />
+                            <p class="form-control-static text-overflow-newline">${needDate}</p>
+                        </div>
+                    </div>
+                    <c:set var="appUser" value="${farequest.createBy}"/>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Request by :</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static text-overflow-newline">${appUser.name}</p>
+                        </div>
+                    </div>
+                    <c:forEach items="${farequest.typeOfRequest}" var="typeOfRequest">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">${typeOfRequest.name} :</label>
+                            <div class="col-sm-9">
+                                <p class="form-control-static text-overflow-newline">${typeOfRequest.qty} Pcs</p>
+                            </div>
+                        </div>
+                    </c:forEach>
+                    <c:if test="${farequest.mat1 != 'na'}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">${farequest.mat1} :</label>
+                            <div class="col-sm-9">
+                                <p class="form-control-static text-overflow-newline">${farequest.batchMat1}</p>
+                            </div>
+                        </div>
+                    </c:if>
+                    <c:if test="${farequest.mat2 != 'na'}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">${farequest.mat2} :</label>
+                            <div class="col-sm-9">
+                                <p class="form-control-static text-overflow-newline">${farequest.batchMat2}</p>
+                            </div>
+                        </div>
+                    </c:if>
+                    <c:if test="${farequest.mat3 != 'na'}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">${farequest.mat3} :</label>
+                            <div class="col-sm-9">
+                                <p class="form-control-static text-overflow-newline">${farequest.batchMat3}</p>
+                            </div>
+                        </div>
+                    </c:if>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Process :</label>
+                        <div class="col-sm-9">
+                            <textarea id="inputProcess" class="form-control" rows="10" disabled="true">${farequest.process}</textarea>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-sm-6 bs-component">
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="col-sm-12 alert alert-dismissible alert-warning">
+                        <div align="center"><h4><label>History Item</label></h4></div>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Date Time</th>
+                                    <th>Update By</th>
+                                    <th>Action</th>
+                                    <th>Reason</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tableCreate">
+                                    <c:forEach items="${farequest.documentHistorys}" var="documentHistory">
+                                        <c:set var="appUser" value="${documentHistory.createBy}"/>
+                                        <tr>
+                                            <fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${documentHistory.createDate}" var="createDate" />
+                                            <td>${createDate}</td>
+                                            <td>${appUser.name}</td>
+                                            <td>${documentHistory.actionType}</td>
+                                            <td>${documentHistory.reason}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <button type="button" id="btnReject" class="btn btn-primary">REJECT</button>
+                            <button type="button" id="btnApprove" class="btn btn-success col-sm-offset-1">APPROVE</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="alertApproveModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title">Success</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Confirm Approve</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="btnConfirm">confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="alertRejectModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title">Reject Reason</h4>
+                </div>
+                <div class="modal-body">
+                    <textarea class="form-control" rows="3" id="inputReason"><jsp:text/></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnRejectReason">reject</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    <![CDATA[
+        $(document).ready(function() {
+            $("#btnApprove").click(function() {
+                $("#alertApproveModal").modal({show:true});
+            });
+            $("#btnConfirm").click(function() {
+                
+            });
+
+            $("#btnReject").click(function() {
+                $("#alertRejectModal").modal({show:true});
+            });
+
+            $("#btnRejectReason").click(function() {
+                
+            });
+        });
+    ]]>
+    </script>
+
+</div>

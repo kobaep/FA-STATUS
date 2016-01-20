@@ -4,7 +4,6 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_com_foamtec_qa_domain_FaRequest" modelAttribute="faRequest" path="/farequests" render="${empty dependencies}" z="qeFcqEFrvTAkhLNmjYWgBTEITCQ=">
         <field:datetime dateTimePattern="${faRequest_createdate_date_format}" field="createDate" id="c_com_foamtec_qa_domain_FaRequest_createDate" z="JHr62qY2yCrauUCyUX+jCS7YZ3U="/>
-        <field:input field="createBy" id="c_com_foamtec_qa_domain_FaRequest_createBy" z="V4FJqbj9QSLPlVNLdE4plfLaP4Q="/>
         <field:input field="faNumber" id="c_com_foamtec_qa_domain_FaRequest_faNumber" z="Zt1c24NdYPkEVSCVL5zIsCza9Io="/>
         <field:input field="productGroup" id="c_com_foamtec_qa_domain_FaRequest_productGroup" z="MrZLLtRGa0VH7vpMfwDmtdV7OCU="/>
         <field:input field="apqpNumber" id="c_com_foamtec_qa_domain_FaRequest_apqpNumber" z="P5/fF7q3UeC6o+lHezoxOa1qOtU="/>
@@ -33,6 +32,10 @@
         <field:input field="mat1" id="c_com_foamtec_qa_domain_FaRequest_mat1" z="IQ4ADg35ZsNbIMyEmVddtsPkmQs="/>
         <field:input field="mat2" id="c_com_foamtec_qa_domain_FaRequest_mat2" z="3FSTHXz4TpWwteVB3axsPCDKkWo="/>
         <field:input field="mat3" id="c_com_foamtec_qa_domain_FaRequest_mat3" z="vimQqjyyXQl/3Jx3Lo7hxaYLkxw="/>
+        <field:input field="batchMat1" id="c_com_foamtec_qa_domain_FaRequest_batchMat1" z="MgOrOLVFUZfzhuxP6T/xkdwi0aA="/>
+        <field:input field="batchMat2" id="c_com_foamtec_qa_domain_FaRequest_batchMat2" z="6Ppec7fRQayRA53lYfS/ilAVdJA="/>
+        <field:input field="batchMat3" id="c_com_foamtec_qa_domain_FaRequest_batchMat3" z="lnywYuzHq9PUpxjMwqCTJ8kIXPM="/>
+        <field:select field="createBy" id="c_com_foamtec_qa_domain_FaRequest_createBy" itemValue="id" items="${appusers}" path="/appusers" z="04D4EZU9b+V1E+euoRuolRqO3kk="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_foamtec_qa_domain_FaRequest" render="${not empty dependencies}" z="AfIhqScG1frP1tSE7R9tisEzPNs="/>
 </div>

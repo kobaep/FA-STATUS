@@ -7,8 +7,8 @@
         <div class="col-sm-7">
             <div class="row">
                 <div class="col-sm-12 alert alert-dismissible alert-success">
-                    <div align="center"><h4><label>Sale Request</label></h4></div>
-                    <div class="table-responsive" style="height: 300px;">
+                    <div align="center"><h4><label>Wait For Engineer Review</label></h4></div>
+                    <div class="table-responsive" style="height: 200px;">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -21,7 +21,53 @@
                                     <th>Request By</th>
                                 </tr>
                             </thead>
-                            <tbody id="tableCreate">
+                            <tbody id="tableCreate1">
+                                <jsp:text/>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 alert alert-dismissible alert-success">
+                    <div align="center"><h4><label>Wait For Workpiece</label></h4></div>
+                    <div class="table-responsive" style="height: 200px;">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>FA No.</th>
+                                    <th>Request Date</th>
+                                    <th>Need Date</th>
+                                    <th>Customer</th>
+                                    <th>Part No.</th>
+                                    <th>Request By</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableCreate2">
+                                <jsp:text/>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 alert alert-dismissible alert-success">
+                    <div align="center"><h4><label>Wait For QA FA Inspector</label></h4></div>
+                    <div class="table-responsive" style="height: 200px;">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>FA No.</th>
+                                    <th>Request Date</th>
+                                    <th>Need Date</th>
+                                    <th>Customer</th>
+                                    <th>Part No.</th>
+                                    <th>Request By</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableCreate3">
                                 <jsp:text/>
                             </tbody>
                         </table>
@@ -30,6 +76,7 @@
             </div>
         </div>
     </div>
+
     <script type="text/javascript">
         <![CDATA[
         $(document).ready(function() {
@@ -45,7 +92,45 @@
                 success: function(data){
                     $.each(data, function (i, item) {
                         var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.requestBy + '</td></tr>';
-                        $("#tableCreate").append(dataT1);
+                        $("#tableCreate1").append(dataT1);
+                    });
+                },
+                error: function(data){
+                    alert("saved error.");
+                }
+            });
+
+            $.ajax({
+                url: session['context'] +'/dataT2',
+                type: "POST",
+                headers: {
+                    Accept: "application/json"
+                },
+                data : "",
+                dataType: "json",
+                success: function(data){
+                    $.each(data, function (i, item) {
+                        var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.requestBy + '</td></tr>';
+                        $("#tableCreate2").append(dataT1);
+                    });
+                },
+                error: function(data){
+                    alert("saved error.");
+                }
+            });
+
+            $.ajax({
+                url: session['context'] +'/dataT3',
+                type: "POST",
+                headers: {
+                    Accept: "application/json"
+                },
+                data : "",
+                dataType: "json",
+                success: function(data){
+                    $.each(data, function (i, item) {
+                        var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.requestBy + '</td></tr>';
+                        $("#tableCreate3").append(dataT1);
                     });
                 },
                 error: function(data){

@@ -14,4 +14,20 @@
         <put-attribute name="body" value="/WEB-INF/views/foamtec-views/page/eng-approve.jspx"/>
     </definition>
 
+    <definition extends="foamtec" name="eng-list-work">
+        <put-attribute name="body" value="/WEB-INF/views/foamtec-views/page/eng-list-work.jspx"/>
+    </definition>
+
+    <definition extends="foamtec" name="eng-send-work">
+        <put-attribute name="body" value="/WEB-INF/views/foamtec-views/page/eng-send-work.jspx"/>
+    </definition>
+
+    <definition extends="foamtec" name="fa-qa-list">
+        <put-attribute name="body" value="/WEB-INF/views/foamtec-views/page/fa-qa-list.jspx"/>
+    </definition>
+
+    <definition extends="foamtec" name="fa-qa-approve">
+        <put-attribute name="body" value="/WEB-INF/views/foamtec-views/page/fa-qa-approve.jspx"/>
+    </definition>
+
 </tiles-definitions>

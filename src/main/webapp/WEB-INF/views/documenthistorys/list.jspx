@@ -5,11 +5,11 @@
     <page:list id="pl_com_foamtec_qa_domain_DocumentHistory" items="${documenthistorys}" z="PD8JBZB/9PheUL50HN4gxpJWZWU=">
         <table:table data="${documenthistorys}" id="l_com_foamtec_qa_domain_DocumentHistory" path="/documenthistorys" z="oWj/mU34JVE0wUKBG9kRW+ZiUJ4=">
             <table:column date="true" dateTimePattern="${documentHistory_createdate_date_format}" id="c_com_foamtec_qa_domain_DocumentHistory_createDate" property="createDate" z="98gucURJSJw3QqAE6ELDA9GcFnQ="/>
-            <table:column id="c_com_foamtec_qa_domain_DocumentHistory_createBy" property="createBy" z="L+Bx7Yf9djJqiNx4sd3fn2sp3WM="/>
             <table:column id="c_com_foamtec_qa_domain_DocumentHistory_actionType" property="actionType" z="qBRvvTf/JgCB9BrW34TwbcoelXc="/>
             <table:column id="c_com_foamtec_qa_domain_DocumentHistory_status" property="status" z="PbDsC6p9ylEOTrHXU7uoZ4UeIOc="/>
             <table:column id="c_com_foamtec_qa_domain_DocumentHistory_reason" property="reason" z="BIDDp8PaalDMFInbDNUkr5JcusI="/>
             <table:column id="c_com_foamtec_qa_domain_DocumentHistory_faRequest" property="faRequest" z="4ml411yh7vLlPm6jftAkHrinW8U="/>
+            <table:column id="c_com_foamtec_qa_domain_DocumentHistory_moldNumber" property="moldNumber" z="VtnFVIIMhnccLedgeio4RPThFxc="/>
         </table:table>
     </page:list>
 </div>

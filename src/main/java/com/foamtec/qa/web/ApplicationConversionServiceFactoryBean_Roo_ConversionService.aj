@@ -21,7 +21,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<DocumentHistory, String> ApplicationConversionServiceFactoryBean.getDocumentHistoryToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.foamtec.qa.domain.DocumentHistory, java.lang.String>() {
             public String convert(DocumentHistory documentHistory) {
-                return new StringBuilder().append(documentHistory.getCreateDate()).append(' ').append(documentHistory.getCreateBy()).append(' ').append(documentHistory.getActionType()).append(' ').append(documentHistory.getStatus()).toString();
+                return new StringBuilder().append(documentHistory.getCreateDate()).append(' ').append(documentHistory.getActionType()).append(' ').append(documentHistory.getStatus()).append(' ').append(documentHistory.getReason()).toString();
             }
         };
     }
@@ -45,7 +45,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<FaRequest, String> ApplicationConversionServiceFactoryBean.getFaRequestToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.foamtec.qa.domain.FaRequest, java.lang.String>() {
             public String convert(FaRequest faRequest) {
-                return new StringBuilder().append(faRequest.getCreateDate()).append(' ').append(faRequest.getCreateBy()).append(' ').append(faRequest.getFaNumber()).append(' ').append(faRequest.getProductGroup()).toString();
+                return new StringBuilder().append(faRequest.getCreateDate()).append(' ').append(faRequest.getFaNumber()).append(' ').append(faRequest.getProductGroup()).append(' ').append(faRequest.getApqpNumber()).toString();
             }
         };
     }

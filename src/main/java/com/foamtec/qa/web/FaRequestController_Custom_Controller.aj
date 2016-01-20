@@ -30,7 +30,29 @@ public aspect FaRequestController_Custom_Controller {
     public String FaRequestController.engViewApprove(@PathVariable("id") Long id, Model uiModel, Principal principal) {
         FaRequest faRequest = FaRequest.findFaRequest(id);
         uiModel.addAttribute("farequest", faRequest);
-        uiModel.addAttribute("appUser", AppUser.findByUserName(faRequest.getCreateBy()));
         return "eng-approve";
+    }
+
+    @RequestMapping(value = "/englistviewwork", produces = "text/html")
+    public String FaRequestController.engListViewWork(Principal principal) {
+        return "eng-list-work";
+    }
+
+    @RequestMapping(value = "/engsendwork/{id}", produces = "text/html")
+    public String FaRequestController.engSendWork(@PathVariable("id") Long id, Model uiModel, Principal principal) {
+        FaRequest faRequest = FaRequest.findFaRequest(id);
+        uiModel.addAttribute("farequest", faRequest);        return "eng-send-work";
+    }
+
+    @RequestMapping(value = "/faqalist", produces = "text/html")
+    public String FaRequestController.faQaDataList(Principal principal) {
+        return "fa-qa-list";
+    }
+
+    @RequestMapping(value = "/faqaapprove/{id}", produces = "text/html")
+    public String FaRequestController.faQaApprove(@PathVariable("id") Long id, Model uiModel, Principal principal) {
+        FaRequest faRequest = FaRequest.findFaRequest(id);
+        uiModel.addAttribute("farequest", faRequest);
+        return "fa-qa-approve";
     }
 }

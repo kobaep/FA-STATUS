@@ -8,6 +8,7 @@ import com.foamtec.qa.domain.FaRequest;
 import com.foamtec.qa.domain.Material;
 import com.foamtec.qa.domain.Tooling;
 import com.foamtec.qa.domain.TypeOfRequest;
+import com.foamtec.qa.security.AppUser;
 import com.foamtec.qa.web.FaRequestController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -104,6 +105,7 @@ privileged aspect FaRequestController_Roo_Controller {
         uiModel.addAttribute("materials", Material.findAllMaterials());
         uiModel.addAttribute("toolings", Tooling.findAllToolings());
         uiModel.addAttribute("typeofrequests", TypeOfRequest.findAllTypeOfRequests());
+        uiModel.addAttribute("appusers", AppUser.findAllAppUsers());
     }
     
     String FaRequestController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

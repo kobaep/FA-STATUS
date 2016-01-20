@@ -10,6 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import org.springframework.roo.addon.json.RooJson;
+import org.springframework.beans.factory.annotation.Value;
+import com.foamtec.qa.security.AppUser;
+import javax.persistence.OneToOne;
 
 @RooJavaBean
 @RooToString
@@ -22,10 +25,6 @@ public class DocumentHistory {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
     private Date createDate;
-
-    /**
-     */
-    private String createBy;
 
     /**
      */
@@ -44,4 +43,18 @@ public class DocumentHistory {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "faRequest")
     private FaRequest faRequest;
+
+    /**
+     */
+    private String moldNumber;
+
+    /**
+     */
+    @Value("0")
+    private Integer itemPcs;
+
+    /**
+     */
+    @OneToOne(fetch = FetchType.EAGER)
+    private AppUser createBy;
 }

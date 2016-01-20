@@ -5,6 +5,7 @@ package com.foamtec.qa.web;
 
 import com.foamtec.qa.domain.DocumentHistory;
 import com.foamtec.qa.domain.FaRequest;
+import com.foamtec.qa.security.AppUser;
 import com.foamtec.qa.web.DocumentHistoryController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -95,6 +96,7 @@ privileged aspect DocumentHistoryController_Roo_Controller {
         uiModel.addAttribute("documentHistory", documentHistory);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("farequests", FaRequest.findAllFaRequests());
+        uiModel.addAttribute("appusers", AppUser.findAllAppUsers());
     }
     
     String DocumentHistoryController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

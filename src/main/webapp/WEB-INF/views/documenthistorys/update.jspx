@@ -4,10 +4,12 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_com_foamtec_qa_domain_DocumentHistory" modelAttribute="documentHistory" path="/documenthistorys" versionField="Version" z="YzoGhdz3IcW5qfKP5zP95Gq5iG4=">
         <field:datetime dateTimePattern="${documentHistory_createdate_date_format}" field="createDate" id="c_com_foamtec_qa_domain_DocumentHistory_createDate" z="W5LnIN315S8XLyQUgCq4gwCH2L8="/>
-        <field:input field="createBy" id="c_com_foamtec_qa_domain_DocumentHistory_createBy" z="E3O41hh6vzjgybIQTFcKyZGWXqE="/>
         <field:input field="actionType" id="c_com_foamtec_qa_domain_DocumentHistory_actionType" z="+4ypI553qjHxVhNjr6bLb+xnZQI="/>
         <field:input field="status" id="c_com_foamtec_qa_domain_DocumentHistory_status" z="HIwkpjL8wgyeNfL8ik5CIRB/3IE="/>
         <field:input field="reason" id="c_com_foamtec_qa_domain_DocumentHistory_reason" z="NpJZwhfqO0JNsvkM5Xhe3gpqrxA="/>
         <field:select field="faRequest" id="c_com_foamtec_qa_domain_DocumentHistory_faRequest" itemValue="id" items="${farequests}" path="/farequests" z="1GUC7dCSZzEgCqEYBiK2EoPS5hs="/>
+        <field:input field="moldNumber" id="c_com_foamtec_qa_domain_DocumentHistory_moldNumber" z="UEc9eNl65N07V53BbbPA0+Bswj0="/>
+        <field:input field="itemPcs" id="c_com_foamtec_qa_domain_DocumentHistory_itemPcs" validationMessageCode="field_invalid_integer" z="LpGG4Xdac/C+igcFw6m77hPaujs="/>
+        <field:select field="createBy" id="c_com_foamtec_qa_domain_DocumentHistory_createBy" itemValue="id" items="${appusers}" path="/appusers" z="QnAtkKtNhVXybKrVZJOJAEVrCmo="/>
     </form:update>
 </div>

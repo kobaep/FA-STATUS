@@ -6,6 +6,7 @@ package com.foamtec.qa.domain;
 import com.foamtec.qa.domain.FaRequest;
 import com.foamtec.qa.domain.FaRequestDataOnDemand;
 import com.foamtec.qa.domain.ToolingDataOnDemand;
+import com.foamtec.qa.security.AppUserDataOnDemand;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,13 +29,18 @@ privileged aspect FaRequestDataOnDemand_Roo_DataOnDemand {
     private List<FaRequest> FaRequestDataOnDemand.data;
     
     @Autowired
+    AppUserDataOnDemand FaRequestDataOnDemand.appUserDataOnDemand;
+    
+    @Autowired
     ToolingDataOnDemand FaRequestDataOnDemand.toolingDataOnDemand;
     
     public FaRequest FaRequestDataOnDemand.getNewTransientFaRequest(int index) {
         FaRequest obj = new FaRequest();
         setActionBy(obj, index);
         setApqpNumber(obj, index);
-        setCreateBy(obj, index);
+        setBatchMat1(obj, index);
+        setBatchMat2(obj, index);
+        setBatchMat3(obj, index);
         setCreateDate(obj, index);
         setCustomer(obj, index);
         setDocumentRequest(obj, index);
@@ -71,9 +77,19 @@ privileged aspect FaRequestDataOnDemand_Roo_DataOnDemand {
         obj.setApqpNumber(apqpNumber);
     }
     
-    public void FaRequestDataOnDemand.setCreateBy(FaRequest obj, int index) {
-        String createBy = "createBy_" + index;
-        obj.setCreateBy(createBy);
+    public void FaRequestDataOnDemand.setBatchMat1(FaRequest obj, int index) {
+        String batchMat1 = "batchMat1_" + index;
+        obj.setBatchMat1(batchMat1);
+    }
+    
+    public void FaRequestDataOnDemand.setBatchMat2(FaRequest obj, int index) {
+        String batchMat2 = "batchMat2_" + index;
+        obj.setBatchMat2(batchMat2);
+    }
+    
+    public void FaRequestDataOnDemand.setBatchMat3(FaRequest obj, int index) {
+        String batchMat3 = "batchMat3_" + index;
+        obj.setBatchMat3(batchMat3);
     }
     
     public void FaRequestDataOnDemand.setCreateDate(FaRequest obj, int index) {

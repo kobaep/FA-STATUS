@@ -8,6 +8,7 @@ import com.foamtec.qa.domain.FaRequest;
 import com.foamtec.qa.domain.Material;
 import com.foamtec.qa.domain.Tooling;
 import com.foamtec.qa.domain.TypeOfRequest;
+import com.foamtec.qa.security.AppUser;
 import java.util.Date;
 import java.util.Set;
 
@@ -19,14 +20,6 @@ privileged aspect FaRequest_Roo_JavaBean {
     
     public void FaRequest.setCreateDate(Date createDate) {
         this.createDate = createDate;
-    }
-    
-    public String FaRequest.getCreateBy() {
-        return this.createBy;
-    }
-    
-    public void FaRequest.setCreateBy(String createBy) {
-        this.createBy = createBy;
     }
     
     public String FaRequest.getFaNumber() {
@@ -251,6 +244,38 @@ privileged aspect FaRequest_Roo_JavaBean {
     
     public void FaRequest.setMat3(String mat3) {
         this.mat3 = mat3;
+    }
+    
+    public String FaRequest.getBatchMat1() {
+        return this.batchMat1;
+    }
+    
+    public void FaRequest.setBatchMat1(String batchMat1) {
+        this.batchMat1 = batchMat1;
+    }
+    
+    public String FaRequest.getBatchMat2() {
+        return this.batchMat2;
+    }
+    
+    public void FaRequest.setBatchMat2(String batchMat2) {
+        this.batchMat2 = batchMat2;
+    }
+    
+    public String FaRequest.getBatchMat3() {
+        return this.batchMat3;
+    }
+    
+    public void FaRequest.setBatchMat3(String batchMat3) {
+        this.batchMat3 = batchMat3;
+    }
+    
+    public AppUser FaRequest.getCreateBy() {
+        return this.createBy;
+    }
+    
+    public void FaRequest.setCreateBy(AppUser createBy) {
+        this.createBy = createBy;
     }
     
 }

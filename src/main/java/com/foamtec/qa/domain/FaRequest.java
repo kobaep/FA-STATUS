@@ -13,6 +13,8 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import org.springframework.roo.addon.json.RooJson;
+import javax.persistence.OrderBy;
+import com.foamtec.qa.security.AppUser;
 
 @RooJavaBean
 @RooToString
@@ -25,10 +27,6 @@ public class FaRequest {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
     private Date createDate;
-
-    /**
-     */
-    private String createBy;
 
     /**
      */
@@ -137,6 +135,7 @@ public class FaRequest {
 
     /**
      */
+    @OrderBy("createDate")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "faRequest")
     private Set<DocumentHistory> documentHistorys = new HashSet<DocumentHistory>();
 
@@ -151,4 +150,21 @@ public class FaRequest {
     /**
      */
     private String mat3;
+
+    /**
+     */
+    private String batchMat1;
+
+    /**
+     */
+    private String batchMat2;
+
+    /**
+     */
+    private String batchMat3;
+
+    /**
+     */
+    @OneToOne(fetch = FetchType.EAGER)
+    private AppUser createBy;
 }

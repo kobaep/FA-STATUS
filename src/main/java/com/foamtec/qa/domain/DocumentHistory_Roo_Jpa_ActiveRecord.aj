@@ -14,7 +14,7 @@ privileged aspect DocumentHistory_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager DocumentHistory.entityManager;
     
-    public static final List<String> DocumentHistory.fieldNames4OrderClauseFilter = java.util.Arrays.asList("createDate", "createBy", "actionType", "status", "reason", "faRequest");
+    public static final List<String> DocumentHistory.fieldNames4OrderClauseFilter = java.util.Arrays.asList("createDate", "actionType", "status", "reason", "faRequest", "moldNumber", "itemPcs", "createBy");
     
     public static final EntityManager DocumentHistory.entityManager() {
         EntityManager em = new DocumentHistory().entityManager;
