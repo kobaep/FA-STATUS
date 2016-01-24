@@ -49,10 +49,22 @@ public aspect FaRequestController_Custom_Controller {
         return "fa-qa-list";
     }
 
+    @RequestMapping(value = "/salefollowlist", produces = "text/html")
+    public String FaRequestController.saleFollowList(Principal principal) {
+        return "sale-list-follow";
+    }
+
     @RequestMapping(value = "/faqaapprove/{id}", produces = "text/html")
     public String FaRequestController.faQaApprove(@PathVariable("id") Long id, Model uiModel, Principal principal) {
         FaRequest faRequest = FaRequest.findFaRequest(id);
         uiModel.addAttribute("farequest", faRequest);
         return "fa-qa-approve";
+    }
+
+    @RequestMapping(value = "/salefollow/{id}", produces = "text/html")
+    public String FaRequestController.saleApprove(@PathVariable("id") Long id, Model uiModel, Principal principal) {
+        FaRequest faRequest = FaRequest.findFaRequest(id);
+        uiModel.addAttribute("farequest", faRequest);
+        return "sale-approve";
     }
 }

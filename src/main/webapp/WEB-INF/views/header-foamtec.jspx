@@ -20,6 +20,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu" id="menuHeader">
                             <li class="menuSale hidden"><a href="${home}farequests/salerequest">Fa Request</a></li>
+                            <li class="menuSale hidden"><a href="${home}farequests/salefollowlist">Follow Up Customer</a></li>
                             <li class="menuEng hidden"><a href="${home}farequests/engreview">Engineer Review</a></li>
                             <li class="menuEng hidden"><a href="${home}farequests/englistviewwork">List Product</a></li>
                             <li class="menuQa hidden"><a href="${home}farequests/faqalist">QA Inspection</a></li>

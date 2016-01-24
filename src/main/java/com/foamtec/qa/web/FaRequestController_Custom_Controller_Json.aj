@@ -79,6 +79,7 @@ public aspect FaRequestController_Custom_Controller_Json {
                 faRequest.setFlow("sale");
                 faRequest.setStatus("EngReject");
                 faRequest.setEngReson(jsonObject.getString("reasonReject"));
+                documentHistory.setReason(jsonObject.getString("reasonReject"));
                 documentHistory.setStatus("EngReject");
                 documentHistory.setActionType("reject");
             }
@@ -101,36 +102,8 @@ public aspect FaRequestController_Custom_Controller_Json {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         try {
-            JSONObject jsonObjectData = new JSONObject(data);
-            String[] partNumber = jsonObjectData.getString("partNumber").split("_");
-            String part = "%";
-            if(partNumber.length == 2) {
-                part = "%" + partNumber[1] + "%";
-            }
-            List<FaRequest> faRequests = FaRequest.findByWorkFlowAndStatusAndPart("engineerWork", "EngApprove", part);
-            JSONArray dataAllForSend = new JSONArray();
-            int i = 1;
-            for(FaRequest faRequest : faRequests) {
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("id", faRequest.getId());
-                jsonObject.put("no", i);
-                jsonObject.put("faNo", faRequest.getFaNumber());
-
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(faRequest.getCreateDate());
-                int hours = calendar.get(Calendar.HOUR_OF_DAY);
-                int minutes = calendar.get(Calendar.MINUTE);
-                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-
-                jsonObject.put("requestDate",df.format(faRequest.getCreateDate()) + " " + hours + ":" + String.format("%02d", minutes));
-                jsonObject.put("needDate",df.format(faRequest.getNeedDate()));
-                jsonObject.put("customer",faRequest.getCustomer());
-                jsonObject.put("partNo",faRequest.getPartNumber());
-                jsonObject.put("requestBy", faRequest.getCreateBy().getName());
-                dataAllForSend.put(jsonObject);
-                i++;
-            }
-            return new ResponseEntity<String>(dataAllForSend.toString(), headers, HttpStatus.OK);
+            JSONArray dataJson = findData(data, "engineerWork", "EngApprove");
+            return new ResponseEntity<String>(dataJson.toString(), headers, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -174,36 +147,73 @@ public aspect FaRequestController_Custom_Controller_Json {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         try {
-            JSONObject jsonObjectData = new JSONObject(data);
-            String[] partNumber = jsonObjectData.getString("partNumber").split("_");
-            String part = "%";
-            if(partNumber.length == 2) {
-                part = "%" + partNumber[1] + "%";
-            }
-            List<FaRequest> faRequests = FaRequest.findByWorkFlowAndStatusAndPart("FA", "engSendWork", part);
-            JSONArray dataAllForSend = new JSONArray();
-            int i = 1;
-            for(FaRequest faRequest : faRequests) {
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("id", faRequest.getId());
-                jsonObject.put("no", i);
-                jsonObject.put("faNo", faRequest.getFaNumber());
+            JSONArray dataJson = findData(data, "FA", "engSendWork");
+            return new ResponseEntity<String>(dataJson.toString(), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(faRequest.getCreateDate());
-                int hours = calendar.get(Calendar.HOUR_OF_DAY);
-                int minutes = calendar.get(Calendar.MINUTE);
-                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    @RequestMapping(value = "/salefollowdatalist", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> FaRequestController.saleFollowDataList(@RequestParam("data") String data) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        try {
+            JSONArray dataJson = findData(data, "saleApprove", "QaApprove");
+            return new ResponseEntity<String>(dataJson.toString(), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
-                jsonObject.put("requestDate",df.format(faRequest.getCreateDate()) + " " + hours + ":" + String.format("%02d", minutes));
-                jsonObject.put("needDate",df.format(faRequest.getNeedDate()));
-                jsonObject.put("customer",faRequest.getCustomer());
-                jsonObject.put("partNo",faRequest.getPartNumber());
-                jsonObject.put("requestBy", faRequest.getCreateBy().getName());
-                dataAllForSend.put(jsonObject);
-                i++;
+    @RequestMapping(value = "/dataenglistviewqareject", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> FaRequestController.qaReject(@RequestParam("data") String data) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        try {
+            JSONArray dataJson = findData(data, "engineerWork", "QaReject");
+            return new ResponseEntity<String>(dataJson.toString(), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/qafaupdate", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> FaRequestController.qaFaUpdate(@RequestParam("data") String data, Principal principal) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        try {
+            JSONObject jsonObject = new JSONObject(data);
+            String idFa = jsonObject.getString("id");
+            FaRequest faRequest = FaRequest.findFaRequest(Long.parseLong(idFa));
+            String action = jsonObject.getString("action");
+            Set<DocumentHistory> documentHistorys = faRequest.getDocumentHistorys();
+            DocumentHistory documentHistory = new DocumentHistory();
+            if("approve".equals(action)) {
+                faRequest.setFlow("saleApprove");
+                faRequest.setStatus("QaApprove");
+                documentHistory.setStatus("QaApprove");
+                documentHistory.setActionType("approve");
             }
-            return new ResponseEntity<String>(dataAllForSend.toString(), headers, HttpStatus.OK);
+            if ("reject".equals(action)) {
+                faRequest.setFlow("engineerWork");
+                faRequest.setStatus("QaReject");
+                faRequest.setFaReson(jsonObject.getString("reasonReject"));
+                documentHistory.setReason(jsonObject.getString("reasonReject"));
+                documentHistory.setStatus("QaReject");
+                documentHistory.setActionType("reject");
+            }
+            documentHistory.setCreateBy(AppUser.findByUserName(principal.getName()));
+            documentHistory.setCreateDate(new Date());
+            documentHistory.setFaRequest(faRequest);
+            documentHistorys.add(documentHistory);
+            faRequest.setDocumentHistorys(documentHistorys);
+            faRequest.persist();
+
+            return new ResponseEntity<String>(faRequest.toJson(), headers, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -341,5 +351,44 @@ public aspect FaRequestController_Custom_Controller_Json {
         faRequest.setDocumentHistorys(documentHistorys);
 
         return faRequest;
+    }
+
+    private JSONArray FaRequestController.findData(String data, String flow, String status) {
+        JSONObject jsonObjectData = new JSONObject(data);
+        String[] partNumber = jsonObjectData.getString("partNumber").split("_");
+        String part = "%";
+        if(partNumber.length == 2) {
+            part = "%" + partNumber[1] + "%";
+        }
+        List<FaRequest> faRequests = FaRequest.findByWorkFlowAndStatusAndPart(flow, status, part);
+        JSONArray dataAllForSend = new JSONArray();
+        int i = 1;
+        for(FaRequest faRequest : faRequests) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("id", faRequest.getId());
+            jsonObject.put("no", i);
+            jsonObject.put("faNo", faRequest.getFaNumber());
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(faRequest.getCreateDate());
+            int hours = calendar.get(Calendar.HOUR_OF_DAY);
+            int minutes = calendar.get(Calendar.MINUTE);
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+            jsonObject.put("requestDate",df.format(faRequest.getCreateDate()) + " " + hours + ":" + String.format("%02d", minutes));
+            jsonObject.put("needDate",df.format(faRequest.getNeedDate()));
+            jsonObject.put("customer",faRequest.getCustomer());
+            jsonObject.put("partNo",faRequest.getPartNumber());
+            for(DocumentHistory d : faRequest.getDocumentHistorys()) {
+                jsonObject.put("rejectBy", d.getCreateBy().getName());
+            }
+
+            jsonObject.put("reasonEng",faRequest.getEngReson());
+            jsonObject.put("reasonFa",faRequest.getFaReson());
+            jsonObject.put("requestBy", faRequest.getCreateBy().getName());
+            dataAllForSend.put(jsonObject);
+            i++;
+        }
+        return dataAllForSend;
     }
 }

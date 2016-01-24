@@ -17,7 +17,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12 alert alert-dismissible alert-warning">
-                    <div align="center"><h4><label>FA Inspection</label></h4></div>
+                    <div align="center"><h4><label>Please Follow Customer</label></h4></div>
                     <div class="table-responsive" style="height: 700px;">
                         <table class="table table-striped">
                             <thead>
@@ -33,7 +33,7 @@
                             </tr>
                             </thead>
                             <tbody id="tableCreate">
-                                <jsp:text/>
+                            <jsp:text/>
                             </tbody>
                         </table>
                     </div>
@@ -43,40 +43,14 @@
     </div>
 
     <script type="text/javascript">
-    <![CDATA[
+        <![CDATA[
         $(document).ready(function() {
-
-            var dataa = {
-                partNumber : "na_" + $("#inputPartNumber").val()
-            };
-            $.ajax({
-                url: session['context'] +'/farequests/faqadatalist',
-                type: "POST",
-                headers: {
-                    Accept: "application/json"
-                },
-                data : {
-                    data : JSON.stringify(dataa)
-                },
-                dataType: "json",
-                success: function(data){
-                    $(".dataTable").remove();
-                    $.each(data, function (i, item) {
-                        var dataT1 = '<tr class="dataTable"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.requestBy + '</td><td><a href="${home}farequests/faqaapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
-                        $("#tableCreate").append(dataT1);
-                    });
-                },
-                error: function(data){
-                    alert("data error.");
-                }
-            });
-
             $("#btnSearch").click(function() {
                 var data = {
                     partNumber : "na_" + $("#inputPartNumber").val()
                 };
                 $.ajax({
-                    url: session['context'] +'/farequests/faqadatalist',
+                    url: session['context'] +'/farequests/salefollowdatalist',
                     type: "POST",
                     headers: {
                         Accept: "application/json"
@@ -88,17 +62,17 @@
                     success: function(data){
                         $(".dataTable").remove();
                         $.each(data, function (i, item) {
-                            var dataT1 = '<tr class="dataTable"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.requestBy + '</td><td><a href="${home}farequests/faqaapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            var dataT1 = '<tr class="dataTable"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.requestBy + '</td><td><a href="${home}farequests/salefollow/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
                             $("#tableCreate").append(dataT1);
                         });
                     },
                     error: function(data){
-                        alert("data error.");
+                        alert("saved error.");
                     }
                 });
             });
         });
-    ]]>
+        ]]>
     </script>
 
 </div>
