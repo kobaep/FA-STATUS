@@ -8,10 +8,10 @@
                 <div class="col-sm-12" align="center">
                     <form class="form-inline">
                         <div class="form-group">
-                            <label for="inputPartNumber" class="sr-only">Part Number</label>
-                            <input type="text" class="form-control" id="inputPartNumber" placeholder="Part Number" autocomplete="off"/>
+                            <label for="inputPartNumber1" class="sr-only">Part Number</label>
+                            <input type="text" class="form-control" id="inputPartNumber1" placeholder="Part Number" autocomplete="off"/>
                         </div>
-                        <button type="button" id="btnSearch" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                        <button type="button" id="btnSearch1" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                     </form>
                 </div>
             </div>
@@ -43,10 +43,10 @@
                 <div class="col-sm-12" align="center">
                     <form class="form-inline">
                         <div class="form-group">
-                            <label for="inputPartNumber" class="sr-only">Part Number Reject</label>
-                            <input type="text" class="form-control" id="inputPartNumber" placeholder="Part Number" autocomplete="off"/>
+                            <label for="inputPartNumber2" class="sr-only">Part Number Reject</label>
+                            <input type="text" class="form-control" id="inputPartNumber2" placeholder="Part Number" autocomplete="off"/>
                         </div>
-                        <button type="button" id="btnSearch" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                        <button type="button" id="btnSearch2" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                     </form>
                 </div>
             </div>
@@ -82,8 +82,8 @@
     <![CDATA[
         $(document).ready(function() {
 
-            var dataRe = {
-                partNumber : "na_" + $("#inputPartNumber").val()
+            var data1 = {
+                partNumber : "na_" + $("#inputPartNumber1").val()
             };
 
             $.ajax({
@@ -93,7 +93,7 @@
                     Accept: "application/json"
                 },
                 data : {
-                    data : JSON.stringify(dataRe)
+                    data : JSON.stringify(data1)
                 },
                 dataType: "json",
                 success: function(data){
@@ -108,58 +108,10 @@
                 }
             });
 
-            $.ajax({
-                url: session['context'] +'/farequests/dataenglistviewqareject',
-                type: "POST",
-                headers: {
-                    Accept: "application/json"
-                },
-                data : {
-                    data : JSON.stringify(dataRe)
-                },
-                dataType: "json",
-                success: function(data){
-                    $(".dataTable2").remove();
-                    $.each(data, function (i, item) {
-                        var dataT1 = '<tr class="dataTable2"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.rejectBy + '</td><td>' + item.reasonFa + '</td><td><a href="${home}farequests/engsendwork/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
-                        $("#tableCreate2").append(dataT1);
-                    });
-                },
-                error: function(data){
-                    alert("saved error.");
-                }
-            });
 
-            $("#btnSearchReject").click(function() {
+            $("#btnSearch1").click(function() {
                 var data = {
-                    partNumber : "na_" + $("#inputPartNumber").val()
-                };
-                $.ajax({
-                    url: session['context'] +'/farequests/dataenglistview',
-                    type: "POST",
-                    headers: {
-                        Accept: "application/json"
-                    },
-                    data : {
-                        data : JSON.stringify(data)
-                    },
-                    dataType: "json",
-                    success: function(data){
-                        $(".dataTable2").remove();
-                        $.each(data, function (i, item) {
-                            var dataT1 = '<tr class="dataTable2"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.rejectBy + '</td><td>' + item.reasonFa + '</td><td><a href="${home}farequests/engsendwork/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
-                            $("#tableCreate2").append(dataT1);
-                        });
-                    },
-                    error: function(data){
-                        alert("saved error.");
-                    }
-                });
-            });
-
-            $("#btnSearch").click(function() {
-                var data = {
-                    partNumber : "na_" + $("#inputPartNumber").val()
+                    partNumber : "na_" + $("#inputPartNumber1").val()
                 };
                 $.ajax({
                     url: session['context'] +'/farequests/dataenglistview',
@@ -183,6 +135,62 @@
                     }
                 });
             });
+
+            var data2 = {
+                partNumber : "na_" + $("#inputPartNumber2").val()
+            };
+
+            $.ajax({
+                url: session['context'] +'/farequests/dataenglistviewqareject',
+                type: "POST",
+                headers: {
+                    Accept: "application/json"
+                },
+                data : {
+                    data : JSON.stringify(data2)
+                },
+                dataType: "json",
+                success: function(data){
+                    $(".dataTable2").remove();
+                    $.each(data, function (i, item) {
+                        var dataT1 = '<tr class="dataTable2"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.rejectBy + '</td><td>' + item.reasonFa + '</td><td><a href="${home}farequests/engsendwork/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                        $("#tableCreate2").append(dataT1);
+                    });
+                },
+                error: function(data){
+                    alert("saved error.");
+                }
+            });
+
+
+            $("#btnSearch2").click(function() {
+                var data = {
+                    partNumber : "na_" + $("#inputPartNumber2").val()
+                };
+                $.ajax({
+                    url: session['context'] +'/farequests/dataenglistviewqareject',
+                    type: "POST",
+                    headers: {
+                        Accept: "application/json"
+                    },
+                    data : {
+                        data : JSON.stringify(data)
+                    },
+                    dataType: "json",
+                    success: function(data){
+                        $(".dataTable2").remove();
+                        $.each(data, function (i, item) {
+                            var dataT1 = '<tr class="dataTable2"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.rejectBy + '</td><td>' + item.reasonFa + '</td><td><a href="${home}farequests/engsendwork/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            $("#tableCreate2").append(dataT1);
+                        });
+                    },
+                    error: function(data){
+                        alert("saved error.");
+                    }
+                });
+            });
+
+
         });
     ]]>
     </script>

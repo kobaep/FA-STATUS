@@ -9,7 +9,7 @@
                 <div class="col-sm-12 alert alert-dismissible alert-success">
                     <div align="center"><h4><label>Wait For Engineer Review</label></h4></div>
                     <div class="table-responsive" style="height: 200px;">
-                        <table class="table table-striped">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th>No.</th>

@@ -118,6 +118,8 @@ public aspect MainController_Custom_Json {
             int minutes = calendar.get(Calendar.MINUTE);
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
+            Long dateLong = faRequest.getNeedDate().getTime() - faRequest.getCreateDate().getTime();
+
             jsonObject.put("requestDate",df.format(faRequest.getCreateDate()) + " " + hours + ":" + String.format("%02d", minutes));
             jsonObject.put("needDate",df.format(faRequest.getNeedDate()));
             jsonObject.put("customer",faRequest.getCustomer());
