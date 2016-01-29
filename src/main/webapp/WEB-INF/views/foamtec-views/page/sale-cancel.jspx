@@ -112,8 +112,8 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3">
-                            <button type="button" id="btnReject" class="btn btn-primary">CUSTOMER REJECT</button>
-                            <button type="button" id="btnApprove" class="btn btn-success col-sm-offset-1">CUSTOMER APPROVE</button>
+                            <button type="button" id="btnReject" class="btn btn-primary">CANCLE</button>
+                            <!--<button type="button" id="btnApprove" class="btn btn-success">APPROVE</button>-->
                         </div>
                     </div>
                 </fieldset>
@@ -143,13 +143,13 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                    <h4 class="modal-title">Reject Reason</h4>
+                    <h4 class="modal-title">Cancel Reason</h4>
                 </div>
                 <div class="modal-body">
-                    <textarea class="form-control" rows="3" id="inputReason"><jsp:text/></textarea>
+                    Cancel Document.
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btnRejectReason">reject</button>
+                    <button type="button" class="btn btn-primary" id="btnRejectReason">comfirm</button>
                 </div>
             </div>
         </div>
@@ -158,40 +158,12 @@
     <script type="text/javascript">
         <![CDATA[
         $(document).ready(function() {
-            $("#btnApprove").click(function() {
-                $("#alertApproveModal").modal({show:true});
-            });
-            $("#btnConfirm").click(function() {
-                var data = {
-                    action : "approve",
-                    id : "${farequest.id}"
-                };
-                $.ajax({
-                    url: session['context'] +'/farequests/saleupdate',
-                    type: "POST",
-                    headers: {
-                        Accept: "application/json"
-                    },
-                    data: {
-                        data : JSON.stringify(data)
-                    },
-                    dataType: "json",
-                    success: function(data){
-                        window.location.href = session['context'] + '/farequests/salefollowlist';
-                    },
-                    error: function(data){
-                        alert("update error.");
-                    }
-                });
-            });
-
             $("#btnReject").click(function() {
                 $("#alertRejectModal").modal({show:true});
             });
             $("#btnRejectReason").click(function() {
                 var data = {
-                    action : "customerReject",
-                    rejectReason : $("#inputReason").val(),
+                    action : "cancel",
                     id : "${farequest.id}"
                 };
                 $.ajax({

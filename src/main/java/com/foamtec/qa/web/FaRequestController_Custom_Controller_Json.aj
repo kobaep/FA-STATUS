@@ -167,6 +167,19 @@ public aspect FaRequestController_Custom_Controller_Json {
         }
     }
 
+    @RequestMapping(value = "/engrejectsale", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> FaRequestController.saleFollowDataEngReject(@RequestParam("data") String data) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        try {
+            JSONArray dataJson = findData(data, "sale", "EngReject");
+            return new ResponseEntity<String>(dataJson.toString(), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @RequestMapping(value = "/dataenglistviewqareject", method = RequestMethod.POST, headers = "Accept=application/json")
     @ResponseBody
     public ResponseEntity<String> FaRequestController.qaReject(@RequestParam("data") String data) {
@@ -205,6 +218,50 @@ public aspect FaRequestController_Custom_Controller_Json {
                 documentHistory.setReason(jsonObject.getString("reasonReject"));
                 documentHistory.setStatus("QaReject");
                 documentHistory.setActionType("reject");
+            }
+            documentHistory.setCreateBy(AppUser.findByUserName(principal.getName()));
+            documentHistory.setCreateDate(new Date());
+            documentHistory.setFaRequest(faRequest);
+            documentHistorys.add(documentHistory);
+            faRequest.setDocumentHistorys(documentHistorys);
+            faRequest.persist();
+
+            return new ResponseEntity<String>(faRequest.toJson(), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/saleupdate", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> FaRequestController.saleUpdate(@RequestParam("data") String data, Principal principal) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        try {
+            JSONObject jsonObject = new JSONObject(data);
+            String idFa = jsonObject.getString("id");
+            FaRequest faRequest = FaRequest.findFaRequest(Long.parseLong(idFa));
+            String action = jsonObject.getString("action");
+            Set<DocumentHistory> documentHistorys = faRequest.getDocumentHistorys();
+            DocumentHistory documentHistory = new DocumentHistory();
+            if("approve".equals(action)) {
+                faRequest.setFlow("finish");
+                faRequest.setStatus("finish");
+                documentHistory.setStatus("Finish");
+                documentHistory.setActionType("customerApprove");
+            }
+            if ("cancel".equals(action)) {
+                faRequest.setFlow("cancel");
+                faRequest.setStatus("cancel");
+                documentHistory.setStatus("Cancel");
+                documentHistory.setActionType("cancel");
+            }
+            if ("customerReject".equals(action)) {
+                faRequest.setFlow("customerReject");
+                faRequest.setStatus("customerReject");
+                documentHistory.setReason(jsonObject.getString("rejectReason"));
+                documentHistory.setStatus("CustomerReject");
+                documentHistory.setActionType("customerReject");
             }
             documentHistory.setCreateBy(AppUser.findByUserName(principal.getName()));
             documentHistory.setCreateDate(new Date());

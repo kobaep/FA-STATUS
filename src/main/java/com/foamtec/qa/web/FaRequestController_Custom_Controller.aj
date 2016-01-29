@@ -68,4 +68,11 @@ public aspect FaRequestController_Custom_Controller {
         uiModel.addAttribute("farequest", faRequest);
         return "sale-approve";
     }
+
+    @RequestMapping(value = "/salefollowengreject/{id}", produces = "text/html")
+    public String FaRequestController.saleEngReject(@PathVariable("id") Long id, Model uiModel, Principal principal) {
+        FaRequest faRequest = FaRequest.findFaRequest(id);
+        uiModel.addAttribute("farequest", faRequest);
+        return "sale-cancel";
+    }
 }

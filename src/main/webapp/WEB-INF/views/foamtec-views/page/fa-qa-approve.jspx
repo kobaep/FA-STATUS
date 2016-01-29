@@ -84,7 +84,7 @@
             <form class="form-horizontal">
                 <fieldset>
                     <div class="col-sm-12 alert alert-dismissible alert-warning">
-                        <div align="center"><h4><label>History Item</label></h4></div>
+                        <div align="center"><h4><label>History Document</label></h4></div>
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -110,6 +110,37 @@
                             </table>
                         </div>
                     </div>
+
+                    <div class="col-sm-12 alert alert-dismissible alert-warning">
+                        <div align="center"><h4><label>History Item</label></h4></div>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Date Time</th>
+                                    <th>Update By</th>
+                                    <th>Mold Number</th>
+                                    <th>Pcs</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tableCreate">
+                                <c:forEach items="${farequest.documentHistorys}" var="documentHistory">
+                                    <c:if test="${documentHistory.actionType eq 'engSendWork'}">
+                                        <c:set var="appUser" value="${documentHistory.createBy}"/>
+                                        <tr>
+                                            <fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${documentHistory.createDate}" var="createDate" />
+                                            <td>${createDate}</td>
+                                            <td>${appUser.name}</td>
+                                            <td>${documentHistory.moldNumber}</td>
+                                            <td>${documentHistory.itemPcs}</td>
+                                        </tr>
+                                    </c:if>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3">
                             <button type="button" id="btnReject" class="btn btn-primary">REJECT</button>

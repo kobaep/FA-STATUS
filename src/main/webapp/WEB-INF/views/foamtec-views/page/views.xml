@@ -38,4 +38,12 @@
         <put-attribute name="body" value="/WEB-INF/views/foamtec-views/page/sale-approve.jspx"/>
     </definition>
 
+    <definition extends="foamtec" name="sale-follow">
+        <put-attribute name="body" value="/WEB-INF/views/foamtec-views/page/sale-follow.jspx"/>
+    </definition>
+
+    <definition extends="foamtec" name="sale-cancel">
+        <put-attribute name="body" value="/WEB-INF/views/foamtec-views/page/sale-cancel.jspx"/>
+    </definition>
+
 </tiles-definitions>
