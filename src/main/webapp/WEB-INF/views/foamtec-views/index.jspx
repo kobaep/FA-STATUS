@@ -41,7 +41,7 @@
                                     <th>Need Date</th>
                                     <th>Customer</th>
                                     <th>Part No.</th>
-                                    <th>Request By</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody id="tableCreate2">
@@ -64,7 +64,7 @@
                                     <th>Need Date</th>
                                     <th>Customer</th>
                                     <th>Part No.</th>
-                                    <th>Request By</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody id="tableCreate3">
@@ -87,7 +87,7 @@
                                 <th>Need Date</th>
                                 <th>Customer</th>
                                 <th>Part No.</th>
-                                <th>Request By</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody id="tableCreate4">

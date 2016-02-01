@@ -7,6 +7,7 @@ import org.hibernate.criterion.Restrictions;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Date;
 
 /**
  * Created by kopeeno on 1/7/2016 AD.
@@ -31,6 +32,16 @@ public aspect FaRequest_Custom_Jpa_ActiveRecord {
         Criterion case3 = Restrictions.like("partNumber", partNUmber);
         c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         c.add(Restrictions.and(case1,case2,case3));
+        return c.list();
+    }
+
+    public static List<FaRequest> FaRequest.findByStartDateEndDateAndStatus(Date start, Date end, List<String> status) {
+        EntityManager em = FaRequest.entityManager();
+        Criteria c = ((Session)em.getDelegate()).createCriteria(FaRequest.class);
+        Criterion case1 = Restrictions.between("createDate", start, end);
+        Criterion case3 = Restrictions.in("status", status);
+        c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        c.add(Restrictions.and(case1,case3));
         return c.list();
     }
 }

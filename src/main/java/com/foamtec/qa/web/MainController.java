@@ -26,4 +26,9 @@ public class MainController {
         uiModel.addAttribute("farequest", faRequest);
         return "main-eng-approve";
     }
+
+    @RequestMapping(value = "/search", produces = "text/html")
+    public String search(Model uiModel) {
+        return "search";
+    }
 }

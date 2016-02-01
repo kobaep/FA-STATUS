@@ -29,7 +29,7 @@
                                 <th>Customer</th>
                                 <th>Part No.</th>
                                 <th>Request By</th>
-                                <th>Send Item</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody id="tableCreate">
