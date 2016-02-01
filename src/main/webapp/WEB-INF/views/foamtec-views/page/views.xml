@@ -46,4 +46,8 @@
         <put-attribute name="body" value="/WEB-INF/views/foamtec-views/page/sale-cancel.jspx"/>
     </definition>
 
+    <definition extends="foamtec" name="main-eng-approve">
+        <put-attribute name="body" value="/WEB-INF/views/foamtec-views/page/main-eng-approve.jspx"/>
+    </definition>
+
 </tiles-definitions>

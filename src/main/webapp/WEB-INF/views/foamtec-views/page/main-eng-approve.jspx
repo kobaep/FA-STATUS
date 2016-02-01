@@ -3,7 +3,7 @@
     <jsp:output omit-xml-declaration="yes" />
 
     <div class="row">
-        <legend>Engineer Review</legend>
+        <legend>FA Detail</legend>
         <div class="col-sm-6 bs-component">
             <form class="form-horizontal">
                 <fieldset>
@@ -62,102 +62,34 @@
                 </fieldset>
             </form>
         </div>
-        <div class="col-sm-6 well bs-component">
+        <div class="col-sm-6 bs-component">
             <form class="form-horizontal">
                 <fieldset>
-                    <c:if test="${farequest.mat1 != 'na'}">
-                        <div class="form-group" id="mat1Form">
-                            <label for="inputMat1" class="col-sm-3 control-label">${farequest.mat1} :</label>
-                            <div class="col-sm-9">
-                                <input id="inputMat1" class="form-control" placeholder="Batch Number" type="text"/>
-                            </div>
-                        </div>
-                    </c:if>
-                    <c:if test="${farequest.mat1 == 'na'}">
-                        <div class="form-group hidden" id="mat1Form">
-                            <label for="inputMat1" class="col-sm-3 control-label">${farequest.mat1} :</label>
-                            <div class="col-sm-9">
-                                <input id="inputMat1" class="form-control" placeholder="Batch Number" value="na" type="text"/>
-                            </div>
-                        </div>
-                    </c:if>
-                    <c:if test="${farequest.mat2 != 'na'}">
-                        <div class="form-group" id="mat2Form">
-                            <label for="inputMat2" class="col-sm-3 control-label">${farequest.mat2} :</label>
-                            <div class="col-sm-9">
-                                <input id="inputMat2" class="form-control" placeholder="Batch Number" type="text"/>
-                            </div>
-                        </div>
-                    </c:if>
-                    <c:if test="${farequest.mat2 == 'na'}">
-                        <div class="form-group hidden" id="mat2Form">
-                            <label for="inputMat2" class="col-sm-3 control-label">${farequest.mat2} :</label>
-                            <div class="col-sm-9">
-                                <input id="inputMat2" class="form-control" placeholder="Batch Number" value="na" type="text"/>
-                            </div>
-                        </div>
-                    </c:if>
-                    <c:if test="${farequest.mat3 != 'na'}">
-                        <div class="form-group" id="mat3Form">
-                            <label for="inputMat3" class="col-sm-3 control-label">${farequest.mat3} :</label>
-                            <div class="col-sm-9">
-                                <input id="inputMat3" class="form-control" placeholder="Batch Number" type="text"/>
-                            </div>
-                        </div>
-                    </c:if>
-                    <c:if test="${farequest.mat3 == 'na'}">
-                        <div class="form-group hidden" id="mat3Form">
-                            <label for="inputMat3" class="col-sm-3 control-label">${farequest.mat3} :</label>
-                            <div class="col-sm-9">
-                                <input id="inputMat3" class="form-control" placeholder="Batch Number" value="na" type="text"/>
-                            </div>
-                        </div>
-                    </c:if>
-                    <c:set var="tooling" value="${farequest.tooling}"/>
-                    <c:if test="${tooling.toolingType == 'Tooling'}">
-                        <div class="form-group inputMat">
-                            <label for="inputTooling" class="col-sm-3 control-label"> ${tooling.toolingType} carvity:</label>
-                            <div class="col-sm-9">
-                                <input id="inputTooling" class="form-control" placeholder="carvity" type="number"/>
-                            </div>
-                        </div>
-                        <div class="form-group inputMat">
-                            <label for="inputVendor" class="col-sm-3 control-label"> Vendor:</label>
-                            <div class="col-sm-9">
-                                <input id="inputVendor" class="form-control" placeholder="vendor" type="text"/>
-                            </div>
-                        </div>
-                    </c:if>
-                    <c:if test="${tooling.toolingType != 'Tooling'}">
-                        <div class="form-group hidden">
-                            <label for="inputTooling" class="col-sm-3 control-label"> ${tooling.toolingType} carvity:</label>
-                            <div class="col-sm-9">
-                                <input id="inputTooling" class="form-control" placeholder="carvity" value="0" type="number"/>
-                            </div>
-                        </div>
-                        <div class="form-group hidden">
-                            <label for="inputVendor" class="col-sm-3 control-label"> Vendor:</label>
-                            <div class="col-sm-9">
-                                <input id="inputVendor" class="form-control" placeholder="vendor" value="na" type="text"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Method :</label>
-                            <div class="col-sm-9">
-                                <p class="form-control-static text-overflow-newline">${tooling.toolingType}</p>
-                            </div>
-                        </div>
-                    </c:if>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label" for="inputProcess">Process :</label>
-                        <div class="col-sm-9">
-                            <textarea id="inputProcess" class="form-control" rows="10"><jsp:text/></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-9 col-sm-offset-3">
-                            <button type="button" id="btnReject" class="btn btn-primary">REJECT</button>
-                            <button type="button" id="btnApprove" class="btn btn-success col-sm-offset-1">APPROVE</button>
+                    <div class="col-sm-12 alert alert-dismissible alert-warning">
+                        <div align="center"><h4><label>History Document</label></h4></div>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Date Time</th>
+                                    <th>Update By</th>
+                                    <th>Action</th>
+                                    <th>Reason</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tableCreate">
+                                <c:forEach items="${farequest.documentHistorys}" var="documentHistory">
+                                    <c:set var="appUser" value="${documentHistory.createBy}"/>
+                                    <tr>
+                                        <fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${documentHistory.createDate}" var="createDate" />
+                                        <td>${createDate}</td>
+                                        <td>${appUser.name}</td>
+                                        <td>${documentHistory.actionType}</td>
+                                        <td>${documentHistory.reason}</td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </fieldset>
@@ -169,7 +101,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                     <h4 class="modal-title">Success</h4>
                 </div>
                 <div class="modal-body">
@@ -186,7 +118,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                     <h4 class="modal-title">Reject Reason</h4>
                 </div>
                 <div class="modal-body">
@@ -200,7 +132,7 @@
     </div>
 
     <script type="text/javascript">
-    <![CDATA[
+        <![CDATA[
         $(document).ready(function() {
             $("#btnApprove").click(function() {
                 $("#alertApproveModal").modal({show:true});
@@ -271,7 +203,7 @@
                 });
             });
         });
-    ]]>
+        ]]>
     </script>
 
 </div>

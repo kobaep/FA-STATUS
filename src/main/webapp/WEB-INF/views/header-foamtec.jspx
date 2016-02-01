@@ -27,7 +27,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Help</a>
+                        <a href="${home}search">Search</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

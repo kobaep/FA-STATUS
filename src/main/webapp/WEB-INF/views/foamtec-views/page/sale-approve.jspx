@@ -26,6 +26,18 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-sm-3 control-label">APQP Number :</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static text-overflow-newline">${farequest.apqpNumber}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Quatation Work Sheet :</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static text-overflow-newline">${farequest.quatationWorkSheet}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-sm-3 control-label">Need Date :</label>
                         <div class="col-sm-9">
                             <fmt:formatDate pattern="dd/MM/yyyy" value="${farequest.needDate}" var="needDate" />
