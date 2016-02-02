@@ -119,48 +119,43 @@ public aspect MainController_Custom_Json {
             Date startDate = df.parse(startDateSt);
             Date endDate = df.parse(endDateSt);
 
-            List<String> statusList = new ArrayList();
+            String statusSearch = "";
             if("All Status".equals(status)) {
-                statusList.add("create");
-                statusList.add("finish");
-                statusList.add("cancel");
-                statusList.add("customerReject");
-                statusList.add("QaApprove");
-                statusList.add("QaReject");
-                statusList.add("engSendWork");
-                statusList.add("EngApprove");
-                statusList.add("EngReject");
+                statusSearch = "%";
             }
             if("create".equals(status)) {
-                statusList.add("create");
+                statusSearch = "Create";
             }
             if("finish".equals(status)) {
-                statusList.add("finish");
+                statusSearch = "finish";
             }
             if("cancel".equals(status)) {
-                statusList.add("cancel");
+                statusSearch = "cancel";
             }
             if("customerReject".equals(status)) {
-                statusList.add("customerReject");
+                statusSearch = "customerReject";
             }
             if("QaApprove".equals(status)) {
-                statusList.add("QaApprove");
+                statusSearch = "QaApprove";
             }
             if("QaReject".equals(status)) {
-                statusList.add("QaReject");
+                statusSearch = "QaReject";
             }
             if("engSendWork".equals(status)) {
-                statusList.add("engSendWork");
+                statusSearch = "engSendWork";
             }
             if("EngApprove".equals(status)) {
-                statusList.add("EngApprove");
+                statusSearch = "EngApprove";
             }
             if("EngReject".equals(status)) {
-                statusList.add("EngReject");
+                statusSearch = "EngReject";
+            }
+            if("EngReject".equals(status)) {
+                statusSearch = "EngReject";
             }
 
             JSONArray dataAllForSend = new JSONArray();
-            List<FaRequest> faRequests = FaRequest.findByStartDateEndDateAndStatus(startDate, endDate, statusList);
+            List<FaRequest> faRequests = FaRequest.findByStartDateEndDateAndStatus(startDate, endDate, statusSearch);
             int i = 1;
             for(FaRequest faRequest : faRequests) {
                 JSONObject jsonObject1 = new JSONObject();

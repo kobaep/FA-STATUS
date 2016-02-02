@@ -35,11 +35,11 @@ public aspect FaRequest_Custom_Jpa_ActiveRecord {
         return c.list();
     }
 
-    public static List<FaRequest> FaRequest.findByStartDateEndDateAndStatus(Date start, Date end, List<String> status) {
+    public static List<FaRequest> FaRequest.findByStartDateEndDateAndStatus(Date start, Date end, String status) {
         EntityManager em = FaRequest.entityManager();
         Criteria c = ((Session)em.getDelegate()).createCriteria(FaRequest.class);
         Criterion case1 = Restrictions.between("createDate", start, end);
-        Criterion case3 = Restrictions.in("status", status);
+        Criterion case3 = Restrictions.like("status", status);
         c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         c.add(Restrictions.and(case1,case3));
         return c.list();
