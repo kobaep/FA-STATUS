@@ -84,6 +84,13 @@
                         </div>
                     </c:if>
                     <div class="form-group">
+                        <label class="col-sm-3 control-label">Eng Confirm Finish :</label>
+                        <div class="col-sm-9">
+                            <fmt:formatDate pattern="dd/MM/yyyy" value="${farequest.engWorkCommitDate}" var="engWorkCommitDate" />
+                            <p class="form-control-static text-overflow-newline">${engWorkCommitDate}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-sm-3 control-label">Process :</label>
                         <div class="col-sm-9">
                             <textarea id="inputProcess" class="form-control" rows="10" disabled="true">${farequest.process}</textarea>
@@ -107,6 +114,14 @@
                             <input id="inputItemPcs" class="form-control" type="number" />
                         </div>
                     </div>
+                    <c:if test="${farequest.status eq 'QaReject'}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="inputEditMethod">Edit Method :</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" rows="3" id="inputEditMethod"><jsp:text/></textarea>
+                            </div>
+                        </div>
+                    </c:if>
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3">
                             <button type="button" id="btnSend" class="btn btn-success">send</button>
@@ -139,11 +154,16 @@
             $("#btnSend").click(function() {
                 $("#alertApproveModal").modal({show:true});
             });
+            var editMethod = "";
             $("#btnConfirm").click(function() {
+                if("${farequest.status}" == "QaReject") {
+                    editMethod = $("#inputEditMethod").val();
+                }
                 var data = {
                     moldNumber : $("#inputMold").val(),
                     itemPcs : $("#inputItemPcs").val(),
-                    id : "${farequest.id}"
+                    id : "${farequest.id}",
+                    editMethod : editMethod
                 };
                 $.ajax({
                     url: session['context'] +'/farequests/engupdatesend',

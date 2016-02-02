@@ -54,6 +54,7 @@ public aspect FaRequestController_Custom_Controller_Json {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         try {
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             JSONObject jsonObject = new JSONObject(data);
             String idFa = jsonObject.getString("id");
             FaRequest faRequest = FaRequest.findFaRequest(Long.parseLong(idFa));
@@ -67,6 +68,10 @@ public aspect FaRequestController_Custom_Controller_Json {
                 faRequest.setBatchMat1(jsonObject.getString("batchMat1"));
                 faRequest.setBatchMat2(jsonObject.getString("batchMat2"));
                 faRequest.setBatchMat3(jsonObject.getString("batchMat3"));
+
+                Date commitDate = df.parse(jsonObject.getString("commitDate"));
+
+                faRequest.setEngWorkCommitDate(commitDate);
                 Tooling tooling = faRequest.getTooling();
                 tooling.setCarvity(Integer.parseInt(jsonObject.getString("carvity")));
                 tooling.setVendorName(jsonObject.getString("vendor"));
@@ -126,6 +131,7 @@ public aspect FaRequestController_Custom_Controller_Json {
             documentHistory.setCreateBy(AppUser.findByUserName(principal.getName()));
             documentHistory.setCreateDate(new Date());
             documentHistory.setFaRequest(faRequest);
+            documentHistory.setReason(jsonObject.getString("editMethod"));
             documentHistory.setActionType("engSendWork");
             documentHistory.setStatus("EngSend");
             documentHistorys.add(documentHistory);

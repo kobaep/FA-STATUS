@@ -113,3 +113,7 @@ focus --class ~.domain.DocumentHistory
 field reference --fieldName createBy --type ~.security.AppUser --fetch EAGER --cardinality ONE_TO_ONE
 quit
 // Spring Roo 1.3.2.RELEASE [rev 8387857] log closed at 2016-01-20 17:47:39
+// Spring Roo 1.3.2.RELEASE [rev 8387857] log opened at 2016-02-02 09:12:59
+focus --class ~.domain.FaRequest
+quit
+// Spring Roo 1.3.2.RELEASE [rev 8387857] log closed at 2016-02-02 09:14:30

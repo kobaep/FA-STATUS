@@ -4,7 +4,7 @@
 
     <div class="row">
         <legend>FA Detail</legend>
-        <div class="col-sm-6 bs-component">
+        <div class="col-sm-7 bs-component">
             <form class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
@@ -59,10 +59,17 @@
                             </div>
                         </div>
                     </c:forEach>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Eng Confirm Finish :</label>
+                        <div class="col-sm-9">
+                            <fmt:formatDate pattern="dd/MM/yyyy" value="${farequest.engWorkCommitDate}" var="engWorkCommitDate" />
+                            <p class="form-control-static text-overflow-newline">${engWorkCommitDate}</p>
+                        </div>
+                    </div>
                 </fieldset>
             </form>
         </div>
-        <div class="col-sm-6 bs-component">
+        <div class="col-sm-5 bs-component">
             <form class="form-horizontal">
                 <fieldset>
                     <div class="col-sm-12 alert alert-dismissible alert-warning">
