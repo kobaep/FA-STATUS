@@ -4,7 +4,7 @@
 
     <div class="row">
         <legend>FA Detail</legend>
-        <div class="col-sm-7 bs-component">
+        <div class="col-sm-6 bs-component">
             <form class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
@@ -69,12 +69,12 @@
                 </fieldset>
             </form>
         </div>
-        <div class="col-sm-5 bs-component">
+        <div class="col-sm-6 bs-component">
             <form class="form-horizontal">
                 <fieldset>
                     <div class="col-sm-12 alert alert-dismissible alert-warning">
                         <div align="center"><h4><label>History Document</label></h4></div>
-                        <div class="table-responsive">
+                        <div>
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
