@@ -91,6 +91,19 @@ public aspect MainController_Custom_Json {
         }
     }
 
+    @RequestMapping(value = "/dataWait", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> MainController.dataWait() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        try {
+            JSONArray dataJson = findDataToTable("engineer","EngWait");
+            return new ResponseEntity<String>(dataJson.toString(), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @RequestMapping(value = "/dataT6", method = RequestMethod.POST, headers = "Accept=application/json")
     @ResponseBody
     public ResponseEntity<String> MainController.dataTable6() {
@@ -201,7 +214,19 @@ public aspect MainController_Custom_Json {
             int minutes = calendar.get(Calendar.MINUTE);
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
-            Long dateLong = faRequest.getNeedDate().getTime() - faRequest.getCreateDate().getTime();
+            Calendar calendarCreateDate = Calendar.getInstance();
+            calendarCreateDate.setTime(faRequest.getCreateDate());
+            Calendar calendarNeedDate = Calendar.getInstance();
+            calendarNeedDate.setTime(faRequest.getNeedDate());
+
+            Calendar calendarNow = Calendar.getInstance();
+            calendarNow.setTime(new Date());
+
+            if (daysBetween(calendarCreateDate, calendarNeedDate) < 2 || calendarNow.after(calendarNeedDate)) {
+                jsonObject.put("day", true);
+            } else {
+                jsonObject.put("day", false);
+            }
 
             jsonObject.put("requestDate",df.format(faRequest.getCreateDate()) + " " + hours + ":" + String.format("%02d", minutes));
             jsonObject.put("needDate",df.format(faRequest.getNeedDate()));
@@ -214,5 +239,15 @@ public aspect MainController_Custom_Json {
             i++;
         }
         return dataAllForSend;
+    }
+
+    private long MainController.daysBetween(Calendar startDate, Calendar endDate) {
+        Calendar date = (Calendar) startDate.clone();
+        long daysBetween = 0;
+        while (date.before(endDate)) {
+            date.add(Calendar.DAY_OF_MONTH, 1);
+            daysBetween++;
+        }
+        return daysBetween;
     }
 }

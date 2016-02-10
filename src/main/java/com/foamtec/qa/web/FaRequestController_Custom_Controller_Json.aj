@@ -88,6 +88,14 @@ public aspect FaRequestController_Custom_Controller_Json {
                 documentHistory.setStatus("EngReject");
                 documentHistory.setActionType("reject");
             }
+            if ("wait".equals(action)) {
+                faRequest.setFlow("engineer");
+                faRequest.setStatus("EngWait");
+                faRequest.setEngReson(jsonObject.getString("reasonReject"));
+                documentHistory.setReason(jsonObject.getString("reasonReject"));
+                documentHistory.setStatus("EngWait");
+                documentHistory.setActionType("wait");
+            }
             documentHistory.setCreateBy(AppUser.findByUserName(principal.getName()));
             documentHistory.setCreateDate(new Date());
             documentHistory.setFaRequest(faRequest);
