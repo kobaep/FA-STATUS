@@ -146,7 +146,7 @@
             <div class="row">
                 <div class="col-sm-12 alert alert-dismissible alert-warning">
                     <div align="center"><h4><label>QA Reject</label></h4></div>
-                    <div class="table-responsive" style="height: 482px;">
+                    <div class="table-responsive" style="height: 200px;">
                         <table class="table">
                             <thead>
                             <tr>
@@ -159,6 +159,28 @@
                             </tr>
                             </thead>
                             <tbody id="tableCreate6">
+                            <jsp:text/>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 alert alert-dismissible alert-warning">
+                    <div align="center"><h4><label>QA Waitting</label></h4></div>
+                    <div class="table-responsive" style="height: 200px;">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>FA No.</th>
+                                <th>Customer</th>
+                                <th>Part No.</th>
+                                <th>Reason</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody id="tableCreate7">
                             <jsp:text/>
                             </tbody>
                         </table>
@@ -206,8 +228,13 @@
                 dataType: "json",
                 success: function(data){
                     $.each(data, function (i, item) {
-                        var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
-                        $("#tableCreate2").append(dataT1);
+                        if(item.day) {
+                            var dataT1 = '<tr bgcolor="#FB0303"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            $("#tableCreate2").append(dataT1);
+                        } else {
+                            var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            $("#tableCreate2").append(dataT1);
+                        }
                     });
                 },
                 error: function(data){
@@ -225,8 +252,13 @@
                 dataType: "json",
                 success: function(data){
                     $.each(data, function (i, item) {
-                        var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
-                        $("#tableCreate3").append(dataT1);
+                        if(item.day) {
+                            var dataT1 = '<tr bgcolor="#FB0303"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            $("#tableCreate3").append(dataT1);
+                        } else {
+                            var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            $("#tableCreate3").append(dataT1);
+                        }
                     });
                 },
                 error: function(data){
@@ -244,8 +276,13 @@
                 dataType: "json",
                 success: function(data){
                     $.each(data, function (i, item) {
-                        var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
-                        $("#tableCreate4").append(dataT1);
+                        if(item.day) {
+                            var dataT1 = '<tr bgcolor="#FB0303"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            $("#tableCreate4").append(dataT1);
+                        } else {
+                            var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            $("#tableCreate4").append(dataT1);
+                        }
                     });
                 },
                 error: function(data){
@@ -263,8 +300,13 @@
                 dataType: "json",
                 success: function(data){
                     $.each(data, function (i, item) {
-                        var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonEng + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
-                        $("#tableCreate5").append(dataT1);
+                        if(item.day) {
+                            var dataT1 = '<tr bgcolor="#FB0303"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonEng + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            $("#tableCreate5").append(dataT1);
+                        } else {
+                            var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonEng + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            $("#tableCreate5").append(dataT1);
+                        }
                     });
                 },
                 error: function(data){
@@ -282,8 +324,13 @@
                 dataType: "json",
                 success: function(data){
                     $.each(data, function (i, item) {
-                        var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonEng + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
-                        $("#tableCreateWait").append(dataT1);
+                        if(item.day) {
+                            var dataT1 = '<tr bgcolor="#FB0303"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonEng + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            $("#tableCreateWait").append(dataT1);
+                        } else {
+                            var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonEng + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            $("#tableCreateWait").append(dataT1);
+                        }
                     });
                 },
                 error: function(data){
@@ -301,8 +348,37 @@
                 dataType: "json",
                 success: function(data){
                     $.each(data, function (i, item) {
-                        var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonFa + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
-                        $("#tableCreate6").append(dataT1);
+                        if(item.day) {
+                            var dataT1 = '<tr bgcolor="#FB0303"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonFa + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            $("#tableCreate6").append(dataT1);
+                        } else {
+                            var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonFa + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            $("#tableCreate6").append(dataT1);
+                        }
+                    });
+                },
+                error: function(data){
+                    alert("saved error.");
+                }
+            });
+
+            $.ajax({
+                url: session['context'] +'/dataT7',
+                type: "POST",
+                headers: {
+                    Accept: "application/json"
+                },
+                data : "",
+                dataType: "json",
+                success: function(data){
+                    $.each(data, function (i, item) {
+                        if(item.day) {
+                            var dataT1 = '<tr bgcolor="#FB0303"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonFa + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            $("#tableCreate7").append(dataT1);
+                        } else {
+                            var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonFa + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            $("#tableCreate7").append(dataT1);
+                        }
                     });
                 },
                 error: function(data){

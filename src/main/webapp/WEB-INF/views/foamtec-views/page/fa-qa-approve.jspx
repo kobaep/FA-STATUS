@@ -163,6 +163,7 @@
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3">
                             <button type="button" id="btnReject" class="btn btn-primary">REJECT</button>
+                            <button type="button" id="btnWait" class="btn btn-default col-sm-offset-1">WAIT</button>
                             <button type="button" id="btnApprove" class="btn btn-success col-sm-offset-1">APPROVE</button>
                         </div>
                     </div>
@@ -205,6 +206,23 @@
         </div>
     </div>
 
+    <div class="modal fade" id="alertWaitModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title">Wait Reason</h4>
+                </div>
+                <div class="modal-body">
+                    <textarea class="form-control" rows="3" id="inputWaitReason"><jsp:text/></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="btnWaitReason">wait</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript">
     <![CDATA[
         $(document).ready(function() {
@@ -214,6 +232,35 @@
             $("#btnConfirm").click(function() {
                 var data = {
                     action : "approve",
+                    id : "${farequest.id}"
+                };
+                $.ajax({
+                    url: session['context'] +'/farequests/qafaupdate',
+                    type: "POST",
+                    headers: {
+                        Accept: "application/json"
+                    },
+                    data: {
+                        data : JSON.stringify(data)
+                    },
+                    dataType: "json",
+                    success: function(data){
+                        window.location.href = session['context'] + '/farequests/faqalist';
+                    },
+                    error: function(data){
+                        alert("update error.");
+                    }
+                });
+            });
+
+            $("#btnWait").click(function() {
+                $("#alertWaitModal").modal({show:true});
+            });
+
+            $("#btnWaitReason").click(function() {
+                var data = {
+                    reasonReject : $("#inputWaitReason").val(),
+                    action : "wait",
                     id : "${farequest.id}"
                 };
                 $.ajax({

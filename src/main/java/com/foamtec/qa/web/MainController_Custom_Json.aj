@@ -97,7 +97,7 @@ public aspect MainController_Custom_Json {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         try {
-            JSONArray dataJson = findDataToTable("engineer","EngWait");
+            JSONArray dataJson = findDataToTable("engineerWork","EngWait");
             return new ResponseEntity<String>(dataJson.toString(), headers, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -111,6 +111,19 @@ public aspect MainController_Custom_Json {
         headers.add("Content-Type", "application/json; charset=utf-8");
         try {
             JSONArray dataJson = findDataToTable("engineerWork","QaReject");
+            return new ResponseEntity<String>(dataJson.toString(), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/dataT7", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> MainController.dataTable7() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        try {
+            JSONArray dataJson = findDataToTable("FA","QaWait");
             return new ResponseEntity<String>(dataJson.toString(), headers, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);

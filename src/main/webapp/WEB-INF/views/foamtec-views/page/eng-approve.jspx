@@ -304,12 +304,15 @@
 
             $("#btnWaitReason").click(function() {
                 var data = {
-                    batchMat1 : "na",
-                    batchMat2 : "na",
-                    batchMat3 : "na",
-                    carvity : "0",
-                    vendor : "na",
-                    process : "na",
+                    batchMat1 : $("#inputMat1").val(),
+                    batchMat2 : $("#inputMat2").val(),
+                    batchMat3 : $("#inputMat3").val(),
+                    carvity : $("#inputTooling").val(),
+                    vendor : $("#inputVendor").val(),
+                    process : $("#inputProcess").val(),
+                    reasonReject : "na",
+                    action : "approve",
+                    commitDate : $("#inputCommitDate").val(),
                     reasonReject : $("#inputWaitReason").val(),
                     action : "wait",
                     id : "${farequest.id}"
