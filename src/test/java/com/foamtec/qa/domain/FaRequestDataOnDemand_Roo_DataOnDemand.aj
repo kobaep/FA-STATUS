@@ -63,6 +63,8 @@ privileged aspect FaRequestDataOnDemand_Roo_DataOnDemand {
         setQuatationWorkSheet(obj, index);
         setRevision(obj, index);
         setSaleApprovel(obj, index);
+        setSaleCoSendWorkTo(obj, index);
+        setSaleRemark(obj, index);
         setStatus(obj, index);
         return obj;
     }
@@ -200,6 +202,16 @@ privileged aspect FaRequestDataOnDemand_Roo_DataOnDemand {
     public void FaRequestDataOnDemand.setSaleApprovel(FaRequest obj, int index) {
         String saleApprovel = "saleApprovel_" + index;
         obj.setSaleApprovel(saleApprovel);
+    }
+    
+    public void FaRequestDataOnDemand.setSaleCoSendWorkTo(FaRequest obj, int index) {
+        String saleCoSendWorkTo = "saleCoSendWorkTo_" + index;
+        obj.setSaleCoSendWorkTo(saleCoSendWorkTo);
+    }
+    
+    public void FaRequestDataOnDemand.setSaleRemark(FaRequest obj, int index) {
+        String saleRemark = "saleRemark_" + index;
+        obj.setSaleRemark(saleRemark);
     }
     
     public void FaRequestDataOnDemand.setStatus(FaRequest obj, int index) {

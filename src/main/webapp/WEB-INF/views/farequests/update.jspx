@@ -36,5 +36,7 @@
         <field:input field="batchMat2" id="c_com_foamtec_qa_domain_FaRequest_batchMat2" z="6Ppec7fRQayRA53lYfS/ilAVdJA="/>
         <field:input field="batchMat3" id="c_com_foamtec_qa_domain_FaRequest_batchMat3" z="lnywYuzHq9PUpxjMwqCTJ8kIXPM="/>
         <field:select field="createBy" id="c_com_foamtec_qa_domain_FaRequest_createBy" itemValue="id" items="${appusers}" path="/appusers" z="04D4EZU9b+V1E+euoRuolRqO3kk="/>
+        <field:input field="saleRemark" id="c_com_foamtec_qa_domain_FaRequest_saleRemark" z="JW+bbNFx/u9GSPl1FYK3xhX1vs0="/>
+        <field:input field="saleCoSendWorkTo" id="c_com_foamtec_qa_domain_FaRequest_saleCoSendWorkTo" z="EG+GoDeLvQUJYHHdY5agnRGBFvE="/>
     </form:update>
 </div>

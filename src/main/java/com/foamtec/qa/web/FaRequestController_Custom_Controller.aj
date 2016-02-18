@@ -75,4 +75,11 @@ public aspect FaRequestController_Custom_Controller {
         uiModel.addAttribute("farequest", faRequest);
         return "sale-cancel";
     }
+
+    @RequestMapping(value = "/salecoapprove/{id}", produces = "text/html")
+    public String FaRequestController.saleCoApprove(@PathVariable("id") Long id, Model uiModel, Principal principal) {
+        FaRequest faRequest = FaRequest.findFaRequest(id);
+        uiModel.addAttribute("farequest", faRequest);
+        return "saleco-approve";
+    }
 }

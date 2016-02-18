@@ -54,4 +54,8 @@
         <put-attribute name="body" value="/WEB-INF/views/foamtec-views/page/search.jspx"/>
     </definition>
 
+    <definition extends="foamtec" name="saleco-approve">
+        <put-attribute name="body" value="/WEB-INF/views/foamtec-views/page/sale-co-approve.jspx"/>
+    </definition>
+
 </tiles-definitions>

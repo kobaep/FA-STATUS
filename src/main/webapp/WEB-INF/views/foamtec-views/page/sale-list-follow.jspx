@@ -17,7 +17,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12 alert alert-dismissible alert-success">
-                    <div align="center"><h4><label>Please Follow Customer</label></h4></div>
+                    <div align="center"><h4><label>Sale Co Follow Item</label></h4></div>
                     <div class="table-responsive" style="height: 300px;">
                         <table class="table table-striped">
                             <thead>
@@ -28,11 +28,52 @@
                                 <th>Need Date</th>
                                 <th>Customer</th>
                                 <th>Part No.</th>
+                                <th>Project Owner</th>
                                 <th>Request By</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody id="tableCreate1">
+                            <jsp:text/>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-12" align="center">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="inputPartNumberSaleOut" class="sr-only">Part Number</label>
+                            <input type="text" class="form-control" id="inputPartNumberSaleOut" placeholder="Part Number" autocomplete="off"/>
+                        </div>
+                        <button type="button" id="btnSearchSaleOut" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 alert alert-dismissible alert-success">
+                    <div align="center"><h4><label>Sale Out Follow Customer</label></h4></div>
+                    <div class="table-responsive" style="height: 300px;">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>FA No.</th>
+                                <th>Request Date</th>
+                                <th>Need Date</th>
+                                <th>Customer</th>
+                                <th>Part No.</th>
+                                <th>Project Owner</th>
+                                <th>Request By</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody id="tableCreateSaleOut">
                             <jsp:text/>
                             </tbody>
                         </table>
@@ -67,6 +108,7 @@
                                 <th>Need Date</th>
                                 <th>Customer</th>
                                 <th>Part No.</th>
+                                <th>Project Owner</th>
                                 <th>Request By</th>
                                 <th></th>
                             </tr>
@@ -89,7 +131,7 @@
                 partNumber : "na_" + $("#inputPartNumber1").val()
             };
             $.ajax({
-                url: session['context'] +'/farequests/salefollowdatalist',
+                url: session['context'] +'/farequests/salecoapprovedata',
                 type: "POST",
                 headers: {
                     Accept: "application/json"
@@ -101,7 +143,7 @@
                 success: function(data){
                     $(".dataTable1").remove();
                     $.each(data, function (i, item) {
-                        var dataT1 = '<tr class="dataTable1"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.requestBy + '</td><td><a href="${home}farequests/salefollow/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                        var dataT1 = '<tr class="dataTable1"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.projectOwner + '</td><td>' + item.requestBy + '</td><td><a href="${home}farequests/salecoapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
                         $("#tableCreate1").append(dataT1);
                     });
                 },
@@ -115,7 +157,7 @@
                     partNumber : "na_" + $("#inputPartNumber1").val()
                 };
                 $.ajax({
-                    url: session['context'] +'/farequests/salefollowdatalist',
+                    url: session['context'] +'/farequests/salecoapprovedata',
                     type: "POST",
                     headers: {
                         Accept: "application/json"
@@ -127,7 +169,7 @@
                     success: function(data){
                         $(".dataTable1").remove();
                         $.each(data, function (i, item) {
-                            var dataT1 = '<tr class="dataTable1"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.requestBy + '</td><td><a href="${home}farequests/salefollow/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            var dataT1 = '<tr class="dataTable1"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.projectOwner + '</td><td>' + item.requestBy + '</td><td><a href="${home}farequests/salecoapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
                             $("#tableCreate1").append(dataT1);
                         });
                     },
@@ -154,7 +196,7 @@
                 success: function(data){
                     $(".dataTable2").remove();
                     $.each(data, function (i, item) {
-                        var dataT1 = '<tr class="dataTable2"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.requestBy + '</td><td><a href="${home}farequests/salefollowengreject/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                        var dataT1 = '<tr class="dataTable2"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.projectOwner + '</td><td>' + item.requestBy + '</td><td><a href="${home}farequests/salefollowengreject/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
                         $("#tableCreate2").append(dataT1);
                     });
                 },
@@ -180,8 +222,61 @@
                     success: function(data){
                         $(".dataTable2").remove();
                         $.each(data, function (i, item) {
-                            var dataT1 = '<tr class="dataTable2"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.requestBy + '</td><td><a href="${home}farequests/salefollowengreject/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            var dataT1 = '<tr class="dataTable2"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.projectOwner + '</td><td>' + item.requestBy + '</td><td><a href="${home}farequests/salefollowengreject/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
                             $("#tableCreate2").append(dataT1);
+                        });
+                    },
+                    error: function(data){
+                        alert("saved error.");
+                    }
+                });
+            });
+
+            var data3 = {
+                partNumber : "na_" + $("#inputPartNumberSaleOut").val()
+            };
+
+            $.ajax({
+                url: session['context'] +'/farequests/salefollowdatalist',
+                type: "POST",
+                headers: {
+                    Accept: "application/json"
+                },
+                data : {
+                    data : JSON.stringify(data2)
+                },
+                dataType: "json",
+                success: function(data){
+                    $(".dataTable2").remove();
+                    $.each(data, function (i, item) {
+                        var dataT1 = '<tr class="dataTable2"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.projectOwner + '</td><td>' + item.requestBy + '</td><td><a href="${home}farequests/salefollow/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                        $("#tableCreate2").append(dataT1);
+                    });
+                },
+                error: function(data){
+                    alert("saved error.");
+                }
+            });
+
+            $("#btnSearchSaleOut").click(function() {
+                var data = {
+                    partNumber : "na_" + $("#inputPartNumberSaleOut").val()
+                };
+                $.ajax({
+                    url: session['context'] +'/farequests/salefollowdatalist',
+                    type: "POST",
+                    headers: {
+                        Accept: "application/json"
+                    },
+                    data : {
+                        data : JSON.stringify(data)
+                    },
+                    dataType: "json",
+                    success: function(data){
+                        $(".dataTableSaleOut").remove();
+                        $.each(data, function (i, item) {
+                            var dataT1 = '<tr class="dataTableSaleOut"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.projectOwner + '</td><td>' + item.requestBy + '</td><td><a href="${home}farequests/salefollow/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            $("#tableCreateSaleOut").append(dataT1);
                         });
                     },
                     error: function(data){

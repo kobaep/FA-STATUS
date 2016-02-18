@@ -248,6 +248,19 @@ public aspect FaRequestController_Custom_Controller_Json {
         }
     }
 
+    @RequestMapping(value = "/salecoapprovedata", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> FaRequestController.saleCoApproveData(@RequestParam("data") String data) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        try {
+            JSONArray dataJson = findData(data, "saleCoApprove", "QaApprove");
+            return new ResponseEntity<String>(dataJson.toString(), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @RequestMapping(value = "/qafaupdate", method = RequestMethod.POST, headers = "Accept=application/json")
     @ResponseBody
     public ResponseEntity<String> FaRequestController.qaFaUpdate(@RequestParam("data") String data, Principal principal) {
@@ -261,7 +274,7 @@ public aspect FaRequestController_Custom_Controller_Json {
             Set<DocumentHistory> documentHistorys = faRequest.getDocumentHistorys();
             DocumentHistory documentHistory = new DocumentHistory();
             if("approve".equals(action)) {
-                faRequest.setFlow("saleApprove");
+                faRequest.setFlow("saleCoApprove");
                 faRequest.setStatus("QaApprove");
                 documentHistory.setStatus("QaApprove");
                 documentHistory.setActionType("approve");
@@ -307,11 +320,18 @@ public aspect FaRequestController_Custom_Controller_Json {
             String action = jsonObject.getString("action");
             Set<DocumentHistory> documentHistorys = faRequest.getDocumentHistorys();
             DocumentHistory documentHistory = new DocumentHistory();
-            if("approve".equals(action)) {
+            if("saleOutApprove".equals(action)) {
                 faRequest.setFlow("finish");
                 faRequest.setStatus("finish");
                 documentHistory.setStatus("Finish");
                 documentHistory.setActionType("customerApprove");
+            }
+            if("saleCoApprove".equals(action)) {
+                faRequest.setSaleCoSendWorkTo(jsonObject.getString("name"));
+                faRequest.setFlow("SaleOut");
+                faRequest.setStatus("saleCoApprove");
+                documentHistory.setStatus("saleCoApprove");
+                documentHistory.setActionType("saleCoApprove");
             }
             if ("cancel".equals(action)) {
                 faRequest.setFlow("cancel");
@@ -448,6 +468,11 @@ public aspect FaRequestController_Custom_Controller_Json {
         }
         faRequest.setTypeOfRequest(typeOfRequests);
 
+        String[] remarks = jsonObject.getString("remark").split("_");
+        if(remarks.length != 1) {
+            faRequest.setSaleRemark(remarks[1]);
+        }
+
         String tools = jsonObject.getString("tools");
         Tooling tooling = new Tooling();
         tooling.setToolingType(tools);
@@ -502,7 +527,7 @@ public aspect FaRequestController_Custom_Controller_Json {
             for(DocumentHistory d : faRequest.getDocumentHistorys()) {
                 jsonObject.put("rejectBy", d.getCreateBy().getName());
             }
-
+            jsonObject.put("projectOwner",faRequest.getProjectOwner());
             jsonObject.put("reasonEng",faRequest.getEngReson());
             jsonObject.put("reasonFa",faRequest.getFaReson());
             jsonObject.put("requestBy", faRequest.getCreateBy().getName());

@@ -60,7 +60,13 @@
                         </div>
                     </c:forEach>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Eng Confirm Finish :</label>
+                        <label class="col-sm-3 control-label">Sale Remark :</label>
+                        <div class="col-sm-9">
+                            <textarea id="inputProcess" class="form-control" rows="6" disabled="true">${farequest.saleRemark}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Eng Confirm Finish</label>
                         <div class="col-sm-9">
                             <fmt:formatDate pattern="dd/MM/yyyy" value="${farequest.engWorkCommitDate}" var="engWorkCommitDate" />
                             <p class="form-control-static text-overflow-newline">${engWorkCommitDate}</p>

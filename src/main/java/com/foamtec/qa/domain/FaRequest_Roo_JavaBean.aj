@@ -278,4 +278,20 @@ privileged aspect FaRequest_Roo_JavaBean {
         this.createBy = createBy;
     }
     
+    public String FaRequest.getSaleRemark() {
+        return this.saleRemark;
+    }
+    
+    public void FaRequest.setSaleRemark(String saleRemark) {
+        this.saleRemark = saleRemark;
+    }
+    
+    public String FaRequest.getSaleCoSendWorkTo() {
+        return this.saleCoSendWorkTo;
+    }
+    
+    public void FaRequest.setSaleCoSendWorkTo(String saleCoSendWorkTo) {
+        this.saleCoSendWorkTo = saleCoSendWorkTo;
+    }
+    
 }

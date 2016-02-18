@@ -71,7 +71,7 @@ public aspect MainController_Custom_Json {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         try {
-            JSONArray dataJson = findDataToTable("saleApprove","QaApprove");
+            JSONArray dataJson = findDataToTable("saleCoApprove","QaApprove");
             return new ResponseEntity<String>(dataJson.toString(), headers, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -130,6 +130,19 @@ public aspect MainController_Custom_Json {
         }
     }
 
+    @RequestMapping(value = "/dataT8", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> MainController.dataTable8() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        try {
+            JSONArray dataJson = findDataToTable("SaleOut","saleCoApprove");
+            return new ResponseEntity<String>(dataJson.toString(), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @RequestMapping(value = "/searchdata", method = RequestMethod.POST, headers = "Accept=application/json")
     @ResponseBody
     public ResponseEntity<String> MainController.search(@RequestParam("data") String data) {
@@ -145,39 +158,10 @@ public aspect MainController_Custom_Json {
             Date startDate = df.parse(startDateSt);
             Date endDate = df.parse(endDateSt);
 
-            String statusSearch = "";
-            if("All Status".equals(status)) {
-                statusSearch = "%";
-            }
-            if("create".equals(status)) {
-                statusSearch = "Create";
-            }
-            if("finish".equals(status)) {
-                statusSearch = "finish";
-            }
-            if("cancel".equals(status)) {
-                statusSearch = "cancel";
-            }
-            if("customerReject".equals(status)) {
-                statusSearch = "customerReject";
-            }
-            if("QaApprove".equals(status)) {
-                statusSearch = "QaApprove";
-            }
-            if("QaReject".equals(status)) {
-                statusSearch = "QaReject";
-            }
-            if("engSendWork".equals(status)) {
-                statusSearch = "engSendWork";
-            }
-            if("EngApprove".equals(status)) {
-                statusSearch = "EngApprove";
-            }
-            if("EngReject".equals(status)) {
-                statusSearch = "EngReject";
-            }
-            if("EngReject".equals(status)) {
-                statusSearch = "EngReject";
+            String[] partNumber = jsonObject.getString("status").split("_");
+            String statusSearch = "%";
+            if(partNumber.length == 2) {
+                statusSearch = "%" + partNumber[1] + "%";
             }
 
             JSONArray dataAllForSend = new JSONArray();
@@ -200,7 +184,7 @@ public aspect MainController_Custom_Json {
                 jsonObject1.put("requestBy", faRequest.getCreateBy().getName());
                 jsonObject1.put("reasonEng",faRequest.getEngReson());
                 jsonObject1.put("reasonFa",faRequest.getFaReson());
-                jsonObject1.put("status",faRequest.getStatus());
+                jsonObject1.put("projectOwner",faRequest.getProjectOwner());
                 dataAllForSend.put(jsonObject1);
                 i++;
             }
@@ -245,6 +229,7 @@ public aspect MainController_Custom_Json {
             jsonObject.put("needDate",df.format(faRequest.getNeedDate()));
             jsonObject.put("customer",faRequest.getCustomer());
             jsonObject.put("partNo",faRequest.getPartNumber());
+            jsonObject.put("projectOwner",faRequest.getProjectOwner());
             jsonObject.put("requestBy", faRequest.getCreateBy().getName());
             jsonObject.put("reasonEng",faRequest.getEngReson());
             jsonObject.put("reasonFa",faRequest.getFaReson());

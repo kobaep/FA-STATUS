@@ -3,7 +3,7 @@
     <jsp:output omit-xml-declaration="yes" />
 
     <div class="row">
-        <legend>Engineer Send Item</legend>
+        <legend>Customer Follow Up</legend>
         <div class="col-sm-6 bs-component">
             <form class="form-horizontal">
                 <fieldset>
@@ -91,12 +91,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Sale Remark :</label>
-                        <div class="col-sm-9">
-                            <textarea class="form-control" rows="6" disabled="true">${farequest.saleRemark}</textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="col-sm-3 control-label">Process :</label>
                         <div class="col-sm-9">
                             <textarea id="inputProcess" class="form-control" rows="10" disabled="true">${farequest.process}</textarea>
@@ -105,32 +99,45 @@
                 </fieldset>
             </form>
         </div>
-        <div class="col-sm-6 well bs-component">
+        <div class="col-sm-6 bs-component">
             <form class="form-horizontal">
                 <fieldset>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label" for="inputMold">Mold Number :</label>
-                        <div class="col-sm-9">
-                            <input id="inputMold" class="form-control" type="text" />
+                    <div class="col-sm-12 alert alert-dismissible alert-warning">
+                        <div align="center"><h4><label>History Item</label></h4></div>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Date Time</th>
+                                    <th>Update By</th>
+                                    <th>Action</th>
+                                    <th>Reason</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tableCreate">
+                                <c:forEach items="${farequest.documentHistorys}" var="documentHistory">
+                                    <c:set var="appUser" value="${documentHistory.createBy}"/>
+                                    <tr>
+                                        <fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${documentHistory.createDate}" var="createDate" />
+                                        <td>${createDate}</td>
+                                        <td>${appUser.name}</td>
+                                        <td>${documentHistory.actionType}</td>
+                                        <td>${documentHistory.reason}</td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="inputItemPcs">Item Pcs :</label>
+                        <label for="inputPerson" class="col-sm-3 control-label">Contact Person</label>
                         <div class="col-sm-9">
-                            <input id="inputItemPcs" class="form-control" type="number" />
+                            <input class="form-control" id="inputPerson" placeholder="Name" type="text" required = "required"/>
                         </div>
                     </div>
-                    <c:if test="${farequest.status eq 'QaReject'}">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" for="inputEditMethod">Edit Method :</label>
-                            <div class="col-sm-9">
-                                <textarea class="form-control" rows="3" id="inputEditMethod"><jsp:text/></textarea>
-                            </div>
-                        </div>
-                    </c:if>
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3">
-                            <button type="button" id="btnSend" class="btn btn-success">send</button>
+                            <button type="button" id="btnApprove" class="btn btn-success">APPROVE</button>
                         </div>
                     </div>
                 </fieldset>
@@ -142,37 +149,52 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                     <h4 class="modal-title">Success</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Send Item</p>
+                    <p>Confirm Approve</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" id="btnConfirm">OK</button>
+                    <button type="button" class="btn btn-success" id="btnConfirm">confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="alertRejectModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title">Reject Reason</h4>
+                </div>
+                <div class="modal-body">
+                    <textarea class="form-control" rows="3" id="inputReason"><jsp:text/></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnRejectReason">reject</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script type="text/javascript">
-    <![CDATA[
+        <![CDATA[
         $(document).ready(function() {
-            $("#btnSend").click(function() {
-                $("#alertApproveModal").modal({show:true});
-            });
-            var editMethod = "";
-            $("#btnConfirm").click(function() {
-                if("${farequest.status}" == "QaReject") {
-                    editMethod = $("#inputEditMethod").val();
+            $("#btnApprove").click(function() {
+                if ($("#inputPerson").val().length != 0) {
+                    $("#alertApproveModal").modal({show:true});
                 }
+            });
+            $("#btnConfirm").click(function() {
                 var data = {
-                    moldNumber : $("#inputMold").val(),
-                    itemPcs : $("#inputItemPcs").val(),
-                    id : "${farequest.id}",
-                    editMethod : editMethod
+                    action : "saleCoApprove",
+                    name : $("#inputPerson").val(),
+                    id : "${farequest.id}"
                 };
                 $.ajax({
-                    url: session['context'] +'/farequests/engupdatesend',
+                    url: session['context'] +'/farequests/saleupdate',
                     type: "POST",
                     headers: {
                         Accept: "application/json"
@@ -182,7 +204,35 @@
                     },
                     dataType: "json",
                     success: function(data){
-                        window.location.href = session['context'] + '/farequests/englistviewwork';
+                        window.location.href = session['context'] + '/farequests/salefollowlist';
+                    },
+                    error: function(data){
+                        alert("update error.");
+                    }
+                });
+            });
+
+            $("#btnReject").click(function() {
+                $("#alertRejectModal").modal({show:true});
+            });
+            $("#btnRejectReason").submit(function() {
+                var data = {
+                    action : "customerReject",
+                    rejectReason : $("#inputReason").val(),
+                    id : "${farequest.id}"
+                };
+                $.ajax({
+                    url: session['context'] +'/farequests/saleupdate',
+                    type: "POST",
+                    headers: {
+                        Accept: "application/json"
+                    },
+                    data: {
+                        data : JSON.stringify(data)
+                    },
+                    dataType: "json",
+                    success: function(data){
+                        window.location.href = session['context'] + '/farequests/salefollowlist';
                     },
                     error: function(data){
                         alert("update error.");
@@ -190,7 +240,7 @@
                 });
             });
         });
-    ]]>
+        ]]>
     </script>
 
 </div>

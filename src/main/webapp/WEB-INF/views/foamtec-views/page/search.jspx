@@ -19,18 +19,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-9">
-                                <select class="form-control" id="selectStatus">
-                                    <option>All Status</option>
-                                    <option>create</option>
-                                    <option>finish</option>
-                                    <option>cancel</option>
-                                    <option>customerReject</option>
-                                    <option>QaApprove</option>
-                                    <option>QaReject</option>
-                                    <option>engSendWork</option>
-                                    <option>EngApprove</option>
-                                    <option>EngReject</option>
-                                </select>
+                                <input class="form-control" id="inputTextSearch" placeholder="Text Search" type="text"/>
                             </div>
                         </div>
                         <button type="button" id="btnSearch" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
@@ -50,7 +39,7 @@
                                 <th>Need Date</th>
                                 <th>Customer</th>
                                 <th>Part No.</th>
-                                <th>Status</th>
+                                <th>Project Owner</th>
                                 <th>Request By</th>
                                 <th></th>
                             </tr>
@@ -80,7 +69,7 @@
                 var data = {
                     startDate : $("#inputNeedDate1").val(),
                     endDate : $("#inputNeedDate2").val(),
-                    status : $("#selectStatus").val()
+                    status : "na_" + $("#inputTextSearch").val()
                 };
 
                 $.ajax({
@@ -96,7 +85,7 @@
                     success: function(data){
                         $(".dataTable").remove();
                         $.each(data, function (i, item) {
-                            var dataT1 = '<tr class="dataTable"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.status + '</td><td>' + item.requestBy + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            var dataT1 = '<tr class="dataTable"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.projectOwner + '</td><td>' + item.requestBy + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
                             $("#tableCreate").append(dataT1);
                         });
                     },

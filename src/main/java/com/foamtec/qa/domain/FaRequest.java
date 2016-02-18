@@ -167,4 +167,12 @@ public class FaRequest {
      */
     @OneToOne(fetch = FetchType.EAGER)
     private AppUser createBy;
+
+    /**
+     */
+    private String saleRemark;
+
+    /**
+     */
+    private String saleCoSendWorkTo;
 }
