@@ -575,5 +575,6 @@
 			</configuration>
             </plugin>
         </plugins>
+        <finalName>FA</finalName>
     </build>
 </project>
