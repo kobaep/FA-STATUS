@@ -294,4 +294,12 @@ privileged aspect FaRequest_Roo_JavaBean {
         this.saleCoSendWorkTo = saleCoSendWorkTo;
     }
     
+    public String FaRequest.getDocumentSaleCo() {
+        return this.documentSaleCo;
+    }
+    
+    public void FaRequest.setDocumentSaleCo(String documentSaleCo) {
+        this.documentSaleCo = documentSaleCo;
+    }
+    
 }

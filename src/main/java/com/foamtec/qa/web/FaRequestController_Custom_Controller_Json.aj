@@ -328,6 +328,7 @@ public aspect FaRequestController_Custom_Controller_Json {
             }
             if("saleCoApprove".equals(action)) {
                 faRequest.setSaleCoSendWorkTo(jsonObject.getString("name"));
+                faRequest.setDocumentSaleCo(jsonObject.getString("document"));
                 faRequest.setFlow("SaleOut");
                 faRequest.setStatus("saleCoApprove");
                 documentHistory.setStatus("saleCoApprove");

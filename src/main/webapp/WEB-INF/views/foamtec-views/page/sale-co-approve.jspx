@@ -136,6 +136,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="inputPerson" class="col-sm-3 control-label">Document :</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" id="inputDocument" placeholder="Document" type="text" required = "required"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3">
                             <button type="button" id="btnApprove" class="btn btn-success">APPROVE</button>
                         </div>
@@ -191,7 +197,8 @@
                 var data = {
                     action : "saleCoApprove",
                     name : $("#inputPerson").val(),
-                    id : "${farequest.id}"
+                    id : "${farequest.id}",
+                    document : $("#inputDocument").val()
                 };
                 $.ajax({
                     url: session['context'] +'/farequests/saleupdate',

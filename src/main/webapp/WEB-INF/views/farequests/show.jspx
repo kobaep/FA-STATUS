@@ -35,5 +35,6 @@
         <field:display field="createBy" id="s_com_foamtec_qa_domain_FaRequest_createBy" object="${farequest}" z="ioSThaz1XlHc4WyGlY0LTvzdaL4="/>
         <field:display field="saleRemark" id="s_com_foamtec_qa_domain_FaRequest_saleRemark" object="${farequest}" z="Rs9VMZGWv/Pbo8CEp9UGXl4dt24="/>
         <field:display field="saleCoSendWorkTo" id="s_com_foamtec_qa_domain_FaRequest_saleCoSendWorkTo" object="${farequest}" z="XmhnyXVgulZS5HSbi+b3BDuPExk="/>
+        <field:display field="documentSaleCo" id="s_com_foamtec_qa_domain_FaRequest_documentSaleCo" object="${farequest}" z="DNbXkRZGdYL+6O6OT9DA3VnoNyE="/>
     </page:show>
 </div>

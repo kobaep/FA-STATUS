@@ -59,19 +59,31 @@
                             </div>
                         </div>
                     </c:forEach>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">Sale Remark :</label>
-                        <div class="col-sm-9">
-                            <textarea id="inputProcess" class="form-control" rows="6" disabled="true">${farequest.saleRemark}</textarea>
+                    <c:if test="${not empty farequest.saleRemark}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Sale Remark :</label>
+                            <div class="col-sm-9">
+                                <textarea id="inputProcess" class="form-control" rows="6" disabled="true">${farequest.saleRemark}</textarea>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">Eng Confirm Finish</label>
-                        <div class="col-sm-9">
-                            <fmt:formatDate pattern="dd/MM/yyyy" value="${farequest.engWorkCommitDate}" var="engWorkCommitDate" />
-                            <p class="form-control-static text-overflow-newline">${engWorkCommitDate}</p>
+                    </c:if>
+                    <c:if test="${not empty farequest.process}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Process :</label>
+                            <div class="col-sm-9">
+                                <textarea id="inputProcess" class="form-control" rows="10" disabled="true">${farequest.process}</textarea>
+                            </div>
                         </div>
-                    </div>
+                    </c:if>
+                    <c:if test="${not empty farequest.engWorkCommitDate}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Eng Confirm Finish :</label>
+                            <div class="col-sm-9">
+                                <fmt:formatDate pattern="dd/MM/yyyy" value="${farequest.engWorkCommitDate}" var="engWorkCommitDate" />
+                                <p class="form-control-static text-overflow-newline">${engWorkCommitDate}</p>
+                            </div>
+                        </div>
+                    </c:if>
                 </fieldset>
             </form>
         </div>
@@ -105,12 +117,22 @@
                             </table>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">Send Item To :</label>
-                        <div class="col-sm-9">
-                            <p class="form-control-static text-overflow-newline">${farequest.saleCoSendWorkTo}</p>
+                    <c:if test="${not empty farequest.saleCoSendWorkTo}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Send Item To :</label>
+                            <div class="col-sm-9">
+                                <p class="form-control-static text-overflow-newline">${farequest.saleCoSendWorkTo}</p>
+                            </div>
                         </div>
-                    </div>
+                    </c:if>
+                    <c:if test="${not empty farequest.documentSaleCo}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Document :</label>
+                            <div class="col-sm-9">
+                                <p class="form-control-static text-overflow-newline">${farequest.documentSaleCo}</p>
+                            </div>
+                        </div>
+                    </c:if>
                 </fieldset>
             </form>
         </div>

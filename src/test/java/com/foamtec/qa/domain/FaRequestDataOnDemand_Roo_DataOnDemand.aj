@@ -44,6 +44,7 @@ privileged aspect FaRequestDataOnDemand_Roo_DataOnDemand {
         setCreateDate(obj, index);
         setCustomer(obj, index);
         setDocumentRequest(obj, index);
+        setDocumentSaleCo(obj, index);
         setEngApprovel(obj, index);
         setEngReson(obj, index);
         setEngSendWorkDate(obj, index);
@@ -107,6 +108,11 @@ privileged aspect FaRequestDataOnDemand_Roo_DataOnDemand {
     public void FaRequestDataOnDemand.setDocumentRequest(FaRequest obj, int index) {
         String documentRequest = "documentRequest_" + index;
         obj.setDocumentRequest(documentRequest);
+    }
+    
+    public void FaRequestDataOnDemand.setDocumentSaleCo(FaRequest obj, int index) {
+        String documentSaleCo = "documentSaleCo_" + index;
+        obj.setDocumentSaleCo(documentSaleCo);
     }
     
     public void FaRequestDataOnDemand.setEngApprovel(FaRequest obj, int index) {

@@ -175,4 +175,8 @@ public class FaRequest {
     /**
      */
     private String saleCoSendWorkTo;
+
+    /**
+     */
+    private String documentSaleCo;
 }
