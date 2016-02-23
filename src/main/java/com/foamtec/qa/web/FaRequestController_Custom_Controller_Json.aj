@@ -215,7 +215,7 @@ public aspect FaRequestController_Custom_Controller_Json {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         try {
-            JSONArray dataJson = findData(data, "saleApprove", "QaApprove");
+            JSONArray dataJson = findData(data, "SaleOut", "saleCoApprove");
             return new ResponseEntity<String>(dataJson.toString(), headers, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);

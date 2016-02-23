@@ -130,6 +130,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-sm-3 control-label">Send Item To :</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static text-overflow-newline">${farequest.saleCoSendWorkTo}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3">
                             <button type="button" id="btnReject" class="btn btn-primary">CUSTOMER REJECT</button>
                             <button type="button" id="btnApprove" class="btn btn-success col-sm-offset-1">CUSTOMER APPROVE</button>
@@ -182,7 +188,7 @@
             });
             $("#btnConfirm").click(function() {
                 var data = {
-                    action : "approve",
+                    action : "saleOutApprove",
                     id : "${farequest.id}"
                 };
                 $.ajax({
