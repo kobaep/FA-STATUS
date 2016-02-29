@@ -28,7 +28,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12 alert alert-dismissible alert-success">
-                    <div align="center"><h4><label>Search</label></h4></div>
+                    <div align="center"><h4><label>Search By User</label></h4></div>
                     <div class="table-responsive" style="height: 700px;">
                         <table class="table table-striped">
                             <thead>
@@ -41,6 +41,7 @@
                                 <th>Part No.</th>
                                 <th>Project Owner</th>
                                 <th>Request By</th>
+                                <th>Status</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -70,26 +71,26 @@
             $("#inputNeedDate1").datepicker().datepicker('setDate', startDate);
             $("#inputNeedDate2").datepicker().datepicker('setDate', endDate);
 
-            var datanow = {
+            var datatest = {
                 startDate : $("#inputNeedDate1").val(),
                 endDate : $("#inputNeedDate2").val(),
                 status : "na_" + $("#inputTextSearch").val()
             };
 
             $.ajax({
-                url: session['context'] +'/searchdata',
+                url: session['context'] +'/farequests/searchdatasalecreate',
                 type: "POST",
                 headers: {
                     Accept: "application/json"
                 },
                 data : {
-                    data : JSON.stringify(datanow)
+                    data : JSON.stringify(datatest)
                 },
                 dataType: "json",
                 success: function(data){
                     $(".dataTable").remove();
                     $.each(data, function (i, item) {
-                        var dataT1 = '<tr class="dataTable"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.projectOwner + '</td><td>' + item.requestBy + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                        var dataT1 = '<tr class="dataTable"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.projectOwner + '</td><td>' + item.requestBy + '</td><td>' + item.status + '</td><td><a href="${home}farequests/saleedit/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
                         $("#tableCreate").append(dataT1);
                     });
                 },
@@ -97,7 +98,6 @@
                     alert("data error.");
                 }
             });
-
 
             $("#btnSearch").click(function() {
                 var data = {
@@ -107,7 +107,7 @@
                 };
 
                 $.ajax({
-                    url: session['context'] +'/searchdata',
+                    url: session['context'] +'/farequests/searchdatasalecreate',
                     type: "POST",
                     headers: {
                         Accept: "application/json"
@@ -119,7 +119,7 @@
                     success: function(data){
                         $(".dataTable").remove();
                         $.each(data, function (i, item) {
-                            var dataT1 = '<tr class="dataTable"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.projectOwner + '</td><td>' + item.requestBy + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            var dataT1 = '<tr class="dataTable"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.projectOwner + '</td><td>' + item.requestBy + '</td><td><a href="${home}farequests/saleedit/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
                             $("#tableCreate").append(dataT1);
                         });
                     },

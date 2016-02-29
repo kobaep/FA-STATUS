@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 import org.springframework.roo.addon.json.RooJson;
 import javax.persistence.OrderBy;
 import com.foamtec.qa.security.AppUser;
+import org.springframework.beans.factory.annotation.Value;
 
 @RooJavaBean
 @RooToString
@@ -179,4 +180,24 @@ public class FaRequest {
     /**
      */
     private String documentSaleCo;
+
+    /**
+     */
+    @Value("0")
+    private Integer faForSaleQty;
+
+    /**
+     */
+    @Value("0")
+    private Integer faForApproveQty;
+
+    /**
+     */
+    @Value("0")
+    private Integer faForTestQty;
+
+    /**
+     */
+    @Value("0")
+    private Integer faForPccQty;
 }

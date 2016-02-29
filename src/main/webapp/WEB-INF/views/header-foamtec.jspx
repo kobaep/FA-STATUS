@@ -67,6 +67,7 @@
                 }
                 if(data.roleName == "sale") {
                     $(".menuSale").removeClass("hidden");
+                    $("#userCheck").append('<li><a href="${home}farequests/allfabyuser">FA For User</a></li>');
                     $("#userCheck").append('<li><a href="${home}resources/j_spring_security_logout">Logout</a></li>');
                 }
                 if(data.roleName == "engineer") {

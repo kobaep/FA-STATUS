@@ -48,6 +48,20 @@ public aspect FaRequestController_Custom_Controller_Json {
         }
     }
 
+    @RequestMapping(value = "/saleedit", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> FaRequestController.saleEdit(@RequestParam("data") String data, Principal principal) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        try {
+            FaRequest faRequest = putDataUpdate(data, principal);
+            faRequest.persist();
+            return new ResponseEntity<String>(faRequest.toJson(), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @RequestMapping(value = "/engupdate", method = RequestMethod.POST, headers = "Accept=application/json")
     @ResponseBody
     public ResponseEntity<String> FaRequestController.engUpdate(@RequestParam("data") String data, Principal principal) {
@@ -261,6 +275,64 @@ public aspect FaRequestController_Custom_Controller_Json {
         }
     }
 
+    @RequestMapping(value = "/searchdatasalecreate", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> FaRequestController.searchForEdit(@RequestParam("data") String data, Principal principal) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        try {
+            JSONObject jsonObject = new JSONObject(data);
+            String startDateSt = jsonObject.getString("startDate");
+            String endDateSt = jsonObject.getString("endDate");
+
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            Date startDate = df.parse(startDateSt);
+
+            Calendar endDateCalendar = Calendar.getInstance();
+            endDateCalendar.setTime(df.parse(endDateSt));
+            endDateCalendar.set(Calendar.HOUR_OF_DAY, 23);
+            endDateCalendar.set(Calendar.MINUTE, 59);
+            endDateCalendar.set(Calendar.SECOND, 59);
+            Date endDate = endDateCalendar.getTime();
+
+            String[] partNumber = jsonObject.getString("status").split("_");
+            String statusSearch = "%";
+            if(partNumber.length == 2) {
+                statusSearch = "%" + partNumber[1] + "%";
+            }
+
+            JSONArray dataAllForSend = new JSONArray();
+            List<FaRequest> faRequests = FaRequest.findByStartDateEndDateStatusAndCreateBy(startDate, endDate, statusSearch, principal.getName());
+            int i = 1;
+            for(FaRequest faRequest : faRequests) {
+                JSONObject jsonObject1 = new JSONObject();
+                jsonObject1.put("id", faRequest.getId());
+                jsonObject1.put("no", i);
+                jsonObject1.put("faNo", faRequest.getFaNumber());
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(faRequest.getCreateDate());
+                int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                int minutes = calendar.get(Calendar.MINUTE);
+                jsonObject1.put("requestDate",df.format(faRequest.getCreateDate()) + " " + hours + ":" + String.format("%02d", minutes));
+                jsonObject1.put("needDate",df.format(faRequest.getNeedDate()));
+                jsonObject1.put("customer",faRequest.getCustomer());
+                jsonObject1.put("partNo",faRequest.getPartNumber());
+                jsonObject1.put("requestBy", faRequest.getCreateBy().getName());
+                jsonObject1.put("reasonEng",faRequest.getEngReson());
+                jsonObject1.put("status",faRequest.getStatus());
+                jsonObject1.put("reasonFa",faRequest.getFaReson());
+                jsonObject1.put("projectOwner",faRequest.getProjectOwner());
+                dataAllForSend.put(jsonObject1);
+                i++;
+            }
+
+            return new ResponseEntity<String>(dataAllForSend.toString(), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @RequestMapping(value = "/qafaupdate", method = RequestMethod.POST, headers = "Accept=application/json")
     @ResponseBody
     public ResponseEntity<String> FaRequestController.qaFaUpdate(@RequestParam("data") String data, Principal principal) {
@@ -438,36 +510,18 @@ public aspect FaRequestController_Custom_Controller_Json {
         String[] sampleForTestQty = jsonObject.getString("sampleForTestQty").split("_");
         String[] sampleForPccQty = jsonObject.getString("sampleForPccQty").split("_");
 
-        Set<TypeOfRequest> typeOfRequests = new HashSet<TypeOfRequest>();
         if(faApproveQty.length != 1) {
-            TypeOfRequest typeOfRequest = new TypeOfRequest();
-            typeOfRequest.setName("FA Approve");
-            typeOfRequest.setQty(Integer.parseInt(faApproveQty[1]));
-            typeOfRequest.setFaRequest(faRequest);
-            typeOfRequests.add(typeOfRequest);
+            faRequest.setFaForApproveQty(Integer.parseInt(faApproveQty[1]));
         }
         if(faaForSellQty.length != 1) {
-            TypeOfRequest typeOfRequest = new TypeOfRequest();
-            typeOfRequest.setName("FA For Sell");
-            typeOfRequest.setQty(Integer.parseInt(faaForSellQty[1]));
-            typeOfRequest.setFaRequest(faRequest);
-            typeOfRequests.add(typeOfRequest);
+            faRequest.setFaForSaleQty(Integer.parseInt(faaForSellQty[1]));
         }
         if(sampleForTestQty.length != 1) {
-            TypeOfRequest typeOfRequest = new TypeOfRequest();
-            typeOfRequest.setName("Sample For Test");
-            typeOfRequest.setQty(Integer.parseInt(sampleForTestQty[1]));
-            typeOfRequest.setFaRequest(faRequest);
-            typeOfRequests.add(typeOfRequest);
+            faRequest.setFaForTestQty(Integer.parseInt(sampleForTestQty[1]));
         }
         if(sampleForPccQty.length != 1) {
-            TypeOfRequest typeOfRequest = new TypeOfRequest();
-            typeOfRequest.setName("Sample For Pcc");
-            typeOfRequest.setQty(Integer.parseInt(sampleForPccQty[1]));
-            typeOfRequest.setFaRequest(faRequest);
-            typeOfRequests.add(typeOfRequest);
+            faRequest.setFaForPccQty(Integer.parseInt(sampleForPccQty[1]));
         }
-        faRequest.setTypeOfRequest(typeOfRequests);
 
         String[] remarks = jsonObject.getString("remark").split("_");
         if(remarks.length != 1) {
@@ -491,6 +545,121 @@ public aspect FaRequestController_Custom_Controller_Json {
         documentHistory.setCreateBy(AppUser.findByUserName(principal.getName()));
         documentHistory.setCreateDate(new Date());
         documentHistory.setStatus("Create");
+        documentHistory.setFaRequest(faRequest);
+        documentHistorys.add(documentHistory);
+
+        faRequest.setDocumentHistorys(documentHistorys);
+
+        return faRequest;
+    }
+
+    private FaRequest FaRequestController.putDataUpdate(String data, Principal principal) {
+        JSONObject jsonObject = new JSONObject(data);
+        FaRequest faRequest = FaRequest.findFaRequest(Long.parseLong(jsonObject.getString("id")));
+        String[] customer = jsonObject.getString("customer").split("_");
+        if(customer.length == 1) {
+            faRequest.setCustomer(customer[0]);
+        } else {
+            faRequest.setCustomer(customer[1]);
+        }
+        String[] projectOwner = jsonObject.getString("projectOwner").split("_");
+        if(projectOwner.length == 1) {
+            faRequest.setProjectOwner(projectOwner[0]);
+        } else {
+            faRequest.setProjectOwner(projectOwner[1]);
+        }
+        String[] partNumber = jsonObject.getString("partNumber").split("_");
+        if(partNumber.length == 1) {
+            faRequest.setPartNumber(partNumber[0]);
+        } else {
+            faRequest.setPartNumber(partNumber[1]);
+        }
+        String[] revision = jsonObject.getString("revision").split("_");
+        if(revision.length == 1) {
+            faRequest.setRevision(revision[0]);
+        } else {
+            faRequest.setRevision(revision[1]);
+        }
+        String[] apqpNumber = jsonObject.getString("apqpNumber").split("_");
+        if(apqpNumber.length == 1) {
+            faRequest.setApqpNumber(apqpNumber[0]);
+        } else {
+            faRequest.setApqpNumber(apqpNumber[1]);
+        }
+        String[] quatationWorkSheet = jsonObject.getString("quatationWorkSheet").split("_");
+        if(quatationWorkSheet.length == 1) {
+            faRequest.setQuatationWorkSheet(quatationWorkSheet[0]);
+        } else {
+            faRequest.setQuatationWorkSheet(quatationWorkSheet[1]);
+        }
+        String[] needDate = jsonObject.getString("needDate").split("_");
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date startDate = df.parse(needDate[1]);
+            faRequest.setNeedDate(startDate);
+        } catch (ParseException e) {
+            faRequest.setNeedDate(null);
+        }
+        String produtGroup = jsonObject.getString("produtGroup");
+        faRequest.setProductGroup(produtGroup);
+        String documentRequest = jsonObject.getString("documentRequest");
+        faRequest.setDocumentRequest(documentRequest);
+
+        String[] mat1 = jsonObject.getString("mat1").split("_");
+        String[] mat2 = jsonObject.getString("mat2").split("_");
+        String[] mat3 = jsonObject.getString("mat3").split("_");
+
+        if(mat1.length != 1) {
+            faRequest.setMat1(mat1[1]);
+        } else {
+            faRequest.setMat1(mat1[0]);
+        }
+        if(mat2.length != 1) {
+            faRequest.setMat2(mat2[1]);
+        } else {
+            faRequest.setMat2(mat2[0]);
+        }
+        if(mat3.length != 1) {
+            faRequest.setMat3(mat3[1]);
+        } else {
+            faRequest.setMat3(mat3[0]);
+        }
+
+
+        String[] faApproveQty = jsonObject.getString("faApproveQty").split("_");
+        String[] faaForSellQty = jsonObject.getString("faaForSellQty").split("_");
+        String[] sampleForTestQty = jsonObject.getString("sampleForTestQty").split("_");
+        String[] sampleForPccQty = jsonObject.getString("sampleForPccQty").split("_");
+
+        if(faApproveQty.length != 1) {
+            faRequest.setFaForApproveQty(Integer.parseInt(faApproveQty[1]));
+        }
+        if(faaForSellQty.length != 1) {
+            faRequest.setFaForSaleQty(Integer.parseInt(faaForSellQty[1]));
+        }
+        if(sampleForTestQty.length != 1) {
+            faRequest.setFaForTestQty(Integer.parseInt(sampleForTestQty[1]));
+        }
+        if(sampleForPccQty.length != 1) {
+            faRequest.setFaForPccQty(Integer.parseInt(sampleForPccQty[1]));
+        }
+
+        String[] remarks = jsonObject.getString("remark").split("_");
+        if(remarks.length != 1) {
+            faRequest.setSaleRemark(remarks[1]);
+        }
+
+        faRequest.setCreateBy(AppUser.findByUserName(principal.getName()));
+        faRequest.setCreateDate(new Date());
+        faRequest.setFlow("engineer");
+        faRequest.setStatus("Create");
+
+        Set<DocumentHistory> documentHistorys = faRequest.getDocumentHistorys();
+        DocumentHistory documentHistory = new DocumentHistory();
+        documentHistory.setActionType("edit");
+        documentHistory.setCreateBy(AppUser.findByUserName(principal.getName()));
+        documentHistory.setCreateDate(new Date());
+        documentHistory.setStatus("Edit");
         documentHistory.setFaRequest(faRequest);
         documentHistorys.add(documentHistory);
 

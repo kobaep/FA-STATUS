@@ -50,6 +50,10 @@ privileged aspect FaRequestDataOnDemand_Roo_DataOnDemand {
         setEngSendWorkDate(obj, index);
         setEngWorkCommitDate(obj, index);
         setFaApprovel(obj, index);
+        setFaForApproveQty(obj, index);
+        setFaForPccQty(obj, index);
+        setFaForSaleQty(obj, index);
+        setFaForTestQty(obj, index);
         setFaNumber(obj, index);
         setFaReson(obj, index);
         setFlow(obj, index);
@@ -138,6 +142,26 @@ privileged aspect FaRequestDataOnDemand_Roo_DataOnDemand {
     public void FaRequestDataOnDemand.setFaApprovel(FaRequest obj, int index) {
         String faApprovel = "faApprovel_" + index;
         obj.setFaApprovel(faApprovel);
+    }
+    
+    public void FaRequestDataOnDemand.setFaForApproveQty(FaRequest obj, int index) {
+        Integer faForApproveQty = new Integer(index);
+        obj.setFaForApproveQty(faForApproveQty);
+    }
+    
+    public void FaRequestDataOnDemand.setFaForPccQty(FaRequest obj, int index) {
+        Integer faForPccQty = new Integer(index);
+        obj.setFaForPccQty(faForPccQty);
+    }
+    
+    public void FaRequestDataOnDemand.setFaForSaleQty(FaRequest obj, int index) {
+        Integer faForSaleQty = new Integer(index);
+        obj.setFaForSaleQty(faForSaleQty);
+    }
+    
+    public void FaRequestDataOnDemand.setFaForTestQty(FaRequest obj, int index) {
+        Integer faForTestQty = new Integer(index);
+        obj.setFaForTestQty(faForTestQty);
     }
     
     public void FaRequestDataOnDemand.setFaNumber(FaRequest obj, int index) {

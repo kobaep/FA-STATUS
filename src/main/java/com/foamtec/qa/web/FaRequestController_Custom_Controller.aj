@@ -82,4 +82,16 @@ public aspect FaRequestController_Custom_Controller {
         uiModel.addAttribute("farequest", faRequest);
         return "saleco-approve";
     }
+
+    @RequestMapping(value = "/allfabyuser", produces = "text/html")
+    public String FaRequestController.listAllBySaleCreate(Model uiModel, Principal principal) {
+        return "list-sale-create";
+    }
+
+    @RequestMapping(value = "/saleedit/{id}", produces = "text/html")
+    public String FaRequestController.saleEdit(@PathVariable("id") Long id, Model uiModel, Principal principal) {
+        FaRequest faRequest = FaRequest.findFaRequest(id);
+        uiModel.addAttribute("farequest", faRequest);
+        return "sale-edit";
+    }
 }

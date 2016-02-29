@@ -302,4 +302,36 @@ privileged aspect FaRequest_Roo_JavaBean {
         this.documentSaleCo = documentSaleCo;
     }
     
+    public Integer FaRequest.getFaForSaleQty() {
+        return this.faForSaleQty;
+    }
+    
+    public void FaRequest.setFaForSaleQty(Integer faForSaleQty) {
+        this.faForSaleQty = faForSaleQty;
+    }
+    
+    public Integer FaRequest.getFaForApproveQty() {
+        return this.faForApproveQty;
+    }
+    
+    public void FaRequest.setFaForApproveQty(Integer faForApproveQty) {
+        this.faForApproveQty = faForApproveQty;
+    }
+    
+    public Integer FaRequest.getFaForTestQty() {
+        return this.faForTestQty;
+    }
+    
+    public void FaRequest.setFaForTestQty(Integer faForTestQty) {
+        this.faForTestQty = faForTestQty;
+    }
+    
+    public Integer FaRequest.getFaForPccQty() {
+        return this.faForPccQty;
+    }
+    
+    public void FaRequest.setFaForPccQty(Integer faForPccQty) {
+        this.faForPccQty = faForPccQty;
+    }
+    
 }

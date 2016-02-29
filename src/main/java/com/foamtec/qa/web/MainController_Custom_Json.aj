@@ -156,7 +156,13 @@ public aspect MainController_Custom_Json {
 
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             Date startDate = df.parse(startDateSt);
-            Date endDate = df.parse(endDateSt);
+
+            Calendar endDateCalendar = Calendar.getInstance();
+            endDateCalendar.setTime(df.parse(endDateSt));
+            endDateCalendar.set(Calendar.HOUR_OF_DAY, 23);
+            endDateCalendar.set(Calendar.MINUTE, 59);
+            endDateCalendar.set(Calendar.SECOND, 59);
+            Date endDate = endDateCalendar.getTime();
 
             String[] partNumber = jsonObject.getString("status").split("_");
             String statusSearch = "%";

@@ -50,4 +50,20 @@ public aspect FaRequest_Custom_Jpa_ActiveRecord {
         c.add(Restrictions.and(case1,case6));
         return c.list();
     }
+
+    public static List<FaRequest> FaRequest.findByStartDateEndDateStatusAndCreateBy(Date start, Date end, String statusSearch, String createBy) {
+        EntityManager em = FaRequest.entityManager();
+        Criteria c = ((Session)em.getDelegate()).createCriteria(FaRequest.class);
+        Criterion case1 = Restrictions.between("createDate", start, end);
+        Criterion case2 = Restrictions.like("projectOwner", statusSearch);
+        Criterion case3 = Restrictions.like("customer", statusSearch);
+        Criterion case4 = Restrictions.like("partNumber", statusSearch);
+        Criterion case5 = Restrictions.like("faNumber", statusSearch);
+        c.createCriteria("createBy", "a");
+        Criterion case6 = Restrictions.or(case2, case3, case4, case5);
+
+        c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        c.add(Restrictions.and(case1,case6,Restrictions.like("a.username", createBy)));
+        return c.list();
+    }
 }

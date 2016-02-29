@@ -36,5 +36,9 @@
         <field:display field="saleRemark" id="s_com_foamtec_qa_domain_FaRequest_saleRemark" object="${farequest}" z="Rs9VMZGWv/Pbo8CEp9UGXl4dt24="/>
         <field:display field="saleCoSendWorkTo" id="s_com_foamtec_qa_domain_FaRequest_saleCoSendWorkTo" object="${farequest}" z="XmhnyXVgulZS5HSbi+b3BDuPExk="/>
         <field:display field="documentSaleCo" id="s_com_foamtec_qa_domain_FaRequest_documentSaleCo" object="${farequest}" z="DNbXkRZGdYL+6O6OT9DA3VnoNyE="/>
+        <field:display field="faForSaleQty" id="s_com_foamtec_qa_domain_FaRequest_faForSaleQty" object="${farequest}" z="2yIA+TZo9Mbyieu6GKk/+OehdcQ="/>
+        <field:display field="faForApproveQty" id="s_com_foamtec_qa_domain_FaRequest_faForApproveQty" object="${farequest}" z="WVBILZUATQzKXuzhWMgwRT8KOdE="/>
+        <field:display field="faForTestQty" id="s_com_foamtec_qa_domain_FaRequest_faForTestQty" object="${farequest}" z="OyB3U8RI8X2/ayrcGQeBmpLuYug="/>
+        <field:display field="faForPccQty" id="s_com_foamtec_qa_domain_FaRequest_faForPccQty" object="${farequest}" z="k8NIwXaEqf0spGuIZpn/eHtJYm8="/>
     </page:show>
 </div>

@@ -39,6 +39,10 @@
         <field:input field="saleRemark" id="c_com_foamtec_qa_domain_FaRequest_saleRemark" z="JW+bbNFx/u9GSPl1FYK3xhX1vs0="/>
         <field:input field="saleCoSendWorkTo" id="c_com_foamtec_qa_domain_FaRequest_saleCoSendWorkTo" z="EG+GoDeLvQUJYHHdY5agnRGBFvE="/>
         <field:input field="documentSaleCo" id="c_com_foamtec_qa_domain_FaRequest_documentSaleCo" z="Aa6WOesL2IYt9ZPHPDTsM4c3lh4="/>
+        <field:input field="faForSaleQty" id="c_com_foamtec_qa_domain_FaRequest_faForSaleQty" validationMessageCode="field_invalid_integer" z="LiNiajU+TgDF7gIRiOQV02is2uE="/>
+        <field:input field="faForApproveQty" id="c_com_foamtec_qa_domain_FaRequest_faForApproveQty" validationMessageCode="field_invalid_integer" z="4tmq4G4+Z0eP+Z3aYzNANxtl4k8="/>
+        <field:input field="faForTestQty" id="c_com_foamtec_qa_domain_FaRequest_faForTestQty" validationMessageCode="field_invalid_integer" z="7I/HH5W8gvpEwf+Qn6WoU4HMZNg="/>
+        <field:input field="faForPccQty" id="c_com_foamtec_qa_domain_FaRequest_faForPccQty" validationMessageCode="field_invalid_integer" z="Y+TtfNI2Vq/+aoZxvHzuDeHT4Gs="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_foamtec_qa_domain_FaRequest" render="${not empty dependencies}" z="AfIhqScG1frP1tSE7R9tisEzPNs="/>
 </div>

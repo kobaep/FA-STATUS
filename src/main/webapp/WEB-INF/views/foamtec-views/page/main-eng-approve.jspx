@@ -57,14 +57,30 @@
                             <p class="form-control-static text-overflow-newline">${appUser.name}</p>
                         </div>
                     </div>
-                    <c:forEach items="${farequest.typeOfRequest}" var="typeOfRequest">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">${typeOfRequest.name} :</label>
-                            <div class="col-sm-9">
-                                <p class="form-control-static text-overflow-newline">${typeOfRequest.qty} Pcs</p>
-                            </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">FA Approve qty :</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static text-overflow-newline">${farequest.faForApproveQty} Pcs</p>
                         </div>
-                    </c:forEach>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">FA For Sell qty :</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static text-overflow-newline">${farequest.faForSaleQty} Pcs</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Sample For Test qty :</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static text-overflow-newline">${farequest.faForTestQty} Pcs</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Sample For PCC qty :</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static text-overflow-newline">${farequest.faForPccQty} Pcs</p>
+                        </div>
+                    </div>
                     <c:if test="${farequest.mat1 != 'na'}">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Material :</label>

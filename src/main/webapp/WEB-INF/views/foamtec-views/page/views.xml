@@ -38,10 +38,6 @@
         <put-attribute name="body" value="/WEB-INF/views/foamtec-views/page/sale-approve.jspx"/>
     </definition>
 
-    <definition extends="foamtec" name="sale-follow">
-        <put-attribute name="body" value="/WEB-INF/views/foamtec-views/page/sale-follow.jspx"/>
-    </definition>
-
     <definition extends="foamtec" name="sale-cancel">
         <put-attribute name="body" value="/WEB-INF/views/foamtec-views/page/sale-cancel.jspx"/>
     </definition>
@@ -56,6 +52,14 @@
 
     <definition extends="foamtec" name="saleco-approve">
         <put-attribute name="body" value="/WEB-INF/views/foamtec-views/page/sale-co-approve.jspx"/>
+    </definition>
+
+    <definition extends="foamtec" name="list-sale-create">
+        <put-attribute name="body" value="/WEB-INF/views/foamtec-views/page/list-sale-create.jspx"/>
+    </definition>
+
+    <definition extends="foamtec" name="sale-edit">
+        <put-attribute name="body" value="/WEB-INF/views/foamtec-views/page/sale-edit.jspx"/>
     </definition>
 
 </tiles-definitions>
