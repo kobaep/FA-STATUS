@@ -8,6 +8,12 @@
             <form class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
+                        <label for="inputCustomer" class="col-sm-3 control-label">FA Number :</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static text-overflow-newline">${farequest.faNumber}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="inputCustomer" class="col-sm-3 control-label">Customer :</label>
                         <div class="col-sm-9">
                             <p class="form-control-static text-overflow-newline">${farequest.customer}</p>
