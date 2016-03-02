@@ -105,6 +105,12 @@
                             </div>
                         </div>
                     </c:if>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Document Request :</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static text-overflow-newline">${farequest.documentRequest}</p>
+                        </div>
+                    </div>
                     <c:if test="${not empty farequest.saleRemark}">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Sale Remark :</label>
@@ -144,6 +150,7 @@
                                     <th>Update By</th>
                                     <th>Action</th>
                                     <th>Reason</th>
+                                    <th>Mould</th>
                                 </tr>
                                 </thead>
                                 <tbody id="tableCreate">
@@ -155,6 +162,7 @@
                                             <td>${appUser.name}</td>
                                             <td>${documentHistory.actionType}</td>
                                             <td>${documentHistory.reason}</td>
+                                            <td>${documentHistory.moldNumber}</td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>

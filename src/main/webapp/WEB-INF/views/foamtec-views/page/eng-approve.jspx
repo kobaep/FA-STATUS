@@ -82,9 +82,15 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Sale Remark :</label>
+                        <label for="inputCustomer" class="col-sm-3 control-label">FA Number :</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" rows="6" disabled="true">${farequest.saleRemark}</textarea>
+                            <p class="form-control-static text-overflow-newline">${farequest.faNumber}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Document Request :</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static text-overflow-newline">${farequest.documentRequest}</p>
                         </div>
                     </div>
                 </fieldset>
