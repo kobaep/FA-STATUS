@@ -155,7 +155,7 @@
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3">
                             <button type="button" id="btnReject" class="btn btn-primary">CANCLE</button>
-                            <!--<button type="button" id="btnApprove" class="btn btn-success">APPROVE</button>-->
+                            <button type="button" id="btnApprove" class="col-sm-offset-1 btn btn-default">RESUBMIT</button>
                         </div>
                     </div>
                 </fieldset>
@@ -197,6 +197,23 @@
         </div>
     </div>
 
+    <div class="modal fade" id="alertResubmitModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title">Resubmit</h4>
+                </div>
+                <div class="modal-body">
+                    Resubmit Document.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="btnResubmit">comfirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript">
         <![CDATA[
         $(document).ready(function() {
@@ -206,6 +223,33 @@
             $("#btnRejectReason").click(function() {
                 var data = {
                     action : "cancel",
+                    id : "${farequest.id}"
+                };
+                $.ajax({
+                    url: session['context'] +'/farequests/saleupdate',
+                    type: "POST",
+                    headers: {
+                        Accept: "application/json"
+                    },
+                    data: {
+                        data : JSON.stringify(data)
+                    },
+                    dataType: "json",
+                    success: function(data){
+                        window.location.href = session['context'] + '/farequests/salefollowlist';
+                    },
+                    error: function(data){
+                        alert("update error.");
+                    }
+                });
+            });
+
+            $("#btnApprove").click(function() {
+                $("#alertResubmitModal").modal({show:true});
+            });
+            $("#btnResubmit").click(function() {
+                var data = {
+                    action : "resubmit",
                     id : "${farequest.id}"
                 };
                 $.ajax({

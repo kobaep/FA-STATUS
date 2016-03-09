@@ -230,7 +230,7 @@
                 success: function(data){
                     $.each(data, function (i, item) {
                         if(item.day) {
-                            var dataT1 = '<tr bgcolor="#FB0303"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            var dataT1 = '<tr bgcolor="#FA8072"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
                             $("#tableCreate1").append(dataT1);
                         } else {
                             var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
@@ -254,7 +254,7 @@
                 success: function(data){
                     $.each(data, function (i, item) {
                         if(item.day) {
-                            var dataT1 = '<tr bgcolor="#FB0303"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            var dataT1 = '<tr bgcolor="#FA8072"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
                             $("#tableCreate2").append(dataT1);
                         } else {
                             var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
@@ -278,7 +278,7 @@
                 success: function(data){
                     $.each(data, function (i, item) {
                         if(item.day) {
-                            var dataT1 = '<tr bgcolor="#FB0303"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            var dataT1 = '<tr bgcolor="#FA8072"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
                             $("#tableCreate3").append(dataT1);
                         } else {
                             var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
@@ -302,7 +302,7 @@
                 success: function(data){
                     $.each(data, function (i, item) {
                         if(item.day) {
-                            var dataT1 = '<tr bgcolor="#FB0303"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            var dataT1 = '<tr bgcolor="#FA8072"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
                             $("#tableCreate4").append(dataT1);
                         } else {
                             var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
@@ -326,7 +326,7 @@
                 success: function(data){
                     $.each(data, function (i, item) {
                         if(item.day) {
-                            var dataT1 = '<tr bgcolor="#FB0303"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonEng + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            var dataT1 = '<tr bgcolor="#FA8072"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonEng + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
                             $("#tableCreate5").append(dataT1);
                         } else {
                             var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonEng + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
@@ -350,7 +350,7 @@
                 success: function(data){
                     $.each(data, function (i, item) {
                         if(item.day) {
-                            var dataT1 = '<tr bgcolor="#FB0303"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonEng + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            var dataT1 = '<tr bgcolor="#FA8072"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonEng + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
                             $("#tableCreateWait").append(dataT1);
                         } else {
                             var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonEng + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
@@ -374,7 +374,7 @@
                 success: function(data){
                     $.each(data, function (i, item) {
                         if(item.day) {
-                            var dataT1 = '<tr bgcolor="#FB0303"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonFa + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            var dataT1 = '<tr bgcolor="#FA8072"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonFa + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
                             $("#tableCreate6").append(dataT1);
                         } else {
                             var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonFa + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
@@ -398,7 +398,7 @@
                 success: function(data){
                     $.each(data, function (i, item) {
                         if(item.day) {
-                            var dataT1 = '<tr bgcolor="#FB0303"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonFa + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            var dataT1 = '<tr bgcolor="#FA8072"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonFa + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
                             $("#tableCreate7").append(dataT1);
                         } else {
                             var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.reasonFa + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
@@ -421,13 +421,8 @@
                 dataType: "json",
                 success: function(data){
                     $.each(data, function (i, item) {
-                        if(item.day) {
-                            var dataT1 = '<tr bgcolor="#FB0303"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.projectOwner + '</td><td>' + item.requestBy + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
-                            $("#tableCreate8").append(dataT1);
-                        } else {
-                            var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.projectOwner + '</td><td>' + item.requestBy + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
-                            $("#tableCreate8").append(dataT1);
-                        }
+                        var dataT1 = '<tr><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.projectOwner + '</td><td>' + item.requestBy + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                        $("#tableCreate8").append(dataT1);
                     });
                 },
                 error: function(data){

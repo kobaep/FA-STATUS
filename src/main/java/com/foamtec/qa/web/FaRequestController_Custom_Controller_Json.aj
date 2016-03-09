@@ -412,6 +412,12 @@ public aspect FaRequestController_Custom_Controller_Json {
                 documentHistory.setStatus("Cancel");
                 documentHistory.setActionType("cancel");
             }
+            if ("resubmit".equals(action)) {
+                faRequest.setFlow("engineer");
+                faRequest.setStatus("Create");
+                documentHistory.setStatus("Resubmit");
+                documentHistory.setActionType("resubmit");
+            }
             if ("customerReject".equals(action)) {
                 faRequest.setFlow("customerReject");
                 faRequest.setStatus("customerReject");
