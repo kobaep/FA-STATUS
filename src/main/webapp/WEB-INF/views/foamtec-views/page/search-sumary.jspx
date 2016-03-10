@@ -1,0 +1,118 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:fn="http://java.sun.com/jsp/jstl/functions" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8" />
+    <jsp:output omit-xml-declaration="yes" />
+    <spring:url var="home" value="/" />
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-12" align="center">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <input class="form-control" id="inputNeedDate1" placeholder="Start Date" type="text"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <input class="form-control" id="inputNeedDate2" placeholder="End Date" type="text"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <input class="form-control" id="inputTextSearch" placeholder="Text Search" type="text"/>
+                            </div>
+                        </div>
+                        <button type="button" id="btnSearch" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 alert alert-dismissible alert-success">
+                    <div align="center"><h4><label>Search Option</label></h4></div>
+                    <div style="height: 700px;">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        <![CDATA[
+        $(document).ready(function() {
+
+            $("#inputNeedDate1").datepicker({ dateFormat: 'dd/mm/yy' });
+            $("#inputNeedDate2").datepicker({ dateFormat: 'dd/mm/yy' });
+
+            var d = new Date();
+            var currMonth = d.getMonth();
+            var currYear = d.getFullYear();
+            var startDate = new Date(currYear, currMonth, 1);
+            var endDate = new Date(currYear, currMonth + 1, 1) - 1;
+
+            $("#inputNeedDate1").datepicker().datepicker('setDate', startDate);
+            $("#inputNeedDate2").datepicker().datepicker('setDate', endDate);
+
+            var datanow = {
+                startDate : $("#inputNeedDate1").val(),
+                endDate : $("#inputNeedDate2").val(),
+                status : "na_" + $("#inputTextSearch").val()
+            };
+
+            $.ajax({
+                url: session['context'] +'/searchdata',
+                type: "POST",
+                headers: {
+                    Accept: "application/json"
+                },
+                data : {
+                    data : JSON.stringify(datanow)
+                },
+                dataType: "json",
+                success: function(data){
+                    $(".dataTable").remove();
+                    $.each(data, function (i, item) {
+                        var dataT1 = '<tr class="dataTable"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.projectOwner + '</td><td>' + item.requestBy + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                        $("#tableCreate").append(dataT1);
+                    });
+                },
+                error: function(data){
+                    alert("data error.");
+                }
+            });
+
+
+            $("#btnSearch").click(function() {
+                var data = {
+                    startDate : $("#inputNeedDate1").val(),
+                    endDate : $("#inputNeedDate2").val(),
+                    status : "na_" + $("#inputTextSearch").val()
+                };
+
+                $.ajax({
+                    url: session['context'] +'/searchdata',
+                    type: "POST",
+                    headers: {
+                        Accept: "application/json"
+                    },
+                    data : {
+                        data : JSON.stringify(data)
+                    },
+                    dataType: "json",
+                    success: function(data){
+                        $(".dataTable").remove();
+                        $.each(data, function (i, item) {
+                            var dataT1 = '<tr class="dataTable"><td>' + item.no + '</td><td>' + item.faNo + '</td><td>' + item.requestDate + '</td><td>' + item.needDate + '</td><td>' + item.customer + '</td><td>' + item.partNo + '</td><td>' + item.projectOwner + '</td><td>' + item.requestBy + '</td><td><a href="${home}engapprove/' + item.id + '" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td></tr>';
+                            $("#tableCreate").append(dataT1);
+                        });
+                    },
+                    error: function(data){
+                        alert("data error.");
+                    }
+                });
+            });
+        });
+        ]]>
+    </script>
+
+</div>

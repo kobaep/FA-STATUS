@@ -31,4 +31,9 @@ public class MainController {
     public String search(Model uiModel) {
         return "search";
     }
+
+    @RequestMapping(value = "/searchoption", produces = "text/html")
+    public String searchOption(Model uiModel) {
+        return "search-sumary";
+    }
 }
