@@ -100,7 +100,7 @@
         </div>
         <div class="col-sm-5">
             <div class="row">
-                <div class="col-sm-12 alert alert-dismissible alert-warning">
+                <div class="col-sm-12 alert alert-dismissible alert-danger">
                     <div align="center"><h4><label>Engineer Reject</label></h4></div>
                     <div class="table-responsive" style="height: 200px;">
                         <table class="table">
@@ -122,7 +122,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12 alert alert-dismissible alert-warning">
+                <div class="col-sm-12 alert alert-dismissible alert-danger">
                     <div align="center"><h4><label>Engineer Wait</label></h4></div>
                     <div class="table-responsive" style="height: 200px;">
                         <table class="table">
@@ -144,7 +144,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12 alert alert-dismissible alert-warning">
+                <div class="col-sm-12 alert alert-dismissible alert-danger">
                     <div align="center"><h4><label>QA Reject</label></h4></div>
                     <div class="table-responsive" style="height: 200px;">
                         <table class="table">
@@ -166,7 +166,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12 alert alert-dismissible alert-warning">
+                <div class="col-sm-12 alert alert-dismissible alert-danger">
                     <div align="center"><h4><label>QA Wait</label></h4></div>
                     <div class="table-responsive" style="height: 200px;">
                         <table class="table">
